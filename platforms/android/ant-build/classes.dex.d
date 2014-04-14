@@ -6,5 +6,12 @@
 /home/asier/mnt/weblanak/argia-multimedia/platforms/android/ant-build/classes/com/ionicframework/starter/HelloCordova.class \
 /home/asier/mnt/weblanak/argia-multimedia/platforms/android/ant-build/classes/com/ionicframework/starter/R.class \
 /home/asier/mnt/weblanak/argia-multimedia/platforms/android/ant-build/classes/com/ionicframework/starter/R$xml.class \
+/home/asier/mnt/weblanak/argia-multimedia/platforms/android/ant-build/classes/com/iametza/argia_multimedia/R$attr.class \
+/home/asier/mnt/weblanak/argia-multimedia/platforms/android/ant-build/classes/com/iametza/argia_multimedia/BuildConfig.class \
+/home/asier/mnt/weblanak/argia-multimedia/platforms/android/ant-build/classes/com/iametza/argia_multimedia/R$string.class \
+/home/asier/mnt/weblanak/argia-multimedia/platforms/android/ant-build/classes/com/iametza/argia_multimedia/R$drawable.class \
+/home/asier/mnt/weblanak/argia-multimedia/platforms/android/ant-build/classes/com/iametza/argia_multimedia/HelloCordova.class \
+/home/asier/mnt/weblanak/argia-multimedia/platforms/android/ant-build/classes/com/iametza/argia_multimedia/R.class \
+/home/asier/mnt/weblanak/argia-multimedia/platforms/android/ant-build/classes/com/iametza/argia_multimedia/R$xml.class \
 /home/asier/mnt/weblanak/argia-multimedia/platforms/android/ant-build/classes/org/apache/cordova/device/Device.class \
 /home/asier/mnt/weblanak/argia-multimedia/platforms/android/ant-build/dexedLibs/classes-82661caa32a5b17b1555a3eae18edb4b.jar \
