@@ -1,5 +1,7 @@
 node_modules/
 
+ant-build/
+
 # ANDROID / ECLIPSE
 
 # built application files
