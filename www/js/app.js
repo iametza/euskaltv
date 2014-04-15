@@ -62,12 +62,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     })
 
-    .state('tab.account', {
-      url: '/account',
+    .state('tab.youtube', {
+      url: '/youtube',
       views: {
-        'tab-account': {
-          templateUrl: 'templates/tab-account.html',
-          controller: 'AccountCtrl'
+        'tab-youtube': {
+          templateUrl: 'templates/tab-youtube.html',
+          controller: 'YoutubeCtrl'
         }
       }
     })
