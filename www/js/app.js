@@ -52,12 +52,12 @@ angular.module('argia-multimedia-app', ['ionic', 'argia-multimedia-app.controlle
         }
       }
     })
-    .state('tab.friend-detail', {
-      url: '/friend/:friendId',
+    .state('tab.zerrenda-xehetasunak', {
+      url: '/zerrenda/:multimediaId',
       views: {
-        'tab-friends': {
-          templateUrl: 'templates/friend-detail.html',
-          controller: 'FriendDetailCtrl'
+        'tab-zerrenda': {
+          templateUrl: 'templates/zerrenda-xehetasunak.html',
+          controller: 'MultimediaXehetasunakCtrl'
         }
       }
     })
