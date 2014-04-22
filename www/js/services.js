@@ -10,15 +10,15 @@ angular.module('argia-multimedia-app.services', [])
         {'id': 0,
          'izenburua': 'Donostiako Libre topaketak',
          'mota': 'Solasaldia',
-         'thumb': 'http://www.argia.com/argia-multimedia/docs/bideoak/libreZubiagaEleaktx.jpg'},
+         'thumbnail': 'http://www.argia.com/argia-multimedia/docs/bideoak/libreZubiagaEleaktx.jpg'},
         {'id': 1,
          'izenburua': '"Pilota desafioa", Aiherrako ikasleen eskutik',
          'mota': 'Ekitaldia',
-         'thumb': 'http://www.argia.com/argia-multimedia/docs/bideoak/pilotaAiherratx.jpg'},
+         'thumbnail': 'http://www.argia.com/argia-multimedia/docs/bideoak/pilotaAiherratx.jpg'},
         {'id': 2,
          'izenburua': 'Euskal Herriko komunikabideak erronka berrien aurrean',
          'mota': 'Solasaldia',
-         'thumb': 'http://www.argia.com/argia-multimedia/docs/bideoak/arrosa14hitzaldiatx.jpg'}
+         'thumbnail': 'http://www.argia.com/argia-multimedia/docs/bideoak/arrosa14hitzaldiatx.jpg'}
     ];
     
     return {
