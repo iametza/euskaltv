@@ -43,11 +43,11 @@ angular.module('argia-multimedia-app', ['ionic', 'argia-multimedia-app.controlle
       }
     })
 
-    .state('tab.friends', {
-      url: '/friends',
+    .state('tab.zerrenda', {
+      url: '/zerrenda',
       views: {
-        'tab-friends': {
-          templateUrl: 'templates/tab-friends.html',
+        'tab-zerrenda': {
+          templateUrl: 'templates/tab-zerrenda.html',
           controller: 'MultimediaZerrendaCtrl'
         }
       }
