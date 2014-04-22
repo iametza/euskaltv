@@ -1,26 +1,30 @@
-angular.module('starter.services', [])
+angular.module('argia-multimedia-app.services', [])
 
 /**
  * A simple example service that returns some data.
  */
-.factory('Friends', function() {
-  // Might use a resource here that returns a JSON array
-
-  // Some fake testing data
-  var friends = [
-    { id: 0, name: 'Scruff McGruff' },
-    { id: 1, name: 'G.I. Joe' },
-    { id: 2, name: 'Miss Frizzle' },
-    { id: 3, name: 'Ash Ketchum' }
-  ];
-
-  return {
-    all: function() {
-      return friends;
-    },
-    get: function(friendId) {
-      // Simple index lookup
-      return friends[friendId];
+.factory('MultimediaZerrenda', function() {
+    // Might use a resource here that returns a JSON array
+  
+    var multimedia = [
+        {'izenburua': 'Donostiako Libre topaketak',
+         'mota': 'Solasaldia',
+         'thumb': 'http://www.argia.com/argia-multimedia/docs/bideoak/libreZubiagaEleaktx.jpg'},
+        {'izenburua': '"Pilota desafioa", Aiherrako ikasleen eskutik',
+         'mota': 'Ekitaldia',
+         'thumb': 'http://www.argia.com/argia-multimedia/docs/bideoak/pilotaAiherratx.jpg'},
+        {'izenburua': 'Euskal Herriko komunikabideak erronka berrien aurrean',
+         'mota': 'Solasaldia',
+         'thumb': 'http://www.argia.com/argia-multimedia/docs/bideoak/arrosa14hitzaldiatx.jpg'}
+    ];
+    
+    return {
+      all: function() {
+        return multimedia;
+      },
+      get: function(multimediaId) {
+        // Simple index lookup
+        return multimedia[multimediaId];
+      }
     }
-  }
 });

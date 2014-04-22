@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('argia-multimedia-app', ['ionic', 'starter.controllers', 'starter.services'])
+angular.module('argia-multimedia-app', ['ionic', 'argia-multimedia-app.controllers', 'argia-multimedia-app.services'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -48,7 +48,7 @@ angular.module('argia-multimedia-app', ['ionic', 'starter.controllers', 'starter
       views: {
         'tab-friends': {
           templateUrl: 'templates/tab-friends.html',
-          controller: 'FriendsCtrl'
+          controller: 'MultimediaZerrendaCtrl'
         }
       }
     })

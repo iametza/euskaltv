@@ -1,10 +1,10 @@
-angular.module('starter.controllers', [])
+angular.module('argia-multimedia-app.controllers', [])
 
 .controller('DashCtrl', function($scope) {
 })
 
-.controller('FriendsCtrl', function($scope, Friends) {
-  $scope.friends = Friends.all();
+.controller('MultimediaZerrendaCtrl', function($scope, MultimediaZerrenda) {
+  $scope.multimediaZerrenda = MultimediaZerrenda.all();
 })
 
 .controller('FriendDetailCtrl', function($scope, $stateParams, Friends) {
