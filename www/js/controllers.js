@@ -37,8 +37,26 @@ angular.module('argia-multimedia-app.controllers', [])
     $scope.datuakLortu($scope.active);
 }])
 
-.controller('ZureEraraCtrl', function($scope, $http) {
-})
+.controller('ZureEraraCtrl', ['$scope', '$http', 'MultimediaZerrenda', function($scope, $http, MultimediaZerrenda) {
+    
+    $scope.eskuratuDatuak = function() {
+        
+        if (MultimediaZerrenda.ikusienak.length == 0){
+            
+            var promise = MultimediaZerrenda.getElementuMotak();
+            
+            promise.then(function(){              
+                $scope.elementu_motak = MultimediaZerrenda.elementu_motak;
+            });
+            
+        }else{
+            
+            $scope.zerrenda = MultimediaZerrenda.elementu_motak;
+        }
+    }
+    
+    $scope.eskuratuDatuak();
+}])
 
 .controller('MultimediaXehetasunakCtrl', function($scope, $http, $sce, $stateParams) {
     
