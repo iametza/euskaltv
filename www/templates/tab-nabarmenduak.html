@@ -1,0 +1,18 @@
+<ion-view title="Nabarmenduak">
+    <div class="bar bar-subheader">
+        <div class="button-bar">
+            <a class="button" ng-class="{'button-positive': isActive('azkenak')}" ng-click="changeTab('azkenak')">Azkenak</a>
+            <a class="button" ng-class="{'button-positive': isActive('ikusienak')}" ng-click="changeTab('ikusienak')">Ikusienak</a>
+        </div>
+    </div>
+    <ion-content class="has-header has-subheader">
+        <ion-list>
+            <ion-item class="nabarmenduak-elementua" ng-repeat="elementua in multimediaZerrenda" type="item-text-wrap" href="#/tab/zerrenda/{{elementua.id}}">
+                <img class="nabarmenduak-elementua-irudia" ng-src="{{elementua.irudia}}" />
+                <span class="nabarmenduak-elementua-mota">{{elementua.mota}}</span>
+                <span class="nabarmenduak-elementua-izenburua">{{elementua.izenburua}}</span>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>
+
