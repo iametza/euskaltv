@@ -7,10 +7,10 @@
     </div>
     <ion-content class="has-header has-subheader">
         <ion-list>
-            <ion-item class="nabarmenduak-elementua" ng-repeat="elementua in multimediaZerrenda" type="item-text-wrap" href="#/tab/zerrenda/{{elementua.id}}">
+            <ion-item class="nabarmenduak-elementua item item-thumbnail-left" ng-repeat="elementua in multimediaZerrenda" type="item-text-wrap" href="#/tab/zerrenda/{{elementua.id}}">
                 <img class="nabarmenduak-elementua-irudia" ng-src="{{elementua.irudia}}" />
-                <span class="nabarmenduak-elementua-mota">{{elementua.mota}}</span>
-                <span class="nabarmenduak-elementua-izenburua">{{elementua.izenburua}}</span>
+                <h2 class="nabarmenduak-elementua-izenburua">{{elementua.izenburua}}</h2>
+                <p class="nabarmenduak-elementua-mota">{{elementua.mota}}</p>
             </ion-item>
         </ion-list>
     </ion-content>
