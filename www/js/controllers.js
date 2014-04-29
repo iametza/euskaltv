@@ -39,7 +39,7 @@ angular.module('argia-multimedia-app.controllers', [])
 
 .controller('ZureEraraCtrl', ['$scope', '$http', 'MultimediaZerrenda', function($scope, $http, MultimediaZerrenda) {
     
-    $scope.number = 75;
+    $scope.minLehenetsiak = 15;
     
     $scope.eskuratuDatuak = function() {
         
