@@ -4,7 +4,7 @@ input[type="text"][knob] {
     display: inline;
 }
 
-/* Nabarmenduak bistaren estiloa */
+/****** Nabarmenduak bistaren estiloa ******/
 .nabarmenduak-elementua {
     width: 66%;
     border-color: #DDDDDD;
@@ -24,7 +24,7 @@ input[type="text"][knob] {
     white-space: normal;
 }
 
-/* Zure erara bistaren estiloa */
+/****** Zure erara bistaren estiloa ******/
 #zure-erara-goiko-testua {
     margin-top: 30px;
     text-align: center;
@@ -38,4 +38,24 @@ input[type="text"][knob] {
 #zure-erara-aurrera-botoia {
     text-align: center;
     margin-top: 30px;
+}
+
+/****** Zure erara motak bistaren estiloa ******/
+#zure-erara-motak-goiko-testua {
+    margin-top: 30px;
+    text-align: center;
+}
+
+#zure-erara-motak-zerrenda {
+    margin-top: 30px;
+}
+
+.zure-erara-motak-elementua {
+    width: 66%;
+    border-color: #DDDDDD;
+    border-style: solid;
+    border-width: 1px 0 0 0;
+    margin-left: auto;
+    margin-right: auto;
+    width: 75%;
 }
