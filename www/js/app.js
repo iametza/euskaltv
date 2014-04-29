@@ -53,6 +53,16 @@ angular.module('argia-multimedia-app', ['ionic', 'argia-multimedia-app.controlle
             }
         })
         
+        .state('tab.zure-erara-motak', {
+            url: '/zure-erara-motak',
+            views: {
+                'tab-zure-erara': {
+                    templateUrl: 'templates/tab-zure-erara-motak.html',
+                    controller: 'ZureEraraCtrl'
+                }
+            }
+        })
+        
         .state('tab.zerrenda-xehetasunak', {
             url: '/zerrenda/:multimediaId',
             views: {
