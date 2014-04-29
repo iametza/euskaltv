@@ -1,4 +1,10 @@
-/* Nabarmenduak orriaren estiloa */
+/* Jquery Knob pluginak erabiltzen dituen input-ak */
+input[type="text"][knob] {
+    /* ionic-ek display:block estiloa ezartzen die inputei. Baina block bezala testua ez da ikusten. inline jarrita bai. */
+    display: inline;
+}
+
+/* Nabarmenduak bistaren estiloa */
 .nabarmenduak-elementua {
     width: 66%;
     border-color: #DDDDDD;
