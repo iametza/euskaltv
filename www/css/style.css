@@ -50,6 +50,11 @@ input[type="text"][knob] {
     margin-top: 30px;
 }
 
+#zure-erara-motak-zerrenda div:first-child {
+    /* Zerrendako lehen elementuari goiko ertza kendu. */
+    border-top-width: 0;
+}
+
 .zure-erara-motak-elementua {
     width: 66%;
     border-color: #DDDDDD;
