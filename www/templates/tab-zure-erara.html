@@ -1,10 +1,11 @@
 <ion-view title="Zure erara">
     <ion-content class="has-header">
-        <input type="text" value="" knob class="dial">
-        <ion-list>
-            <ion-item class="item" ng-repeat="mota in elementu_motak" type="item-text-wrap" href="#/tab/zure-erara-motak">
-                <h2 class="nabarmenduak-elementua-izenburua">{{mota.izena}}</h2>
-            </ion-item>
-        </ion-list>
+        <h2 id="zure-erara-goiko-testua">Zenbat denbora daukazu?</h2>
+        <div id="zure-erara-knob-div">
+            <input type="text" value="" knob class="dial">
+        </div>
+        <div id="zure-erara-aurrera-botoia">
+            <a class="button button-positive" href="#/tab/zure-erara-motak">Aurrera</a>
+        </div>
     </ion-content>
 </ion-view>

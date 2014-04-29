@@ -23,3 +23,19 @@ input[type="text"][knob] {
 .item-content .nabarmenduak-elementua-izenburua {
     white-space: normal;
 }
+
+/* Zure erara bistaren estiloa */
+#zure-erara-goiko-testua {
+    margin-top: 30px;
+    text-align: center;
+}
+
+#zure-erara-knob-div {
+    margin-top: 30px;
+    text-align: center; /* Knob-en canvas-a zentratzeko. */
+}
+
+#zure-erara-aurrera-botoia {
+    text-align: center;
+    margin-top: 30px;
+}
