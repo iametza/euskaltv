@@ -70,7 +70,7 @@ input[type="text"][knob] {
 }
 
 .honi-buruz-irudia {
-    width: 50%;
+    width: 75%;
     max-width: 400px;
     display: block;
     margin-left: auto;
@@ -82,3 +82,17 @@ input[type="text"][knob] {
     margin-top: 25px;
     text-align: center;
 }
+
+#honi-buruz-zerrenda div:first-child {
+    /* Zerrendako lehen elementuari goiko ertza kendu. */
+    border-top-width: 0;
+}
+
+.honi-buruz-elementua {
+    border-width: 1px 0 0 0;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 30px;
+    padding-top: 30px;
+    width: 75%;
+ }
