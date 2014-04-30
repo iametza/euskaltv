@@ -23,6 +23,31 @@ input[type="text"][knob] {
     white-space: normal;
 }
 
+/****** Nabarmenduen xehetasunen bistaren estiloa ******/
+#xehetasunak-edukia {
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#xehetasunak-embed-bideoa {
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 30px;
+    height: 0;
+    overflow: hidden;
+}
+
+#xehetasunak-embed-bideoa iframe,
+#xehetasunak-embed-bideoa object,
+#xehetasunak-embed-bideoa embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
 /****** Zure erara bistaren estiloa ******/
 #zure-erara-goiko-testua {
     margin-top: 30px;
