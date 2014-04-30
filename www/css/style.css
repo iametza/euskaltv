@@ -97,6 +97,12 @@ input[type="text"][knob] {
     width: 75%;
 }
 
+.honi-buruz-azalpena {
+    margin-top: 25px;
+    text-align: center;
+    white-space: normal;
+}
+
 #honi-buruz-bertsioa-zenbakia {
     margin-top: 25px;
     text-align: center;
