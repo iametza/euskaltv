@@ -95,4 +95,9 @@ input[type="text"][knob] {
     padding-bottom: 30px;
     padding-top: 30px;
     width: 75%;
- }
+}
+
+#honi-buruz-bertsioa-zenbakia {
+    margin-top: 25px;
+    text-align: center;
+}
