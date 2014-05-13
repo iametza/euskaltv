@@ -60,23 +60,24 @@ angular.module('argia-multimedia-app.controllers', [])
     $scope.eskuratuDatuak();
 }])
 
-.controller('MultimediaXehetasunakCtrl', function($scope, $http, $sce, $stateParams) {
+.controller('MultimediaXehetasunakCtrl', ['$scope', '$http', '$sce', '$stateParams', 'MultimediaZerrenda', function($scope, $http, $sce, $stateParams, MultimediaZerrenda) {
     
-    $http.get('http://192.168.2.174/argia-multimedia-zerbitzaria/elementua/' + $stateParams.multimediaId).success(function(data, status, headers) {
-        $scope.multimedia = data;
-        console.log($scope);
-        console.log($scope.multimedia);
-    }).error(function(data, status, headers) {
-        console.log(data);
-        console.log(status);
-        console.log(headers);
-    });
+    $scope.eskuratuDatuak = function(id) {
+        
+        var promise = MultimediaZerrenda.getElementua(id);
+        
+        promise.then(function() {
+            $scope.multimedia = MultimediaZerrenda.elementua;
+        });
+    }
+    
+    $scope.eskuratuDatuak($stateParams.multimediaId);
     
     // Hau gabe ez dut lortu embed kodea erabili ahal izatea, ng-bind-html-k ez baitu onartzen html etiketak ez diren guztia.
     $scope.onartu_embed_kodea_HTML_bezala = function(kodea) {
         return $sce.trustAsHtml(kodea);
     };
-})
+}])
 
 .controller('IgoZureaCtrl', function($scope) {
 })

@@ -53,5 +53,22 @@ angular.module('argia-multimedia-app.services', [])
         return d.promise;
     }
     
+    factory.getElementua = function(id) {
+        
+        var d = $q.defer();
+        
+        $http.get('http://192.168.2.174/argia-multimedia-zerbitzaria/elementua/' + id).success(function(data, status, headers) {
+            factory.elementua = data;
+            d.resolve();
+        }).error(function(data, status, headers) {
+            console.log(data);
+            console.log(status);
+            console.log(headers);
+            d.reject();
+        });
+        
+        return d.promise;
+    }
+    
     return factory;
 }]);
