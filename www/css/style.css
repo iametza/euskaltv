@@ -30,7 +30,7 @@ input[type="text"][knob] {
     margin-right: auto;
 }
 
-#xehetasunak-embed-bideoa {
+.xehetasunak-embed-bideoa {
     position: relative;
     padding-bottom: 56.25%;
     padding-top: 30px;
@@ -38,9 +38,9 @@ input[type="text"][knob] {
     overflow: hidden;
 }
 
-#xehetasunak-embed-bideoa iframe,
-#xehetasunak-embed-bideoa object,
-#xehetasunak-embed-bideoa embed {
+.xehetasunak-embed-bideoa iframe,
+.xehetasunak-embed-bideoa object,
+.xehetasunak-embed-bideoa embed {
     position: absolute;
     top: 0;
     left: 0;
