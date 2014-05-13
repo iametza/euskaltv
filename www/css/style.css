@@ -30,6 +30,10 @@ input[type="text"][knob] {
     margin-right: auto;
 }
 
+.xehetasunak-embed-div {
+    margin-top: 10px;
+}
+
 .xehetasunak-embed-bideoa {
     position: relative;
     padding-bottom: 56.25%;
