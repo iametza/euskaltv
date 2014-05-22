@@ -9,8 +9,8 @@ angular.module('argia-multimedia-app.controllers', [])
     
     $scope.changeTab = function(type) {
         $scope.active = type;
-        //$scope.datuakLortu(type);
-        $scope.loadMore();
+        $scope.datuakLortu();
+        //$scope.loadMore();
     }
     
     $scope.items = [];
@@ -27,8 +27,8 @@ angular.module('argia-multimedia-app.controllers', [])
         console.log($scope.items);
     };
     
-    $scope.datuakLortu = function(type) {        
-        if (type == 'ikusienak') {
+    $scope.datuakLortu = function() {
+        if ($scope.active == 'ikusienak') {
             if (MultimediaZerrenda.ikusienak.length == 0){ 
                 var promise = MultimediaZerrenda.getIkusienak();
                 promise.then(function(){              
@@ -49,7 +49,7 @@ angular.module('argia-multimedia-app.controllers', [])
             
         }
     }
-    //$scope.datuakLortu($scope.active);
+    $scope.datuakLortu();
 }])
 
 .controller('ZureEraraCtrl', ['$scope', '$http', 'MultimediaZerrenda', function($scope, $http, MultimediaZerrenda) {
