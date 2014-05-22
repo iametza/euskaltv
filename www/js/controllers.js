@@ -1,6 +1,6 @@
 angular.module('argia-multimedia-app.controllers', [])
 
-.controller('NabarmenduakCtrl',['$scope','$http','MultimediaZerrenda', function($scope, $http,MultimediaZerrenda) {
+.controller('NabarmenduakCtrl',['$scope','$http','MultimediaZerrenda', function($scope, $http, MultimediaZerrenda) {
     $scope.active = "azkenak";
     
     $scope.isActive = function(type) {
