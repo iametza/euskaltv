@@ -9,8 +9,23 @@ angular.module('argia-multimedia-app.controllers', [])
     
     $scope.changeTab = function(type) {
         $scope.active = type;
-        $scope.datuakLortu(type);        
+        //$scope.datuakLortu(type);
+        $scope.loadMore();
     }
+    
+    $scope.items = [];
+    
+    $scope.loadMore = function() {
+        var data = [];
+        var l = $scope.items.length
+        for (var i = l; i < l+20; i++) {
+            data.push({id: i});
+        }
+        
+        $scope.items = $scope.items.concat(data);
+        $scope.$broadcast('scroll.infiniteScrollComplete');
+        console.log($scope.items);
+    };
     
     $scope.datuakLortu = function(type) {        
         if (type == 'ikusienak') {
@@ -34,7 +49,7 @@ angular.module('argia-multimedia-app.controllers', [])
             
         }
     }
-    $scope.datuakLortu($scope.active);
+    //$scope.datuakLortu($scope.active);
 }])
 
 .controller('ZureEraraCtrl', ['$scope', '$http', 'MultimediaZerrenda', function($scope, $http, MultimediaZerrenda) {
