@@ -35,16 +35,32 @@ angular.module('argia-multimedia-app.controllers', [])
         
         if ($scope.active == 'ikusienak') {
             
-            if (MultimediaZerrenda.ikusienak.length == 0) {
+            if (!$scope.gehiago_kargatzen.ikusienak && (MultimediaZerrenda.ikusienak.length === 0 || MultimediaZerrenda.ikusienak.length === $scope.offsets.ikusienak)) {
                 
-                var promise = MultimediaZerrenda.getIkusienak();
+                console.log("bai");
+                
+                // Zerbitzaritik elementu berriak kargatzen ari garela adierazi.
+                $scope.gehiago_kargatzen.ikusienak = true;
+                
+                // Zerbitzaritik elementu gehiago eskuratu.
+                var promise = MultimediaZerrenda.getIkusienak($scope.offsets.ikusienak, $scope.limits.ikusienak);
                 
                 promise.then(function() {
+                    
+                    // Eguneratutako elementuen zerrenda gorde.
                     $scope.multimediaZerrenda = MultimediaZerrenda.ikusienak;
+                    
+                    // Ikusienak atalaren offseta eguneratu kargatu berri ditugun elementu kopuruarekin.
+                    $scope.offsets.ikusienak += $scope.limits.ikusienak;
+                    
+                    // Zerbitzaritik elementu berriak kargatzen bukatu dugula adierazi.
+                    $scope.gehiago_kargatzen.ikusienak = false;
+                    
                 });
                 
             } else {
                 
+                console.log("ez");
                 $scope.multimediaZerrenda = MultimediaZerrenda.ikusienak;
                 
             }
