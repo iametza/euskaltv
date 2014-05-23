@@ -55,14 +55,21 @@ angular.module('argia-multimedia-app.controllers', [])
                 
                 console.log("bai");
                 
+                // Zerbitzaritik elementu berriak kargatzen ari garela adierazi.
                 $scope.gehiago_kargatzen.azkenak = true;
                 
+                // Zerbitzaritik elementu gehiago eskuratu.
                 var promise = MultimediaZerrenda.getAzkenak($scope.offsets.azkenak, $scope.limits.azkenak);
                 
                 promise.then(function() {
+                    
+                    // Eguneratutako elementuen zerrenda gorde.
                     $scope.multimediaZerrenda = MultimediaZerrenda.azkenak;
-                    //console.log($scope.multimediaZerrenda);
+                    
+                    // Azkenak atalaren offseta eguneratu kargatu berri ditugun elementu kopuruarekin.
                     $scope.offsets.azkenak += $scope.limits.azkenak;
+                    
+                    // Zerbitzaritik elementu berriak kargatzen bukatu dugula adierazi.
                     $scope.gehiago_kargatzen.azkenak = false;
                 });
                 
