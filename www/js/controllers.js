@@ -1,6 +1,6 @@
 angular.module('argia-multimedia-app.controllers', [])
 
-.controller('NabarmenduakCtrl',['$scope','$http','MultimediaZerrenda', function($scope, $http, MultimediaZerrenda) {
+.controller('NabarmenduakCtrl', ['$scope','$http','MultimediaZerrenda', function($scope, $http, MultimediaZerrenda) {
     $scope.active = "azkenak";
     
     $scope.isActive = function(type) {
@@ -29,18 +29,18 @@ angular.module('argia-multimedia-app.controllers', [])
     
     $scope.datuakLortu = function() {
         if ($scope.active == 'ikusienak') {
-            if (MultimediaZerrenda.ikusienak.length == 0){ 
+            if (MultimediaZerrenda.ikusienak.length == 0) {
                 var promise = MultimediaZerrenda.getIkusienak();
-                promise.then(function(){              
+                promise.then(function() {
                     $scope.multimediaZerrenda = MultimediaZerrenda.ikusienak;
                 });
             }else{
                 $scope.multimediaZerrenda = MultimediaZerrenda.ikusienak;
             }
         } else {
-            if (MultimediaZerrenda.azkenak.length == 0){ 
+            if (MultimediaZerrenda.azkenak.length == 0) {
                 var promise = MultimediaZerrenda.getAzkenak();
-                promise.then(function(){
+                promise.then(function() {
                     $scope.multimediaZerrenda = MultimediaZerrenda.azkenak;
                 });
             }else{
@@ -62,7 +62,7 @@ angular.module('argia-multimedia-app.controllers', [])
             
             var promise = MultimediaZerrenda.getElementuMotak();
             
-            promise.then(function(){              
+            promise.then(function() {
                 $scope.elementu_motak = MultimediaZerrenda.elementu_motak;
             });
             
