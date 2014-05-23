@@ -8,6 +8,7 @@ angular.module('argia-multimedia-app.services', [])
    
     factory.ikusienak = [];
     factory.azkenak = [];
+    
     factory.getIkusienak = function(){
         var d = $q.defer();
         $http.get('http://192.168.2.174/argia-multimedia-zerbitzaria/elementuak/ikusienak/').success(function(data, status, headers) {            
@@ -22,7 +23,7 @@ angular.module('argia-multimedia-app.services', [])
         return d.promise;
     }
     
-    factory.getAzkenak = function() {
+    factory.getAzkenak = function(offset, limit) {
         var d = $q.defer();
         $http.get('http://192.168.2.174/argia-multimedia-zerbitzaria/elementuak/azkenak/').success(function(data, status, headers) {            
             factory.azkenak = data;

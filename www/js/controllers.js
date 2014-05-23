@@ -3,6 +3,18 @@ angular.module('argia-multimedia-app.controllers', [])
 .controller('NabarmenduakCtrl', ['$scope','$http','MultimediaZerrenda', function($scope, $http, MultimediaZerrenda) {
     $scope.active = "azkenak";
     
+    $scope.multimediaZerrenda = [];
+    
+    // Zenbagarren elementutik aurrera eskatu behar diren kasu bakoitzean.
+    $scope.offsets = {};
+    $scope.offsets.azkenak = 0;
+    $scope.offsets.ikusienak = 0;
+    
+    // Zenbat elementu eskatu behar diren aldiko kasu bakoitzean.
+    $scope.limits = {};
+    $scope.limits.azkenak = 10;
+    $scope.limits.ikusienak = 10;
+    
     $scope.isActive = function(type) {
         return type === $scope.active;
     };
@@ -24,7 +36,7 @@ angular.module('argia-multimedia-app.controllers', [])
         
         $scope.items = $scope.items.concat(data);
         $scope.$broadcast('scroll.infiniteScrollComplete');
-        console.log($scope.items);
+        //console.log($scope.items);
     };
     
     $scope.datuakLortu = function() {
@@ -38,10 +50,15 @@ angular.module('argia-multimedia-app.controllers', [])
                 $scope.multimediaZerrenda = MultimediaZerrenda.ikusienak;
             }
         } else {
-            if (MultimediaZerrenda.azkenak.length == 0) {
-                var promise = MultimediaZerrenda.getAzkenak();
+            console.log(MultimediaZerrenda.azkenak);
+            console.log(MultimediaZerrenda.azkenak.length);
+            console.log($scope.multimediaZerrenda);
+            if (MultimediaZerrenda.azkenak.length <= $scope.offsets.azkenak) {
+                var promise = MultimediaZerrenda.getAzkenak($scope.offsets.azkenak, $scope.limits.azkenak);
                 promise.then(function() {
-                    $scope.multimediaZerrenda = MultimediaZerrenda.azkenak;
+                    $scope.multimediaZerrenda = $scope.multimediaZerrenda.concat(MultimediaZerrenda.azkenak);
+                    console.log($scope.multimediaZerrenda);
+                    $scope.offsets.azkenak += $scope.limits.azkenak;
                 });
             }else{
                 $scope.multimediaZerrenda = MultimediaZerrenda.azkenak;
