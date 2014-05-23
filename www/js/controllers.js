@@ -14,6 +14,11 @@ angular.module('argia-multimedia-app.controllers', [])
     $scope.limits = {};
     $scope.limits.azkenak = 10;
     $scope.limits.ikusienak = 10;
+
+    // Zerbitzaritik elementu gehiago kargatzen ari garen ala ez.
+    $scope.gehiago_kargatzen = {};
+    $scope.gehiago_kargatzen.azkenak = false;
+    $scope.gehiago_kargatzen.ikusienak = false;
     
     $scope.isActive = function(type) {
         return type === $scope.active;
@@ -25,33 +30,51 @@ angular.module('argia-multimedia-app.controllers', [])
     }
     
     $scope.kargatuGehiago = function() {
+        
+        console.log("kargatuGehiago");
+        
         if ($scope.active == 'ikusienak') {
+            
             if (MultimediaZerrenda.ikusienak.length == 0) {
+                
                 var promise = MultimediaZerrenda.getIkusienak();
+                
                 promise.then(function() {
                     $scope.multimediaZerrenda = MultimediaZerrenda.ikusienak;
                 });
+                
             } else {
+                
                 $scope.multimediaZerrenda = MultimediaZerrenda.ikusienak;
+                
             }
+            
         } else {
-            console.log(MultimediaZerrenda.azkenak);
-            console.log(MultimediaZerrenda.azkenak.length);
-            console.log($scope.multimediaZerrenda);
-            if (MultimediaZerrenda.azkenak.length <= $scope.offsets.azkenak) {
-                console.log("gehiago");
+            
+            if (!$scope.gehiago_kargatzen.azkenak && (MultimediaZerrenda.azkenak.length === 0 || MultimediaZerrenda.azkenak.length === $scope.offsets.azkenak)) {
+                
+                console.log("bai");
+                
+                $scope.gehiago_kargatzen.azkenak = true;
+                
                 var promise = MultimediaZerrenda.getAzkenak($scope.offsets.azkenak, $scope.limits.azkenak);
+                
                 promise.then(function() {
-                    $scope.multimediaZerrenda = $scope.multimediaZerrenda.concat(MultimediaZerrenda.azkenak);
-                    console.log($scope.multimediaZerrenda);
+                    $scope.multimediaZerrenda = MultimediaZerrenda.azkenak;
+                    //console.log($scope.multimediaZerrenda);
                     $scope.offsets.azkenak += $scope.limits.azkenak;
+                    $scope.gehiago_kargatzen.azkenak = false;
                 });
+                
             } else {
+                
                 console.log("ez");
                 $scope.multimediaZerrenda = MultimediaZerrenda.azkenak;
+                
             }    
             
         }
+        
         $scope.$broadcast('scroll.infiniteScrollComplete');
     }
 }])

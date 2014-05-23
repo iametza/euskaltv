@@ -25,8 +25,13 @@ angular.module('argia-multimedia-app.services', [])
     
     factory.getAzkenak = function(offset, limit) {
         var d = $q.defer();
-        $http.get('http://192.168.2.174/argia-multimedia-zerbitzaria/elementuak/azkenak?offset' + offset + "&limit=" + limit).success(function(data, status, headers) {            
-            factory.azkenak = data;
+        $http.get('http://192.168.2.174/argia-multimedia-zerbitzaria/elementuak/azkenak', {
+            params: { "offset": offset,
+                      "limit": limit}
+        }).success(function(data, status, headers) {
+            console.log(data);
+            factory.azkenak = factory.azkenak.concat(data);
+            //console.log(factory.azkenak);
             d.resolve();
         }).error(function(data, status, headers) {            
             console.log(data);
