@@ -1,0 +1,15 @@
+<ion-view title="Zure erara">
+    <ion-content class="has-header has-subheader">
+        <ion-list>
+            <ion-item class="zure-erara-zerrenda-elementua item item-thumbnail-left" ng-repeat="elementua in zure_erara_zerrenda" type="item-text-wrap" href="#/tab/zure-erara-xehetasunak/{{elementua.id}}">
+                <img class="zure-erara-zerrenda-elementua-irudia" ng-src="{{elementua.irudia}}" />
+                <h2 class="zure-erara-zerrenda-elementua-izenburua">{{elementua.izenburua}}</h2>
+                <p class="zure-erara-zerrenda-elementua-mota">{{elementua.mota}}</p>
+            </ion-item>
+        </ion-list>
+        <ion-infinite-scroll
+            on-infinite="kargatuGehiago()"
+            distance="10%">
+        </ion-infinite-scroll>
+    </ion-content>
+</ion-view>
