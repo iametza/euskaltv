@@ -46,7 +46,7 @@ angular.module('argia-multimedia-app.controllers', [])
                 promise.then(function() {
                     $scope.multimediaZerrenda = MultimediaZerrenda.ikusienak;
                 });
-            }else{
+            } else {
                 $scope.multimediaZerrenda = MultimediaZerrenda.ikusienak;
             }
         } else {
@@ -54,19 +54,22 @@ angular.module('argia-multimedia-app.controllers', [])
             console.log(MultimediaZerrenda.azkenak.length);
             console.log($scope.multimediaZerrenda);
             if (MultimediaZerrenda.azkenak.length <= $scope.offsets.azkenak) {
+                console.log("gehiago");
                 var promise = MultimediaZerrenda.getAzkenak($scope.offsets.azkenak, $scope.limits.azkenak);
                 promise.then(function() {
                     $scope.multimediaZerrenda = $scope.multimediaZerrenda.concat(MultimediaZerrenda.azkenak);
                     console.log($scope.multimediaZerrenda);
                     $scope.offsets.azkenak += $scope.limits.azkenak;
                 });
-            }else{
+            } else {
+                console.log("ez");
                 $scope.multimediaZerrenda = MultimediaZerrenda.azkenak;
             }    
             
         }
+        $scope.$broadcast('scroll.infiniteScrollComplete');
     }
-    $scope.datuakLortu();
+    //$scope.datuakLortu();
 }])
 
 .controller('ZureEraraCtrl', ['$scope', '$http', 'MultimediaZerrenda', function($scope, $http, MultimediaZerrenda) {
