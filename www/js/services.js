@@ -13,7 +13,7 @@ angular.module('argia-multimedia-app.services', [])
         
         var d = $q.defer();
         
-        $http.get('http://192.168.2.174/argia-multimedia-zerbitzaria/elementuak/ikusienak/', {
+        $http.get('http://192.168.2.174/argia-multimedia-zerbitzaria/elementuak?ordenatu=ikusienak', {
             params: {
                 "offset": offset,
                 "limit": limit
@@ -35,7 +35,7 @@ angular.module('argia-multimedia-app.services', [])
         
         var d = $q.defer();
         
-        $http.get('http://192.168.2.174/argia-multimedia-zerbitzaria/elementuak/azkenak', {
+        $http.get('http://192.168.2.174/argia-multimedia-zerbitzaria/elementuak?ordenatu=azkenak', {
             params: {
                 "offset": offset,
                 "limit": limit
