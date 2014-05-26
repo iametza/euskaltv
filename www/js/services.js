@@ -78,4 +78,22 @@ angular.module('argia-multimedia-app.services', [])
     }
     
     return factory;
-}]);
+}])
+
+
+.factory('ZureErara', function() {
+    
+    var factory = {};
+    
+    factory.minutuak = 15;
+    
+    factory.ezarriMinutuak = function(minutuak) {
+        factory.minutuak = minutuak;
+    }
+    
+    factory.eskuratuMinutuak = function() {
+        return factory.minutuak;
+    }
+    
+    return factory;
+});
