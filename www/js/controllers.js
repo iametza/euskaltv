@@ -1,6 +1,6 @@
 angular.module('argia-multimedia-app.controllers', [])
 
-.controller('NabarmenduakCtrl', ['$scope','$http','MultimediaZerrenda', function($scope, $http, MultimediaZerrenda) {
+.controller('NabarmenduakCtrl', ['$scope','$http', '$ionicScrollDelegate', 'MultimediaZerrenda', function($scope, $http, $ionicScrollDelegate, MultimediaZerrenda) {
     $scope.active = "azkenak";
     
     $scope.multimediaZerrenda = [];
@@ -25,8 +25,20 @@ angular.module('argia-multimedia-app.controllers', [])
     };
     
     $scope.changeTab = function(type) {
+        
+        // Fitxa aktiboa eguneratu.
         $scope.active = type;
+        
+        // Scroll-a goraino eraman.
+        // Hau gabe gauza arraroak egiten zituen. Arazoa erreproduzitzeko iruzkindu hurrengo lerro hau eta:
+        //      1. Korritu scroll-a beherantz Azkenak zerrendan (Ikusienak fitxara sartu aurretik).
+        //      2. Ikusienak fitxara joan. Scroll-a oso behean agertzen da eta elementuak ez dira ikusten ez baduzu scroll-a goraino eramaten.
+        //         Fitxa hutsik dagoela ematen du.
+        $ionicScrollDelegate.scrollTop();
+        
+        // Elementu gehiago kargatzeko funtzioari deitu.
         $scope.kargatuGehiago();
+        
     }
     
     $scope.kargatuGehiago = function() {
@@ -49,6 +61,8 @@ angular.module('argia-multimedia-app.controllers', [])
                     
                     // Eguneratutako elementuen zerrenda gorde.
                     $scope.multimediaZerrenda = MultimediaZerrenda.ikusienak;
+                    
+                    console.log($scope.multimediaZerrenda);
                     
                     // Ikusienak atalaren offseta eguneratu kargatu berri ditugun elementu kopuruarekin.
                     $scope.offsets.ikusienak += $scope.limits.ikusienak;
@@ -169,8 +183,20 @@ angular.module('argia-multimedia-app.controllers', [])
     };
     
     $scope.changeTab = function(type) {
+        
+        // Fitxa aktiboa eguneratu.
         $scope.active = type;
+        
+        // Scroll-a goraino eraman.
+        // Hau gabe gauza arraroak egiten zituen. Arazoa erreproduzitzeko iruzkindu hurrengo lerro hau eta:
+        //      1. Korritu scroll-a beherantz Azkenak zerrendan (Ikusienak fitxara sartu aurretik).
+        //      2. Ikusienak fitxara joan. Scroll-a oso behean agertzen da eta elementuak ez dira ikusten ez baduzu scroll-a goraino eramaten.
+        //         Fitxa hutsik dagoela ematen du.
+        $ionicScrollDelegate.scrollTop();
+        
+        // Elementu gehiago kargatzeko funtzioari deitu.
         $scope.kargatuGehiago();
+        
     }
     
     $scope.kargatuGehiago = function() {
