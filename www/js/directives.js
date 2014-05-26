@@ -5,6 +5,8 @@ angular.module('argia-multimedia-app.directives', [])
         
         priority: 1, // necessary for angular 1.2.x+
         
+        require: 'ngModel',
+        
         link: function(scope, element, attrs, ngModel) {
             
             // Aukera guztiak zein diren ikusteko: https://github.com/aterrien/jQuery-Knob#options
