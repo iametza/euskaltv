@@ -19,6 +19,8 @@ angular.module('argia-multimedia-app.directives', [])
                 width: 300,             // Zabalera eta altuera dinamikoki ezartzea hobe litzateke ala ez? Pantaila-tamainaren arabera?
                 height: 300,
                 change: function(value) {
+                    
+                    // Hau eta beheko ngModel zergatik erabiltzen ditugun ulertzeko begiratu hau: https://groups.google.com/forum/#!msg/angular/gWqeEGK1cds/ArQAVaFmcn0J
                     scope.$apply(function() {
                         ngModel.$setViewValue(value);
                         ZureErara.ezarriMinutuak(value);
@@ -26,6 +28,7 @@ angular.module('argia-multimedia-app.directives', [])
                 }
             });
             
+            // Hau eta goiko scope.$apply zergatik erabiltzen ditugun ulertzeko begiratu hau: https://groups.google.com/forum/#!msg/angular/gWqeEGK1cds/ArQAVaFmcn0J
             ngModel.$render = function(){
                $(element).val(ngModel.$viewValue).trigger("change"); 
             };
