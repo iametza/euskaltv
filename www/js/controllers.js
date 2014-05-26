@@ -240,8 +240,9 @@ angular.module('argia-multimedia-app.controllers', [])
                 
             }
         }
+        
+        $scope.$broadcast('scroll.infiniteScrollComplete');
     }
-    
 }])
 
 .controller('MultimediaXehetasunakCtrl', ['$scope', '$http', '$sce', '$stateParams', 'MultimediaZerrenda', function($scope, $http, $sce, $stateParams, MultimediaZerrenda) {
