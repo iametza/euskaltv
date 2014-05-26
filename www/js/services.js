@@ -8,48 +8,36 @@ angular.module('argia-multimedia-app.services', [])
    
     factory.ikusienak = [];
     factory.azkenak = [];
-    
-    factory.getIkusienak = function(offset, limit) {
+
+    factory.eskuratuZerrenda = function(ordenatu, mota, offset, limit) {
         
         var d = $q.defer();
         
-        $http.get('http://192.168.2.174/argia-multimedia-zerbitzaria/elementuak?ordenatu=ikusienak', {
+        $http.get('http://192.168.2.174/argia-multimedia-zerbitzaria/elementuak', {
             params: {
-                "offset": offset,
-                "limit": limit
-            }
-        }).success(function(data, status, headers) {            
-            factory.ikusienak = factory.ikusienak.concat(data);
-            d.resolve();
-        }).error(function(data, status, headers) {            
-            console.log(data);
-            console.log(status);
-            console.log(headers);
-            d.reject();
-        });
-        
-        return d.promise;
-    }
-    
-    factory.getAzkenak = function(offset, limit) {
-        
-        var d = $q.defer();
-        
-        $http.get('http://192.168.2.174/argia-multimedia-zerbitzaria/elementuak?ordenatu=azkenak', {
-            params: {
+                "ordenatu": ordenatu,
+                "mota": mota,
                 "offset": offset,
                 "limit": limit
             }
         }).success(function(data, status, headers) {
-            console.log(data);
-            factory.azkenak = factory.azkenak.concat(data);
-            //console.log(factory.azkenak);
+            
+            if (ordenatu === "ikusienak") {
+                factory.ikusienak = factory.ikusienak.concat(data);
+            } else {
+                factory.azkenak = factory.azkenak.concat(data);
+            }
+            
             d.resolve();
+            
         }).error(function(data, status, headers) {            
+            
             console.log(data);
             console.log(status);
             console.log(headers);
+            
             d.reject();
+            
         });
         
         return d.promise;

@@ -43,7 +43,7 @@ angular.module('argia-multimedia-app.controllers', [])
                 $scope.gehiago_kargatzen.ikusienak = true;
                 
                 // Zerbitzaritik elementu gehiago eskuratu.
-                var promise = MultimediaZerrenda.getIkusienak($scope.offsets.ikusienak, $scope.limits.ikusienak);
+                var promise = MultimediaZerrenda.eskuratuZerrenda("ikusienak", 0, $scope.offsets.ikusienak, $scope.limits.ikusienak);
                 
                 promise.then(function() {
                     
@@ -75,7 +75,7 @@ angular.module('argia-multimedia-app.controllers', [])
                 $scope.gehiago_kargatzen.azkenak = true;
                 
                 // Zerbitzaritik elementu gehiago eskuratu.
-                var promise = MultimediaZerrenda.getAzkenak($scope.offsets.azkenak, $scope.limits.azkenak);
+                var promise = MultimediaZerrenda.eskuratuZerrenda("azkenak", 0, $scope.offsets.azkenak, $scope.limits.azkenak);
                 
                 promise.then(function() {
                     
