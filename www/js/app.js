@@ -46,7 +46,7 @@ angular.module('argia-multimedia-app', ['ionic', 'argia-multimedia-app.controlle
         .state('tab.zure-erara-denbora', {
             url: '/zure-erara-denbora',
             views: {
-                'tab-zure-erara-denbora': {
+                'tab-zure-erara': {
                     templateUrl: 'templates/tab-zure-erara-denbora.html',
                     controller: 'ZureEraraDenboraCtrl'
                 }
@@ -58,7 +58,7 @@ angular.module('argia-multimedia-app', ['ionic', 'argia-multimedia-app.controlle
             views: {
                 'tab-zure-erara': {
                     templateUrl: 'templates/tab-zure-erara-motak.html',
-                    controller: 'ZureEraraCtrl'
+                    controller: 'ZureEraraMotakCtrl'
                 }
             }
         })

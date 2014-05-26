@@ -102,9 +102,13 @@ angular.module('argia-multimedia-app.controllers', [])
     }
 }])
 
-.controller('ZureEraraDenboraCtrl', ['$scope', '$http', 'MultimediaZerrenda', function($scope, $http, MultimediaZerrenda) {
+.controller('ZureEraraDenboraCtrl', ['$scope', '$http', 'MultimediaZerrenda', function($scope, $http) {
     
     $scope.minutuak = 15;
+    
+}])
+
+.controller('ZureEraraMotakCtrl', ['$scope', '$http', 'MultimediaZerrenda', function($scope, $http, MultimediaZerrenda) {
     
     $scope.eskuratuDatuak = function() {
         
@@ -123,6 +127,7 @@ angular.module('argia-multimedia-app.controllers', [])
     }
     
     $scope.eskuratuDatuak();
+    
 }])
 
 .controller('MultimediaXehetasunakCtrl', ['$scope', '$http', '$sce', '$stateParams', 'MultimediaZerrenda', function($scope, $http, $sce, $stateParams, MultimediaZerrenda) {
