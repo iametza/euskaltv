@@ -8,7 +8,11 @@ angular.module('argia-multimedia-app.services', [])
    
     factory.ikusienak = [];
     factory.azkenak = [];
-
+    
+    factory.zure_erara = {};
+    factory.zure_erara.ikusienak = [];
+    factory.zure_erara.azkenak = [];
+    
     factory.eskuratuZerrenda = function(ordenatu, mota, offset, limit) {
         
         var d = $q.defer();
@@ -22,10 +26,22 @@ angular.module('argia-multimedia-app.services', [])
             }
         }).success(function(data, status, headers) {
             
-            if (ordenatu === "ikusienak") {
-                factory.ikusienak = factory.ikusienak.concat(data);
+            if (mota === 0) {
+                
+                if (ordenatu === "ikusienak") {
+                    factory.ikusienak = factory.ikusienak.concat(data);
+                } else {
+                    factory.azkenak = factory.azkenak.concat(data);
+                }
+                
             } else {
-                factory.azkenak = factory.azkenak.concat(data);
+                
+                if (ordenatu === "ikusienak") {
+                    factory.zure_erara.ikusienak = factory.zure_erara.ikusienak.concat(data);
+                } else {
+                    factory.zure_erara.azkenak = factory.zure_erara.azkenak.concat(data);
+                }
+                
             }
             
             d.resolve();

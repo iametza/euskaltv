@@ -134,7 +134,101 @@ angular.module('argia-multimedia-app.controllers', [])
     
 }])
 
-.controller('ZureEraraZerrendaCtrl', ['$scope', 'ZureErara', function($scope, ZureErara) {
+.controller('ZureEraraZerrendaCtrl', ['$scope', 'MultimediaZerrenda', 'ZureErara', function($scope, MultimediaZerrenda, ZureErara) {
+    
+    $scope.active = "azkenak";
+    
+    $scope.zure_erara_zerrenda = [];
+    
+    // Zenbagarren elementutik aurrera eskatu behar diren kasu bakoitzean.
+    $scope.offsets = {};
+    $scope.offsets.azkenak = 0;
+    $scope.offsets.ikusienak = 0;
+    
+    // Zenbat elementu eskatu behar diren aldiko kasu bakoitzean.
+    $scope.limits = {};
+    $scope.limits.azkenak = 10;
+    $scope.limits.ikusienak = 10;
+
+    // Zerbitzaritik elementu gehiago kargatzen ari garen ala ez.
+    $scope.gehiago_kargatzen = {};
+    $scope.gehiago_kargatzen.azkenak = false;
+    $scope.gehiago_kargatzen.ikusienak = false;
+    
+    $scope.isActive = function(type) {
+        return type === $scope.active;
+    };
+    
+    $scope.changeTab = function(type) {
+        $scope.active = type;
+        $scope.kargatuGehiago();
+    }
+    
+    $scope.kargatuGehiago = function() {
+        
+        console.log("kargatuGehiago");
+        
+        if ($scope.active == 'ikusienak') {
+            
+            if (!$scope.gehiago_kargatzen.ikusienak && (MultimediaZerrenda.zure_erara.ikusienak.length === 0 || MultimediaZerrenda.zure_erara.ikusienak.length === $scope.offsets.ikusienak)) {
+                
+                console.log("bai");
+                
+                // Zerbitzaritik elementu gehiago eskuratu.
+                var promise = MultimediaZerrenda.eskuratuZerrenda("ikusienak", ZureErara.eskuratuMota(), $scope.offsets.ikusienak, $scope.limits.ikusienak);
+                
+                promise.then(function() {
+                    
+                    // Eguneratutako elementuen zerrenda gorde.
+                    $scope.zure_erara_zerrenda = MultimediaZerrenda.zure_erara.ikusienak;
+                    
+                    // Ikusienak atalaren offseta eguneratu kargatu berri ditugun elementu kopuruarekin.
+                    $scope.offsets.ikusienak += $scope.limits.ikusienak;
+                    
+                    // Zerbitzaritik elementu berriak kargatzen bukatu dugula adierazi.
+                    $scope.gehiago_kargatzen.ikusienak = false;
+                    
+                });
+                
+            } else {
+                
+                console.log("ez");
+                $scope.zure_erara_zerrenda = MultimediaZerrenda.zure_erara.ikusienak;
+                
+            }
+            
+        } else {
+            
+            if (!$scope.gehiago_kargatzen.azkenak && (MultimediaZerrenda.zure_erara.azkenak.length === 0 || MultimediaZerrenda.zure_erara.azkenak.length === $scope.offsets.azkenak)) {
+            
+                console.log("bai");
+                
+                // Zerbitzaritik elementu berriak kargatzen ari garela adierazi.
+                $scope.gehiago_kargatzen.azkenak = true;
+                
+                // Zerbitzaritik elementu gehiago eskuratu.
+                var promise = MultimediaZerrenda.eskuratuZerrenda("azkenak", ZureErara.eskuratuMota(), $scope.offsets.azkenak, $scope.limits.azkenak);
+                
+                promise.then(function() {
+                    
+                    // Eguneratutako elementuen zerrenda gorde.
+                    $scope.zure_erara_zerrenda = MultimediaZerrenda.zure_erara.azkenak;
+                    
+                    // Azkenak atalaren offseta eguneratu kargatu berri ditugun elementu kopuruarekin.
+                    $scope.offsets.azkenak += $scope.limits.azkenak;
+                    
+                    // Zerbitzaritik elementu berriak kargatzen bukatu dugula adierazi.
+                    $scope.gehiago_kargatzen.azkenak = false;
+                });
+                
+            } else {
+                
+                console.log("ez");
+                $scope.zure_erara_zerrenda = MultimediaZerrenda.zure_erara.azkenak;
+                
+            }
+        }
+    }
     
 }])
 
