@@ -184,7 +184,7 @@ angular.module('argia-multimedia-app.controllers', [])
                 console.log("bai");
                 
                 // Zerbitzaritik elementu berriak kargatzen ari garela adierazi.
-                $scope.gehiago_kargatzen.azkenak = true;
+                $scope.gehiago_kargatzen.ikusienak = true;
                 
                 // Zerbitzaritik elementu gehiago eskuratu.
                 var promise = MultimediaZerrenda.eskuratuZerrenda("ikusienak", ZureErara.eskuratuMota(), $scope.offsets.ikusienak, $scope.limits.ikusienak);
