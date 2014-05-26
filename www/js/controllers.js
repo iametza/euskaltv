@@ -111,6 +111,15 @@ angular.module('argia-multimedia-app.controllers', [])
 .controller('ZureEraraMotakCtrl', ['$scope', '$http', 'MultimediaZerrenda', 'ZureErara', function($scope, $http, MultimediaZerrenda, ZureErara) {
     
     $scope.gordeMota = function(id) {
+        
+        // Zerrenda mota aldatu bada
+        if (id !== ZureErara.eskuratuMota()) {
+            
+            // Zure erararen zerrendak garbitu behar dira.
+            MultimediaZerrenda.garbituZureEraraZerrendak();
+        }
+        
+        // Hautatutako mota gorde
         ZureErara.ezarriMota(id);
     }
     

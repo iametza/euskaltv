@@ -93,6 +93,13 @@ angular.module('argia-multimedia-app.services', [])
         return d.promise;
     }
     
+    factory.garbituZureEraraZerrendak = function() {
+        
+        factory.zure_erara.azkenak = [];
+        factory.zure_erara.ikusienak = [];
+        
+    }
+    
     return factory;
 }])
 
