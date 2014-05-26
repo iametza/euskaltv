@@ -68,7 +68,7 @@ angular.module('argia-multimedia-app', ['ionic', 'argia-multimedia-app.controlle
             views: {
                 'tab-zure-erara': {
                     templateUrl: 'templates/tab-zure-erara-zerrenda.html',
-                    controller: 'ZureEraraCtrl'
+                    controller: 'ZureEraraZerrendaCtrl'
                 }
             }
         })

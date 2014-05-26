@@ -87,12 +87,23 @@ angular.module('argia-multimedia-app.services', [])
     
     factory.minutuak = 15;
     
+    factory.id_mota = 0;
+    
     factory.ezarriMinutuak = function(minutuak) {
         factory.minutuak = minutuak;
     }
     
     factory.eskuratuMinutuak = function() {
         return factory.minutuak;
+    }
+    
+    factory.ezarriMota = function(id) {
+        factory.id_mota = id;
+        console.log("Mota: " + factory.id_mota);
+    }
+    
+    factory.eskuratuMota = function(id) {
+        return factory.id_mota;
     }
     
     return factory;

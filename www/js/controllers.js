@@ -108,7 +108,11 @@ angular.module('argia-multimedia-app.controllers', [])
     
 }])
 
-.controller('ZureEraraMotakCtrl', ['$scope', '$http', 'MultimediaZerrenda', function($scope, $http, MultimediaZerrenda) {
+.controller('ZureEraraMotakCtrl', ['$scope', '$http', 'MultimediaZerrenda', 'ZureErara', function($scope, $http, MultimediaZerrenda, ZureErara) {
+    
+    $scope.gordeMota = function(id) {
+        ZureErara.ezarriMota(id);
+    }
     
     $scope.eskuratuDatuak = function() {
         
@@ -127,6 +131,10 @@ angular.module('argia-multimedia-app.controllers', [])
     }
     
     $scope.eskuratuDatuak();
+    
+}])
+
+.controller('ZureEraraZerrendaCtrl', ['$scope', 'ZureErara', function($scope, ZureErara) {
     
 }])
 
