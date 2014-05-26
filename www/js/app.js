@@ -43,12 +43,12 @@ angular.module('argia-multimedia-app', ['ionic', 'argia-multimedia-app.controlle
             }
         })
         
-        .state('tab.zure-erara', {
-            url: '/zure-erara',
+        .state('tab.zure-erara-denbora', {
+            url: '/zure-erara-denbora',
             views: {
-                'tab-zure-erara': {
-                    templateUrl: 'templates/tab-zure-erara.html',
-                    controller: 'ZureEraraCtrl'
+                'tab-zure-erara-denbora': {
+                    templateUrl: 'templates/tab-zure-erara-denbora.html',
+                    controller: 'ZureEraraDenboraCtrl'
                 }
             }
         })

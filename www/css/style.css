@@ -53,17 +53,17 @@ input[type="text"][knob] {
 }
 
 /****** Zure erara bistaren estiloa ******/
-#zure-erara-goiko-testua {
+#zure-erara-denbora-goiko-testua {
     margin-top: 30px;
     text-align: center;
 }
 
-#zure-erara-knob-div {
+#zure-erara-denbora-knob-div {
     margin-top: 30px;
     text-align: center; /* Knob-en canvas-a zentratzeko. */
 }
 
-#zure-erara-aurrera-botoia {
+#zure-erara-denbora-aurrera-botoia {
     text-align: center;
     margin-top: 30px;
 }

@@ -102,9 +102,9 @@ angular.module('argia-multimedia-app.controllers', [])
     }
 }])
 
-.controller('ZureEraraCtrl', ['$scope', '$http', 'MultimediaZerrenda', function($scope, $http, MultimediaZerrenda) {
+.controller('ZureEraraDenboraCtrl', ['$scope', '$http', 'MultimediaZerrenda', function($scope, $http, MultimediaZerrenda) {
     
-    $scope.minLehenetsiak = 15;
+    $scope.minutuak = 15;
     
     $scope.eskuratuDatuak = function() {
         
