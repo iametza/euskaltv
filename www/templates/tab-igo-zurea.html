@@ -2,6 +2,8 @@
     <ion-content class="has-header">
 		<form ng-submit="bidali()">
 			<div class="list">
+				<div id="igo-zurea-arrakasta-mezua" ng-show="arrakastaBidaltzean">{{arrakastaBidaltzeanTestua}}</div>
+				<div id="igo-zurea-errore-mezua" ng-show="erroreaBidaltzean">{{erroreaBidaltzeanTestua}}</div>
 				<label class="item item-input item-stacked-label">
 					<span class="input-label">Izenburua</span>
 					<input type="text" placeholder="Idatzi izenburua hemen" ng-model="formData.izenburua">

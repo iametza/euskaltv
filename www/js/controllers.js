@@ -297,9 +297,13 @@ angular.module('argia-multimedia-app.controllers', [])
     $scope.formData.azalpena = "";
     $scope.formData.txertatzeko = "";
     
+    $scope.arrakastaBidaltzean = false;
+    $scope.arrakastaBidaltzeanTestua = "Zure proposamena behar bezala bidali da!";
+    
+    $scope.erroreaBidaltzean = false;
+    $scope.erroreaBidaltzeanTestua = "";
+    
     $scope.bidali = function() {
-        
-        console.log($scope.formData);
         
         // AngularJSk application/json erabiltzen du modu lehenetsian Content-type goiburu bezala.
         // PHPk ez zidan onartzen datuak modu horretan bidaltzea:
@@ -314,6 +318,27 @@ angular.module('argia-multimedia-app.controllers', [])
         
         .success(function(data, status, headers, config) {
             
+            if (data.arrakasta) {
+                
+                // Dena ondo joan dela adierazten duen mezua bistaratu (ngShow).
+                $scope.arrakastaBidaltzean = true;
+                
+                // Aurretik egon zitekeen errore mezua ezkutatu (ngShow).
+                $scope.erroreaBidaltzean = false;
+                
+            } else {
+                
+                // Arazoak egon direla adierazten duen mezua bistaratu (ngShow).
+                $scope.erroreaBidaltzean = true;
+                
+                // Aurretik egon zitekeen arrakasta mezua ezkutatu (ngShow).
+                $scope.arrakastaBidaltzean = false;
+                
+                // Zerbitzaritik jasotako errore mezua bistaratu.
+                $scope.erroreaBidaltzeanTestua = data.mezua;
+                
+            }
+            
             console.log(data);
             console.log(status);
             console.log(headers);
@@ -322,6 +347,15 @@ angular.module('argia-multimedia-app.controllers', [])
         })
         
         .error(function(data, status, headers, config) {            
+            
+            // Arazoak egon direla adierazten duen mezua bistaratu (ngShow).
+            $scope.erroreaBidaltzean = true;
+            
+            // Aurretik egon zitekeen arrakasta mezua ezkutatu (ngShow).
+            $scope.arrakastaBidaltzean = false;
+            
+            // Zerbitzaritik jasotako errore mezua bistaratu.
+            $scope.erroreaBidaltzeanTestua = data.mezua;
             
             console.log(data);
             console.log(status);
