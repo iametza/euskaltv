@@ -1,22 +1,24 @@
 <ion-view title="Igo zurea">
     <ion-content class="has-header">
-        <div class="list">
-			<label class="item item-input item-stacked-label">
-				<span class="input-label">Izenburua</span>
-				<input type="text" placeholder="Idatzi izenburua hemen">
-			</label>
-			<label class="item item-input item-stacked-label">
-				<span class="input-label">Azalpena</span>
-				<input type="text" placeholder="Idatzi azalpena hemen">
-			</label>
-			<label class="item item-input item-stacked-label">
-				<span class="input-label">Txertatzeko kodea</span>
-				<input type="text" placeholder="Itsatsi txertatzeko kodea hemen">
-			</label>
-		</div>
-		
-		<div class="padding">
-			<button class="button button-block button-positive">Bidali</button>
-		</div>
+		<form ng-submit="bidali()">
+			<div class="list">
+				<label class="item item-input item-stacked-label">
+					<span class="input-label">Izenburua</span>
+					<input type="text" placeholder="Idatzi izenburua hemen" ng-model="formData.izenburua">
+				</label>
+				<label class="item item-input item-stacked-label">
+					<span class="input-label">Azalpena</span>
+					<input type="text" placeholder="Idatzi azalpena hemen" ng-model="formData.azalpena">
+				</label>
+				<label class="item item-input item-stacked-label">
+					<span class="input-label">Txertatzeko kodea</span>
+					<input type="text" placeholder="Itsatsi txertatzeko kodea hemen" ng-model="formData.txertatzeko">
+				</label>
+			</div>
+			
+			<div class="padding">
+				<button class="button button-block button-positive">Bidali</button>
+			</div>
+		</form>
     </ion-content>
 </ion-view>

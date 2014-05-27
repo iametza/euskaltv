@@ -290,8 +290,49 @@ angular.module('argia-multimedia-app.controllers', [])
     };
 }])
 
-.controller('IgoZureaCtrl', function($scope) {
-})
+.controller('IgoZureaCtrl', ['$scope', '$http', function($scope, $http) {
+    
+    $scope.formData = {};
+    $scope.formData.izenburua = "";
+    $scope.formData.azalpena = "";
+    $scope.formData.txertatzeko = "";
+    
+    $scope.bidali = function() {
+        
+        console.log($scope.formData);
+        
+        // AngularJSk application/json erabiltzen du modu lehenetsian Content-type goiburu bezala.
+        // PHPk ez zidan onartzen datuak modu horretan bidaltzea:
+        // Request header field Content-Type is not allowed by Access-Control-Allow-Headers.
+        // Horregatik application/x-www-urlencoded goiburua erabili behar izan dut eta datuak serializatu $.param erabiliz (jQuery).
+        $http({
+            method: 'POST',
+            url: 'http://192.168.2.174/argia-multimedia-zerbitzaria/proposamena',
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+            data: $.param($scope.formData)
+        })
+        
+        .success(function(data, status, headers, config) {
+            
+            console.log(data);
+            console.log(status);
+            console.log(headers);
+            console.log(config);
+            
+        })
+        
+        .error(function(data, status, headers, config) {            
+            
+            console.log(data);
+            console.log(status);
+            console.log(headers);
+            console.log(config);
+            
+        });
+        
+    }
+    
+}])
 
 .controller('HoniBuruzCtrl', function($scope) {
 });
