@@ -111,6 +111,35 @@ input[type="text"][knob] {
     white-space: normal;
 }
 
+/****** Zure erara xehetasunen bistaren estiloa ******/
+#zure-erara-xehetasunak-edukia {
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.zure-erara-xehetasunak-embed-div {
+    margin-top: 10px;
+}
+
+.zure-erara-xehetasunak-embed-bideoa {
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 30px;
+    height: 0;
+    overflow: hidden;
+}
+
+.zure-erara-xehetasunak-embed-bideoa iframe,
+.zure-erara-xehetasunak-embed-bideoa object,
+.zure-erara-xehetasunak-embed-bideoa embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
 /****** Honi buruz bistaren estiloa ******/
 .honi-buruz-izenburua {
     text-align: center;
