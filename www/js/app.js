@@ -33,12 +33,22 @@ angular.module('argia-multimedia-app', ['ionic', 'argia-multimedia-app.controlle
         
         // Each tab has its own nav history stack:
         
-        .state('tab.nabarmenduak', {
-            url: '/nabarmenduak',
+        .state('tab.nabarmenduak-zerrenda', {
+            url: '/nabarmenduak-zerrenda',
             views: {
                 'tab-nabarmenduak': {
-                    templateUrl: 'templates/tab-nabarmenduak.html',
-                    controller: 'NabarmenduakCtrl'
+                    templateUrl: 'templates/tab-nabarmenduak-zerrenda.html',
+                    controller: 'NabarmenduakZerrendaCtrl'
+                }
+            }
+        })
+        
+        .state('tab.nabarmenduak-xehetasunak', {
+            url: '/nabarmenduak-xehetasunak/:multimediaId',
+            views: {
+                'tab-nabarmenduak': {
+                    templateUrl: 'templates/tab-nabarmenduak-xehetasunak.html',
+                    controller: 'NabarmenduakXehetasunakCtrl'
                 }
             }
         })
@@ -83,16 +93,6 @@ angular.module('argia-multimedia-app', ['ionic', 'argia-multimedia-app.controlle
             }
         })
         
-        .state('tab.zerrenda-xehetasunak', {
-            url: '/zerrenda/:multimediaId',
-            views: {
-                'tab-nabarmenduak': {
-                    templateUrl: 'templates/tab-zerrenda-xehetasunak.html',
-                    controller: 'MultimediaXehetasunakCtrl'
-                }
-            }
-        })
-        
         .state('tab.igo-zurea', {
             url: '/igo-zurea',
             views: {
@@ -114,7 +114,7 @@ angular.module('argia-multimedia-app', ['ionic', 'argia-multimedia-app.controlle
         })
     
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/tab/nabarmenduak');
+    $urlRouterProvider.otherwise('/tab/nabarmenduak-zerrenda');
 
 });
 

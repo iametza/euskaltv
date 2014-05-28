@@ -1,6 +1,6 @@
 angular.module('argia-multimedia-app.controllers', [])
 
-.controller('NabarmenduakCtrl', ['$scope','$http', '$ionicScrollDelegate', 'MultimediaZerrenda', function($scope, $http, $ionicScrollDelegate, MultimediaZerrenda) {
+.controller('NabarmenduakZerrendaCtrl', ['$scope','$http', '$ionicScrollDelegate', 'MultimediaZerrenda', function($scope, $http, $ionicScrollDelegate, MultimediaZerrenda) {
     $scope.active = "azkenak";
     
     $scope.multimediaZerrenda = [];
@@ -290,7 +290,7 @@ angular.module('argia-multimedia-app.controllers', [])
     };
 }])
 
-.controller('MultimediaXehetasunakCtrl', ['$scope', '$http', '$sce', '$stateParams', 'MultimediaZerrenda', function($scope, $http, $sce, $stateParams, MultimediaZerrenda) {
+.controller('NabarmenduakXehetasunakCtrl', ['$scope', '$http', '$sce', '$stateParams', 'MultimediaZerrenda', function($scope, $http, $sce, $stateParams, MultimediaZerrenda) {
     
     $scope.eskuratuDatuak = function(id) {
         
