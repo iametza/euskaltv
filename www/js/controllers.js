@@ -271,6 +271,25 @@ angular.module('argia-multimedia-app.controllers', [])
     }
 }])
 
+.controller('ZureEraraXehetasunakCtrl', ['$scope', '$http', '$sce', '$stateParams', 'MultimediaZerrenda', function($scope, $http, $sce, $stateParams, MultimediaZerrenda) {
+    
+    $scope.eskuratuDatuak = function(id) {
+        
+        var promise = MultimediaZerrenda.getElementua(id);
+        
+        promise.then(function() {
+            $scope.multimedia = MultimediaZerrenda.elementua;
+        });
+    }
+    
+    $scope.eskuratuDatuak($stateParams.multimediaId);
+    
+    // Hau gabe ez dut lortu embed kodea erabili ahal izatea, ng-bind-html-k ez baitu onartzen html etiketak ez diren guztia.
+    $scope.onartu_embed_kodea_HTML_bezala = function(kodea) {
+        return $sce.trustAsHtml(kodea);
+    };
+}])
+
 .controller('MultimediaXehetasunakCtrl', ['$scope', '$http', '$sce', '$stateParams', 'MultimediaZerrenda', function($scope, $http, $sce, $stateParams, MultimediaZerrenda) {
     
     $scope.eskuratuDatuak = function(id) {

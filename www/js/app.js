@@ -73,6 +73,16 @@ angular.module('argia-multimedia-app', ['ionic', 'argia-multimedia-app.controlle
             }
         })
         
+        .state('tab.zure-erara-xehetasunak', {
+            url: '/zure-erara-xehetasunak/:multimediaId',
+            views: {
+                'tab-zure-erara': {
+                    templateUrl: 'templates/tab-zure-erara-xehetasunak.html',
+                    controller: 'ZureEraraXehetasunakCtrl'
+                }
+            }
+        })
+        
         .state('tab.zerrenda-xehetasunak', {
             url: '/zerrenda/:multimediaId',
             views: {
