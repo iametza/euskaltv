@@ -1,0 +1,20 @@
+<!--
+    This template loads for the 'tab.zerrenda-xehetasunak' state (app.js)
+    'multimedia' is a $scope variable created in the MultimediaXehetasunakCtrl controller (controllers.js)
+    The MultimediaXehetasunakCtrl pulls data from the MultimediaZerrenda service (service.js)
+    The MultimediaZerrenda service returns an array of multimedia data
+-->
+<ion-view id="zure-erara-xehetasunak-goiko-izenburua" title="{{multimedia.izenburua}}">
+    <ion-content has-header="true" padding="true">
+        <div id="zure-erara-xehetasunak-edukia">
+            <div class="zure-erara-xehetasunak-embed-div" ng-repeat='element in multimedia.embed'>
+                <div class="zure-erara-xehetasunak-embed-testua">{{ element.testua }}</div>
+                <div class="zure-erara-xehetasunak-embed-bideoa" ng-bind-html='onartu_embed_kodea_HTML_bezala(element.embed_kodea)'></div>
+            </div>
+            <h3 id="zure-erara-xehetasunak-izenburua" ng-bind-html='multimedia.izenburua'></h3>
+            <div id="zure-erara-xehetasunak-azalpena" ng-bind-html='multimedia.azalpena'></div>
+            <div id="zure-erara-xehetasunak-data">Data: {{multimedia.data}}</div>
+        </div>
+    </ion-content>
+</ion-view>
+
