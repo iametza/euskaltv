@@ -10,7 +10,9 @@ angular.module('argia-multimedia-app', [
     'argia-multimedia-app.controllers',
     'argia-multimedia-app.services',
     'argia-multimedia-app.directives',
-    'ngSanitize'
+    'ngSanitize',
+    'ngAnimate',
+    'ngTouch'
 ])
 
 .run(function($ionicPlatform, $ionicSideMenuDelegate) {
