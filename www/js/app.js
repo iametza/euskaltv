@@ -5,7 +5,13 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('argia-multimedia-app', ['ionic', 'argia-multimedia-app.controllers', 'argia-multimedia-app.services', 'argia-multimedia-app.directives', 'ngSanitize'])
+angular.module('argia-multimedia-app', [
+    'ionic',
+    'argia-multimedia-app.controllers',
+    'argia-multimedia-app.services',
+    'argia-multimedia-app.directives',
+    'ngSanitize'
+])
 
 .run(function($ionicPlatform, $ionicSideMenuDelegate) {
     
