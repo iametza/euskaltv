@@ -1,7 +1,7 @@
 angular.module('argia-multimedia-app.controllers', [])
 
 .controller('NavBarCtrl', ['$scope', '$ionicSideMenuDelegate', function($scope, $ionicSideMenuDelegate) {
-    $scope.toggleRight = function() {
+    $scope.txandakatuAlboMenua = function() {
         $ionicSideMenuDelegate.toggleRight();
     }
 }])
