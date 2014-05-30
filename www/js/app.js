@@ -24,6 +24,12 @@ angular.module('argia-multimedia-app', ['ionic', 'argia-multimedia-app.controlle
     // Each state's controller can be found in controllers.js
     $stateProvider
         
+        .state('honi-buruz', {
+            url: '/honi-buruz',
+            templateUrl: 'templates/tab-honi-buruz.html',
+            controller: 'HoniBuruzCtrl'
+        })
+        
         // setup an abstract state for the tabs directive
         .state('tab', {
             url: "/tab",
@@ -99,16 +105,6 @@ angular.module('argia-multimedia-app', ['ionic', 'argia-multimedia-app.controlle
                 'tab-igo-zurea': {
                     templateUrl: 'templates/tab-igo-zurea.html',
                     controller: 'IgoZureaCtrl'
-                }
-            }
-        })
-        
-        .state('tab.honi-buruz', {
-            url: '/honi-buruz',
-            views: {
-                'tab-honi-buruz': {
-                    templateUrl: 'templates/tab-honi-buruz.html',
-                    controller: 'HoniBuruzCtrl'
                 }
             }
         })
