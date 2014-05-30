@@ -37,13 +37,13 @@
                 <!-- 
                     The nav bar that will be updated as we navigate between views.
                 -->
-                <ion-nav-bar class="bar-stable nav-title-slide-ios7">
+                <ion-nav-bar class="bar-stable nav-title-slide-ios7" ng-controller="NavBarCtrl">
                     <ion-nav-back-button class="button-icon icon ion-chevron-left">
                         Atzera
                     </ion-nav-back-button>
                     
                     <ion-nav-buttons side="right">
-                        <button class="button button-icon button-clear ion-navicon" ng-controller="AlboMenuarenBotoia" ng-click="toggleRight()"></button>
+                        <button class="button button-icon button-clear ion-navicon" ng-click="toggleRight()"></button>
                     </ion-nav-buttons>
                     
                 </ion-nav-bar>
