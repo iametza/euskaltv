@@ -387,6 +387,9 @@ angular.module('argia-multimedia-app.controllers', [])
     
 }])
 
-.controller('HoniBuruzCtrl', function($scope) {
+.controller('HoniBuruzCtrl', function($scope, $ionicNavBarDelegate) {
+    $scope.atzera = function() {
+        $ionicNavBarDelegate.back();
+    }
 });
 
