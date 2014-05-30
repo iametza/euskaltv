@@ -7,13 +7,20 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('argia-multimedia-app', ['ionic', 'argia-multimedia-app.controllers', 'argia-multimedia-app.services', 'argia-multimedia-app.directives', 'ngSanitize'])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, $ionicSideMenuDelegate) {
+    
     $ionicPlatform.ready(function() {
+        
         if(window.StatusBar) {
           // org.apache.cordova.statusbar required
           StatusBar.styleDefault();
         }
+        
+        // Ez utzi albo-menua arrastatuz bistaratzen.
+        $ionicSideMenuDelegate.canDragContent(false);
+        
     });
+    
 })
 
 .config(function($stateProvider, $urlRouterProvider) {
