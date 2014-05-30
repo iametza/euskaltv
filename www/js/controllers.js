@@ -1,5 +1,11 @@
 angular.module('argia-multimedia-app.controllers', [])
 
+.controller('AlboMenuarenBotoia', ['$scope', '$ionicSideMenuDelegate', function($scope, $ionicSideMenuDelegate) {
+    $scope.toggleRight = function() {
+        $ionicSideMenuDelegate.toggleRight();
+    }
+}])
+
 .controller('NabarmenduakZerrendaCtrl', ['$scope','$http', '$ionicScrollDelegate', 'MultimediaZerrenda', function($scope, $http, $ionicScrollDelegate, MultimediaZerrenda) {
     $scope.active = "azkenak";
     
