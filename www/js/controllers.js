@@ -9,6 +9,13 @@ angular.module('argia-multimedia-app.controllers', [])
     
 }])
 
+.controller('FitxakCtrl', ['$scope', function($scope) {
+    
+    $scope.alderantzikatuBeharDa = function() {
+        return true;
+    }
+}])
+
 .controller('NavBarCtrl', ['$scope', '$ionicSideMenuDelegate', function($scope, $ionicSideMenuDelegate) {
     $scope.txandakatuAlboMenua = function() {
         $ionicSideMenuDelegate.toggleRight();
