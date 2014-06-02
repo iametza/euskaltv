@@ -1,0 +1,26 @@
+<ion-view title="Igo zurea" ng-swipe-right="joanURLra('/tab/zure-erara-denbora')">
+    <ion-content class="has-header">
+		<form name="formularioa" ng-submit="bidali()" novalidate>
+			<div class="list">
+				<div id="igo-zurea-arrakasta-mezua" ng-show="arrakastaBidaltzean">{{arrakastaBidaltzeanTestua}}</div>
+				<div id="igo-zurea-errore-mezua" ng-show="erroreaBidaltzean">{{erroreaBidaltzeanTestua}}</div>
+				<label class="item item-input item-stacked-label">
+					<span class="input-label">Izenburua</span>
+					<input type="text" placeholder="Idatzi izenburua hemen" ng-model="formData.izenburua" required>
+				</label>
+				<label class="item item-input item-stacked-label">
+					<span class="input-label">Azalpena</span>
+					<input type="text" placeholder="Idatzi azalpena hemen" ng-model="formData.azalpena" required>
+				</label>
+				<label class="item item-input item-stacked-label">
+					<span class="input-label">Txertatzeko kodea</span>
+					<input type="text" placeholder="Itsatsi txertatzeko kodea hemen" ng-model="formData.txertatzeko" required>
+				</label>
+			</div>
+			
+			<div class="padding">
+				<button type="submit" class="button button-block button-positive" ng-disabled="formularioa.$invalid">Bidali</button>
+			</div>
+		</form>
+    </ion-content>
+</ion-view>
