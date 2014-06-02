@@ -9,11 +9,29 @@ angular.module('argia-multimedia-app.controllers', [])
     
 }])
 
-.controller('FitxakCtrl', ['$scope', function($scope) {
+.controller('FitxakCtrl', ['$scope', '$rootScope', function($scope, $rootScope) {
     
-    $scope.alderantzikatuBeharDa = function() {
-        return true;
-    }
+    // Fitxen arteko trantsizioaren norabidea alderantzikatu behar den adierazten du.
+    // Normala: Ezkerretik eskuinera.
+    // Alderantzikatua: Eskuinetik ezkerrera.
+    $scope.alderantzikatuBeharDa = false;
+    
+    $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
+        
+        // Momentukoa baino ezkerrerago dagoen fitxa batera mugitu behar badugu fitxen arteko trantsizioaren norabidea alderantzikatu behar dugu.
+        // Ez zait gehiegi gustatzen hau. Orokorragoa izan behar luke. Orain dagoen moduan azpi-fitxa batean bagaude ez du funtzionatzen eta
+        // fitxen izenak aldatuz gero hemen ere aldatu beharko lirateke.
+        if ((fromState.name === "tab.igo-zurea" && toState.name === "tab.zure-erara-denbora") ||
+            (fromState.name === "tab.zure-erara-denbora" && toState.name === "tab.nabarmenduak-zerrenda")) {
+            
+            $scope.alderantzikatuBeharDa = true;
+            
+        } else {
+            
+            $scope.alderantzikatuBeharDa = false;
+            
+        }
+    });
 }])
 
 .controller('NavBarCtrl', ['$scope', '$ionicSideMenuDelegate', function($scope, $ionicSideMenuDelegate) {
