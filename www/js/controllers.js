@@ -218,6 +218,8 @@ angular.module('argia-multimedia-app.controllers', [])
     $scope.gehiago_kargatzen.azkenak = false;
     $scope.gehiago_kargatzen.ikusienak = false;
     
+    $scope.segundoak = ZureErara.eskuratuMinutuak() * 60;
+    
     $scope.isActive = function(type) {
         return type === $scope.active;
     };
@@ -253,7 +255,7 @@ angular.module('argia-multimedia-app.controllers', [])
                 $scope.gehiago_kargatzen.ikusienak = true;
                 
                 // Zerbitzaritik elementu gehiago eskuratu.
-                var promise = MultimediaZerrenda.eskuratuZerrenda("ikusienak", ZureErara.eskuratuMota(), $scope.offsets.ikusienak, $scope.limits.ikusienak);
+                var promise = MultimediaZerrenda.eskuratuZerrenda("ikusienak", ZureErara.eskuratuMota(), $scope.offsets.ikusienak, $scope.limits.ikusienak, $scope.segundoak);
                 
                 promise.then(function() {
                     
@@ -285,7 +287,7 @@ angular.module('argia-multimedia-app.controllers', [])
                 $scope.gehiago_kargatzen.azkenak = true;
                 
                 // Zerbitzaritik elementu gehiago eskuratu.
-                var promise = MultimediaZerrenda.eskuratuZerrenda("azkenak", ZureErara.eskuratuMota(), $scope.offsets.azkenak, $scope.limits.azkenak);
+                var promise = MultimediaZerrenda.eskuratuZerrenda("azkenak", ZureErara.eskuratuMota(), $scope.offsets.azkenak, $scope.limits.azkenak, $scope.segundoak);
                 
                 promise.then(function() {
                     

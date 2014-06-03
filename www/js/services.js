@@ -13,7 +13,7 @@ angular.module('argia-multimedia-app.services', [])
     factory.zure_erara.ikusienak = [];
     factory.zure_erara.azkenak = [];
     
-    factory.eskuratuZerrenda = function(ordenatu, mota, offset, limit) {
+    factory.eskuratuZerrenda = function(ordenatu, mota, offset, limit, iraupena) {
         
         var d = $q.defer();
         
@@ -22,7 +22,8 @@ angular.module('argia-multimedia-app.services', [])
                 "ordenatu": ordenatu,
                 "mota": mota,
                 "offset": offset,
-                "limit": limit
+                "limit": limit,
+                "iraupena": iraupena
             }
         }).success(function(data, status, headers) {
             
