@@ -104,6 +104,26 @@ angular.module('argia-multimedia-app.services', [])
     return factory;
 }])
 
+.factory('Nabarmenduak', function() {
+    
+    var factory = {};
+    
+    // Erabilitako azken fitxa zein den adierazten du.
+    factory.fitxa_aktiboa = "ikusienak";
+    
+    factory.eskuratuFitxaAktiboa = function() {
+        
+        return factory.fitxa_aktiboa;
+    }
+    
+    factory.ezarriFitxaAktiboa = function(fitxa) {
+        
+        factory.fitxa_aktiboa = fitxa;
+        
+    }
+    
+    return factory;
+})
 
 .factory('ZureErara', function() {
     

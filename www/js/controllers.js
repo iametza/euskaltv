@@ -40,8 +40,9 @@ angular.module('argia-multimedia-app.controllers', [])
     }
 }])
 
-.controller('NabarmenduakZerrendaCtrl', ['$scope', '$ionicScrollDelegate', 'MultimediaZerrenda', function($scope, $ionicScrollDelegate, MultimediaZerrenda) {
-    $scope.active = "azkenak";
+.controller('NabarmenduakZerrendaCtrl', ['$scope', '$ionicScrollDelegate', 'Nabarmenduak', 'MultimediaZerrenda', function($scope, $ionicScrollDelegate, Nabarmenduak, MultimediaZerrenda) {
+    
+    $scope.active = Nabarmenduak.eskuratuFitxaAktiboa();
     
     $scope.multimediaZerrenda = [];
     
@@ -68,6 +69,7 @@ angular.module('argia-multimedia-app.controllers', [])
         
         // Fitxa aktiboa eguneratu.
         $scope.active = type;
+        Nabarmenduak.ezarriFitxaAktiboa(type);
         
         // Scroll-a goraino eraman.
         // Hau gabe gauza arraroak egiten zituen. Arazoa erreproduzitzeko iruzkindu hurrengo lerro hau eta:
