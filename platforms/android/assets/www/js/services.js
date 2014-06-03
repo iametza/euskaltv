@@ -13,7 +13,9 @@ angular.module('argia-multimedia-app.services', [])
     factory.zure_erara.ikusienak = [];
     factory.zure_erara.azkenak = [];
     
-    factory.eskuratuZerrenda = function(ordenatu, mota, offset, limit) {
+    factory.elementu_motak = [];
+    
+    factory.eskuratuZerrenda = function(ordenatu, mota, offset, limit, iraupena) {
         
         var d = $q.defer();
         
@@ -22,7 +24,8 @@ angular.module('argia-multimedia-app.services', [])
                 "ordenatu": ordenatu,
                 "mota": mota,
                 "offset": offset,
-                "limit": limit
+                "limit": limit,
+                "iraupena": iraupena
             }
         }).success(function(data, status, headers) {
             
@@ -103,6 +106,26 @@ angular.module('argia-multimedia-app.services', [])
     return factory;
 }])
 
+.factory('Nabarmenduak', function() {
+    
+    var factory = {};
+    
+    // Erabilitako azken fitxa zein den adierazten du.
+    factory.fitxa_aktiboa = "azkenak";
+    
+    factory.eskuratuFitxaAktiboa = function() {
+        
+        return factory.fitxa_aktiboa;
+    }
+    
+    factory.ezarriFitxaAktiboa = function(fitxa) {
+        
+        factory.fitxa_aktiboa = fitxa;
+        
+    }
+    
+    return factory;
+})
 
 .factory('ZureErara', function() {
     
@@ -111,6 +134,12 @@ angular.module('argia-multimedia-app.services', [])
     factory.minutuak = 15;
     
     factory.id_mota = 0;
+    
+    // Erabiltzaileak bideoaren gehienezko iraupena aldatu duen adierazten du.
+    factory.minutuak_aldatu_dira = false;
+    
+    // Erabilitako azken fitxa zein den adierazten du.
+    factory.fitxa_aktiboa = "azkenak";
     
     factory.ezarriMinutuak = function(minutuak) {
         factory.minutuak = minutuak;
@@ -127,6 +156,17 @@ angular.module('argia-multimedia-app.services', [])
     
     factory.eskuratuMota = function(id) {
         return factory.id_mota;
+    }
+    
+    factory.eskuratuFitxaAktiboa = function() {
+        
+        return factory.fitxa_aktiboa;
+    }
+    
+    factory.ezarriFitxaAktiboa = function(fitxa) {
+        
+        factory.fitxa_aktiboa = fitxa;
+        
     }
     
     return factory;

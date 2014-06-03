@@ -3,7 +3,7 @@ angular.module('argia-multimedia-app.services', [])
 /**
  * A simple example service that returns some data.
  */
-.factory('MultimediaZerrenda', ['$http','$q', function($http, $q) {
+.factory('Zerbitzaria', ['$http','$q', function($http, $q) {
     var factory = {};
    
     factory.ikusienak = [];

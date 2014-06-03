@@ -40,8 +40,9 @@ angular.module('argia-multimedia-app.controllers', [])
     }
 }])
 
-.controller('NabarmenduakZerrendaCtrl', ['$scope','$http', '$ionicScrollDelegate', 'MultimediaZerrenda', function($scope, $http, $ionicScrollDelegate, MultimediaZerrenda) {
-    $scope.active = "azkenak";
+.controller('NabarmenduakZerrendaCtrl', ['$scope', '$ionicScrollDelegate', 'Nabarmenduak', 'MultimediaZerrenda', function($scope, $ionicScrollDelegate, Nabarmenduak, MultimediaZerrenda) {
+    
+    $scope.active = Nabarmenduak.eskuratuFitxaAktiboa();
     
     $scope.multimediaZerrenda = [];
     
@@ -68,6 +69,7 @@ angular.module('argia-multimedia-app.controllers', [])
         
         // Fitxa aktiboa eguneratu.
         $scope.active = type;
+        Nabarmenduak.ezarriFitxaAktiboa(type);
         
         // Scroll-a goraino eraman.
         // Hau gabe gauza arraroak egiten zituen. Arazoa erreproduzitzeko iruzkindu hurrengo lerro hau eta:
@@ -162,7 +164,9 @@ angular.module('argia-multimedia-app.controllers', [])
     
 }])
 
-.controller('ZureEraraMotakCtrl', ['$scope', '$http', 'MultimediaZerrenda', 'ZureErara', function($scope, $http, MultimediaZerrenda, ZureErara) {
+.controller('ZureEraraMotakCtrl', ['$scope', 'MultimediaZerrenda', 'ZureErara', function($scope, MultimediaZerrenda, ZureErara) {
+    
+    $scope.elementu_motak = [];
     
     $scope.gordeMota = function(id) {
         
@@ -179,7 +183,7 @@ angular.module('argia-multimedia-app.controllers', [])
     
     $scope.eskuratuDatuak = function() {
         
-        if (MultimediaZerrenda.ikusienak.length == 0){
+        if (MultimediaZerrenda.elementu_motak.length === 0) {
             
             var promise = MultimediaZerrenda.getElementuMotak();
             
@@ -187,9 +191,9 @@ angular.module('argia-multimedia-app.controllers', [])
                 $scope.elementu_motak = MultimediaZerrenda.elementu_motak;
             });
             
-        }else{
+        } else {
             
-            $scope.zerrenda = MultimediaZerrenda.elementu_motak;
+            $scope.elementu_motak = MultimediaZerrenda.elementu_motak;
         }
     }
     
@@ -197,9 +201,9 @@ angular.module('argia-multimedia-app.controllers', [])
     
 }])
 
-.controller('ZureEraraZerrendaCtrl', ['$scope', 'MultimediaZerrenda', 'ZureErara', function($scope, MultimediaZerrenda, ZureErara) {
+.controller('ZureEraraZerrendaCtrl', ['$scope', '$ionicScrollDelegate', 'MultimediaZerrenda', 'ZureErara', function($scope, $ionicScrollDelegate, MultimediaZerrenda, ZureErara) {
     
-    $scope.active = "azkenak";
+    $scope.active = ZureErara.eskuratuFitxaAktiboa();
     
     $scope.zure_erara_zerrenda = [];
     
@@ -218,6 +222,8 @@ angular.module('argia-multimedia-app.controllers', [])
     $scope.gehiago_kargatzen.azkenak = false;
     $scope.gehiago_kargatzen.ikusienak = false;
     
+    $scope.segundoak = ZureErara.eskuratuMinutuak() * 60;
+    
     $scope.isActive = function(type) {
         return type === $scope.active;
     };
@@ -226,6 +232,7 @@ angular.module('argia-multimedia-app.controllers', [])
         
         // Fitxa aktiboa eguneratu.
         $scope.active = type;
+        ZureErara.ezarriFitxaAktiboa(type);
         
         // Scroll-a goraino eraman.
         // Hau gabe gauza arraroak egiten zituen. Arazoa erreproduzitzeko iruzkindu hurrengo lerro hau eta:
@@ -243,9 +250,22 @@ angular.module('argia-multimedia-app.controllers', [])
         
         console.log("kargatuGehiago");
         
+        // Erabiltzaileak bideoaren gehienezko iraupena aldatu badu.
+        if (ZureErara.minutuak_aldatu_dira) {
+            
+            // Zure erararen zerrendak garbitu behar dira.
+            MultimediaZerrenda.garbituZureEraraZerrendak();
+            
+            // Berriz ere false jarri.
+            ZureErara.minutuak_aldatu_dira = false;
+            
+        }
+        
         if ($scope.active == 'ikusienak') {
             
-            if (!$scope.gehiago_kargatzen.ikusienak && (MultimediaZerrenda.zure_erara.ikusienak.length === 0 || MultimediaZerrenda.zure_erara.ikusienak.length === $scope.offsets.ikusienak)) {
+            if (!$scope.gehiago_kargatzen.ikusienak // Ez bagara dagoeneko gehiago kargatzen ari eta...
+                && (MultimediaZerrenda.zure_erara.ikusienak.length === 0                                // Ikusienen zerrenda hutsik badago edo...
+                    || MultimediaZerrenda.zure_erara.ikusienak.length === $scope.offsets.ikusienak)) {  // Hutsik ez dagoen kasuan ere gehiago kargatzeko da baldintza hau.
                 
                 console.log("bai");
                 
@@ -253,7 +273,7 @@ angular.module('argia-multimedia-app.controllers', [])
                 $scope.gehiago_kargatzen.ikusienak = true;
                 
                 // Zerbitzaritik elementu gehiago eskuratu.
-                var promise = MultimediaZerrenda.eskuratuZerrenda("ikusienak", ZureErara.eskuratuMota(), $scope.offsets.ikusienak, $scope.limits.ikusienak);
+                var promise = MultimediaZerrenda.eskuratuZerrenda("ikusienak", ZureErara.eskuratuMota(), $scope.offsets.ikusienak, $scope.limits.ikusienak, $scope.segundoak);
                 
                 promise.then(function() {
                     
@@ -277,7 +297,9 @@ angular.module('argia-multimedia-app.controllers', [])
             
         } else {
             
-            if (!$scope.gehiago_kargatzen.azkenak && (MultimediaZerrenda.zure_erara.azkenak.length === 0 || MultimediaZerrenda.zure_erara.azkenak.length === $scope.offsets.azkenak)) {
+            if (!$scope.gehiago_kargatzen.azkenak   // Ez bagara dagoeneko gehiago kargatzen ari eta...
+                && (MultimediaZerrenda.zure_erara.azkenak.length === 0                              // Ikusienen zerrenda hutsik badago edo...
+                    || MultimediaZerrenda.zure_erara.azkenak.length === $scope.offsets.azkenak)) {  // Hutsik ez dagoen kasuan ere gehiago kargatzeko da baldintza hau.
             
                 console.log("bai");
                 
@@ -285,7 +307,7 @@ angular.module('argia-multimedia-app.controllers', [])
                 $scope.gehiago_kargatzen.azkenak = true;
                 
                 // Zerbitzaritik elementu gehiago eskuratu.
-                var promise = MultimediaZerrenda.eskuratuZerrenda("azkenak", ZureErara.eskuratuMota(), $scope.offsets.azkenak, $scope.limits.azkenak);
+                var promise = MultimediaZerrenda.eskuratuZerrenda("azkenak", ZureErara.eskuratuMota(), $scope.offsets.azkenak, $scope.limits.azkenak, $scope.segundoak);
                 
                 promise.then(function() {
                     
@@ -311,7 +333,7 @@ angular.module('argia-multimedia-app.controllers', [])
     }
 }])
 
-.controller('ZureEraraXehetasunakCtrl', ['$scope', '$http', '$sce', '$stateParams', 'MultimediaZerrenda', function($scope, $http, $sce, $stateParams, MultimediaZerrenda) {
+.controller('ZureEraraXehetasunakCtrl', ['$scope', '$sce', '$stateParams', 'MultimediaZerrenda', function($scope, $sce, $stateParams, MultimediaZerrenda) {
     
     $scope.eskuratuDatuak = function(id) {
         
@@ -330,7 +352,7 @@ angular.module('argia-multimedia-app.controllers', [])
     };
 }])
 
-.controller('NabarmenduakXehetasunakCtrl', ['$scope', '$http', '$sce', '$stateParams', 'MultimediaZerrenda', function($scope, $http, $sce, $stateParams, MultimediaZerrenda) {
+.controller('NabarmenduakXehetasunakCtrl', ['$scope', '$sce', '$stateParams', 'MultimediaZerrenda', function($scope, $sce, $stateParams, MultimediaZerrenda) {
     
     $scope.eskuratuDatuak = function(id) {
         
