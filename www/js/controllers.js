@@ -371,7 +371,7 @@ angular.module('argia-multimedia-app.controllers', [])
     };
 }])
 
-.controller('IgoZureaCtrl', ['$scope', '$http', function($scope, $http) {
+.controller('IgoZureaCtrl', ['$scope', '$http', 'Zerbitzaria', function($scope, $http, Zerbitzaria) {
     
     $scope.formData = {};
     $scope.formData.izenburua = "";
@@ -392,7 +392,7 @@ angular.module('argia-multimedia-app.controllers', [])
         // Horregatik application/x-www-urlencoded goiburua erabili behar izan dut eta datuak serializatu $.param erabiliz (jQuery).
         $http({
             method: 'POST',
-            url: 'http://192.168.2.174/argia-multimedia-zerbitzaria/proposamena',
+            url: Zerbitzaria.oinarrizko_url + 'proposamena',
             headers: {'Content-Type': 'application/x-www-form-urlencoded'},
             data: $.param($scope.formData)
         })

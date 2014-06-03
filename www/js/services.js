@@ -1,11 +1,13 @@
 angular.module('argia-multimedia-app.services', [])
 
 /**
- * A simple example service that returns some data.
+ * Zerbitzaritik datuak eskuratzeko zerbitzua.
  */
 .factory('Zerbitzaria', ['$http','$q', function($http, $q) {
     var factory = {};
-   
+    
+    factory.oinarrizko_url = "http://192.168.2.174/argia-multimedia-zerbitzaria/";
+    
     factory.ikusienak = [];
     factory.azkenak = [];
     
@@ -19,7 +21,7 @@ angular.module('argia-multimedia-app.services', [])
         
         var d = $q.defer();
         
-        $http.get('http://192.168.2.174/argia-multimedia-zerbitzaria/elementuak', {
+        $http.get(factory.oinarrizko_url + 'elementuak', {
             params: {
                 "ordenatu": ordenatu,
                 "mota": mota,
@@ -66,7 +68,7 @@ angular.module('argia-multimedia-app.services', [])
         
         var d = $q.defer();
         
-        $http.get('http://192.168.2.174/argia-multimedia-zerbitzaria/elementuak/motak/').success(function(data, status, headers) {            
+        $http.get(factory.oinarrizko_url + 'elementuak/motak/').success(function(data, status, headers) {
             factory.elementu_motak = data;
             d.resolve();
         }).error(function(data, status, headers) {            
@@ -83,7 +85,7 @@ angular.module('argia-multimedia-app.services', [])
         
         var d = $q.defer();
         
-        $http.get('http://192.168.2.174/argia-multimedia-zerbitzaria/elementua/' + id).success(function(data, status, headers) {
+        $http.get(factory.oinarrizko_url + 'elementua/' + id).success(function(data, status, headers) {
             factory.elementua = data;
             d.resolve();
         }).error(function(data, status, headers) {
