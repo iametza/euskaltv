@@ -197,7 +197,7 @@ angular.module('argia-multimedia-app.controllers', [])
     
 }])
 
-.controller('ZureEraraZerrendaCtrl', ['$scope', 'MultimediaZerrenda', 'ZureErara', function($scope, MultimediaZerrenda, ZureErara) {
+.controller('ZureEraraZerrendaCtrl', ['$scope', '$ionicScrollDelegate', 'MultimediaZerrenda', 'ZureErara', function($scope, $ionicScrollDelegate, MultimediaZerrenda, ZureErara) {
     
     $scope.active = "azkenak";
     
