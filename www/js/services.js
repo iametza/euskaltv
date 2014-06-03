@@ -13,6 +13,8 @@ angular.module('argia-multimedia-app.services', [])
     factory.zure_erara.ikusienak = [];
     factory.zure_erara.azkenak = [];
     
+    factory.elementu_motak = [];
+    
     factory.eskuratuZerrenda = function(ordenatu, mota, offset, limit, iraupena) {
         
         var d = $q.defer();

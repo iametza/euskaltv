@@ -166,6 +166,8 @@ angular.module('argia-multimedia-app.controllers', [])
 
 .controller('ZureEraraMotakCtrl', ['$scope', 'MultimediaZerrenda', 'ZureErara', function($scope, MultimediaZerrenda, ZureErara) {
     
+    $scope.elementu_motak = [];
+    
     $scope.gordeMota = function(id) {
         
         // Zerrenda mota aldatu bada
@@ -181,7 +183,7 @@ angular.module('argia-multimedia-app.controllers', [])
     
     $scope.eskuratuDatuak = function() {
         
-        if (MultimediaZerrenda.ikusienak.length == 0){
+        if (MultimediaZerrenda.elementu_motak.length === 0) {
             
             var promise = MultimediaZerrenda.getElementuMotak();
             
@@ -189,9 +191,9 @@ angular.module('argia-multimedia-app.controllers', [])
                 $scope.elementu_motak = MultimediaZerrenda.elementu_motak;
             });
             
-        }else{
+        } else {
             
-            $scope.zerrenda = MultimediaZerrenda.elementu_motak;
+            $scope.elementu_motak = MultimediaZerrenda.elementu_motak;
         }
     }
     
