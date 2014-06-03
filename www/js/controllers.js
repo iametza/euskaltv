@@ -247,7 +247,9 @@ angular.module('argia-multimedia-app.controllers', [])
         
         if ($scope.active == 'ikusienak') {
             
-            if (!$scope.gehiago_kargatzen.ikusienak && (MultimediaZerrenda.zure_erara.ikusienak.length === 0 || MultimediaZerrenda.zure_erara.ikusienak.length === $scope.offsets.ikusienak)) {
+            if (!$scope.gehiago_kargatzen.ikusienak // Ez bagara dagoeneko gehiago kargatzen ari eta...
+                && (MultimediaZerrenda.zure_erara.ikusienak.length === 0                                // Ikusienen zerrenda hutsik badago edo...
+                    || MultimediaZerrenda.zure_erara.ikusienak.length === $scope.offsets.ikusienak)) {  // Hutsik ez dagoen kasuan ere gehiago kargatzeko da baldintza hau.
                 
                 console.log("bai");
                 
@@ -279,7 +281,9 @@ angular.module('argia-multimedia-app.controllers', [])
             
         } else {
             
-            if (!$scope.gehiago_kargatzen.azkenak && (MultimediaZerrenda.zure_erara.azkenak.length === 0 || MultimediaZerrenda.zure_erara.azkenak.length === $scope.offsets.azkenak)) {
+            if (!$scope.gehiago_kargatzen.azkenak   // Ez bagara dagoeneko gehiago kargatzen ari eta...
+                && (MultimediaZerrenda.zure_erara.azkenak.length === 0                              // Ikusienen zerrenda hutsik badago edo...
+                    || MultimediaZerrenda.zure_erara.azkenak.length === $scope.offsets.azkenak)) {  // Hutsik ez dagoen kasuan ere gehiago kargatzeko da baldintza hau.
             
                 console.log("bai");
                 
