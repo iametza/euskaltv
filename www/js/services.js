@@ -113,6 +113,9 @@ angular.module('argia-multimedia-app.services', [])
     
     factory.id_mota = 0;
     
+    // Erabiltzaileak bideoaren gehienezko iraupena aldatu duen adierazten du.
+    factory.minutuak_aldatu_dira = false;
+    
     factory.ezarriMinutuak = function(minutuak) {
         factory.minutuak = minutuak;
     }

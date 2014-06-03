@@ -245,6 +245,17 @@ angular.module('argia-multimedia-app.controllers', [])
         
         console.log("kargatuGehiago");
         
+        // Erabiltzaileak bideoaren gehienezko iraupena aldatu badu.
+        if (ZureErara.minutuak_aldatu_dira) {
+            
+            // Zure erararen zerrendak garbitu behar dira.
+            MultimediaZerrenda.garbituZureEraraZerrendak();
+            
+            // Berriz ere false jarri.
+            ZureErara.minutuak_aldatu_dira = false;
+            
+        }
+        
         if ($scope.active == 'ikusienak') {
             
             if (!$scope.gehiago_kargatzen.ikusienak // Ez bagara dagoeneko gehiago kargatzen ari eta...

@@ -23,7 +23,12 @@ angular.module('argia-multimedia-app.directives', [])
                     // Hau eta beheko ngModel zergatik erabiltzen ditugun ulertzeko begiratu hau: https://groups.google.com/forum/#!msg/angular/gWqeEGK1cds/ArQAVaFmcn0J
                     scope.$apply(function() {
                         ngModel.$setViewValue(value);
+                        
+                        // Erabiltzaileak hautatutako minutuak gorde gero erabiltzeko.
                         ZureErara.ezarriMinutuak(value);
+                        
+                        // Erabiltzaileak bideoaren gehienezko iraupena aldatu duela adierazi.
+                        ZureErara.minutuak_aldatu_dira = true;
                     });
                 }
             });
