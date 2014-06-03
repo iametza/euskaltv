@@ -109,7 +109,7 @@ angular.module('argia-multimedia-app.services', [])
     var factory = {};
     
     // Erabilitako azken fitxa zein den adierazten du.
-    factory.fitxa_aktiboa = "ikusienak";
+    factory.fitxa_aktiboa = "azkenak";
     
     factory.eskuratuFitxaAktiboa = function() {
         
@@ -136,6 +136,9 @@ angular.module('argia-multimedia-app.services', [])
     // Erabiltzaileak bideoaren gehienezko iraupena aldatu duen adierazten du.
     factory.minutuak_aldatu_dira = false;
     
+    // Erabilitako azken fitxa zein den adierazten du.
+    factory.fitxa_aktiboa = "azkenak";
+    
     factory.ezarriMinutuak = function(minutuak) {
         factory.minutuak = minutuak;
     }
@@ -151,6 +154,17 @@ angular.module('argia-multimedia-app.services', [])
     
     factory.eskuratuMota = function(id) {
         return factory.id_mota;
+    }
+    
+    factory.eskuratuFitxaAktiboa = function() {
+        
+        return factory.fitxa_aktiboa;
+    }
+    
+    factory.ezarriFitxaAktiboa = function(fitxa) {
+        
+        factory.fitxa_aktiboa = fitxa;
+        
     }
     
     return factory;
