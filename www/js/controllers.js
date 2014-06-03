@@ -40,7 +40,7 @@ angular.module('argia-multimedia-app.controllers', [])
     }
 }])
 
-.controller('NabarmenduakZerrendaCtrl', ['$scope','$http', '$ionicScrollDelegate', 'MultimediaZerrenda', function($scope, $http, $ionicScrollDelegate, MultimediaZerrenda) {
+.controller('NabarmenduakZerrendaCtrl', ['$scope', '$ionicScrollDelegate', 'MultimediaZerrenda', function($scope, $ionicScrollDelegate, MultimediaZerrenda) {
     $scope.active = "azkenak";
     
     $scope.multimediaZerrenda = [];
@@ -162,7 +162,7 @@ angular.module('argia-multimedia-app.controllers', [])
     
 }])
 
-.controller('ZureEraraMotakCtrl', ['$scope', '$http', 'MultimediaZerrenda', 'ZureErara', function($scope, $http, MultimediaZerrenda, ZureErara) {
+.controller('ZureEraraMotakCtrl', ['$scope', 'MultimediaZerrenda', 'ZureErara', function($scope, MultimediaZerrenda, ZureErara) {
     
     $scope.gordeMota = function(id) {
         
@@ -313,7 +313,7 @@ angular.module('argia-multimedia-app.controllers', [])
     }
 }])
 
-.controller('ZureEraraXehetasunakCtrl', ['$scope', '$http', '$sce', '$stateParams', 'MultimediaZerrenda', function($scope, $http, $sce, $stateParams, MultimediaZerrenda) {
+.controller('ZureEraraXehetasunakCtrl', ['$scope', '$sce', '$stateParams', 'MultimediaZerrenda', function($scope, $sce, $stateParams, MultimediaZerrenda) {
     
     $scope.eskuratuDatuak = function(id) {
         
@@ -332,7 +332,7 @@ angular.module('argia-multimedia-app.controllers', [])
     };
 }])
 
-.controller('NabarmenduakXehetasunakCtrl', ['$scope', '$http', '$sce', '$stateParams', 'MultimediaZerrenda', function($scope, $http, $sce, $stateParams, MultimediaZerrenda) {
+.controller('NabarmenduakXehetasunakCtrl', ['$scope', '$sce', '$stateParams', 'MultimediaZerrenda', function($scope, $sce, $stateParams, MultimediaZerrenda) {
     
     $scope.eskuratuDatuak = function(id) {
         
