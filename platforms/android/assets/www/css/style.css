@@ -52,6 +52,18 @@ input[type="text"][knob] {
     height: 100%;
 }
 
+#xehetasunak-botoiak {
+    margin-top: 15px;
+}
+
+#xehetasunak-botoiak-facebook {
+    float: right;
+}
+
+#xehetasunak-botoiak-twitter {
+    float: right;
+}
+
 /****** Zure erara bistaren estiloa ******/
 #zure-erara-denbora-goiko-testua {
     margin-top: 30px;
@@ -139,6 +151,19 @@ input[type="text"][knob] {
     width: 100%;
     height: 100%;
 }
+
+#zure-erara-xehetasunak-botoiak {
+    margin-top: 15px;
+}
+
+#zure-erara-xehetasunak-botoiak-facebook {
+    float: right;
+}
+
+#zure-erara-xehetasunak-botoiak-twitter {
+    float: right;
+}
+
 
 /****** Honi buruz bistaren estiloa ******/
 .honi-buruz-izenburua {

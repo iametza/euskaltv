@@ -72,7 +72,6 @@ angular.module('argia-multimedia-app.controllers', [])
     // inappbrowser plugina instalatu behar da funtziona dezan.
     $scope.irekiNabigatzailean = function($event, urla) {
         
-        console.log("dsartu da");
         $event.preventDefault();
         
         window.open(urla, "_system");
