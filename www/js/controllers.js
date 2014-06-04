@@ -68,6 +68,15 @@ angular.module('argia-multimedia-app.controllers', [])
         return $sce.trustAsHtml(kodea);
     }
     
+    // Estekak gailuaren nabigatzailean irekitzeko erabiltzen dut hau, bestela aplikazioaren leiho barruan irekitzen ditu.
+    // inappbrowser plugina instalatu behar da funtziona dezan.
+    $scope.irekiNabigatzailean = function(urla) {
+        
+        event.preventDefault();
+        
+        window.open(urla, "_system");
+    }
+    
 }])
 
 .controller('FitxakCtrl', ['$scope', '$rootScope', function($scope, $rootScope) {
