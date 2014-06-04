@@ -82,12 +82,7 @@ input[type="text"][knob] {
 
 /****** Zure erara motak bistaren estiloa ******/
 #zure-erara-motak-goiko-testua {
-    margin-top: 30px;
     text-align: center;
-}
-
-#zure-erara-motak-zerrenda {
-    margin-top: 30px;
 }
 
 #zure-erara-motak-zerrenda div:first-child {
