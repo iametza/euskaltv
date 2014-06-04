@@ -40,7 +40,7 @@ angular.module('argia-multimedia-app.controllers', [])
     }
 }])
 
-.controller('NabarmenduakZerrendaCtrl', ['$scope', '$ionicScrollDelegate', 'Nabarmenduak', 'MultimediaZerrenda', function($scope, $ionicScrollDelegate, Nabarmenduak, MultimediaZerrenda) {
+.controller('NabarmenduakZerrendaCtrl', ['$scope', '$ionicScrollDelegate', 'Nabarmenduak', 'Zerbitzaria', function($scope, $ionicScrollDelegate, Nabarmenduak, Zerbitzaria) {
     
     $scope.active = Nabarmenduak.eskuratuFitxaAktiboa();
     
@@ -89,7 +89,7 @@ angular.module('argia-multimedia-app.controllers', [])
         
         if ($scope.active == 'ikusienak') {
             
-            if (!$scope.gehiago_kargatzen.ikusienak && (MultimediaZerrenda.ikusienak.length === 0 || MultimediaZerrenda.ikusienak.length === $scope.offsets.ikusienak)) {
+            if (!$scope.gehiago_kargatzen.ikusienak && (Zerbitzaria.ikusienak.length === 0 || Zerbitzaria.ikusienak.length === $scope.offsets.ikusienak)) {
                 
                 console.log("bai");
                 
@@ -97,12 +97,12 @@ angular.module('argia-multimedia-app.controllers', [])
                 $scope.gehiago_kargatzen.ikusienak = true;
                 
                 // Zerbitzaritik elementu gehiago eskuratu.
-                var promise = MultimediaZerrenda.eskuratuZerrenda("ikusienak", 0, $scope.offsets.ikusienak, $scope.limits.ikusienak);
+                var promise = Zerbitzaria.eskuratuZerrenda("ikusienak", 0, $scope.offsets.ikusienak, $scope.limits.ikusienak);
                 
                 promise.then(function() {
                     
                     // Eguneratutako elementuen zerrenda gorde.
-                    $scope.multimediaZerrenda = MultimediaZerrenda.ikusienak;
+                    $scope.multimediaZerrenda = Zerbitzaria.ikusienak;
                     
                     console.log($scope.multimediaZerrenda);
                     
@@ -117,13 +117,13 @@ angular.module('argia-multimedia-app.controllers', [])
             } else {
                 
                 console.log("ez");
-                $scope.multimediaZerrenda = MultimediaZerrenda.ikusienak;
+                $scope.multimediaZerrenda = Zerbitzaria.ikusienak;
                 
             }
             
         } else {
             
-            if (!$scope.gehiago_kargatzen.azkenak && (MultimediaZerrenda.azkenak.length === 0 || MultimediaZerrenda.azkenak.length === $scope.offsets.azkenak)) {
+            if (!$scope.gehiago_kargatzen.azkenak && (Zerbitzaria.azkenak.length === 0 || Zerbitzaria.azkenak.length === $scope.offsets.azkenak)) {
                 
                 console.log("bai");
                 
@@ -131,12 +131,12 @@ angular.module('argia-multimedia-app.controllers', [])
                 $scope.gehiago_kargatzen.azkenak = true;
                 
                 // Zerbitzaritik elementu gehiago eskuratu.
-                var promise = MultimediaZerrenda.eskuratuZerrenda("azkenak", 0, $scope.offsets.azkenak, $scope.limits.azkenak);
+                var promise = Zerbitzaria.eskuratuZerrenda("azkenak", 0, $scope.offsets.azkenak, $scope.limits.azkenak);
                 
                 promise.then(function() {
                     
                     // Eguneratutako elementuen zerrenda gorde.
-                    $scope.multimediaZerrenda = MultimediaZerrenda.azkenak;
+                    $scope.multimediaZerrenda = Zerbitzaria.azkenak;
                     
                     // Azkenak atalaren offseta eguneratu kargatu berri ditugun elementu kopuruarekin.
                     $scope.offsets.azkenak += $scope.limits.azkenak;
@@ -148,7 +148,7 @@ angular.module('argia-multimedia-app.controllers', [])
             } else {
                 
                 console.log("ez");
-                $scope.multimediaZerrenda = MultimediaZerrenda.azkenak;
+                $scope.multimediaZerrenda = Zerbitzaria.azkenak;
                 
             }    
             
@@ -164,7 +164,7 @@ angular.module('argia-multimedia-app.controllers', [])
     
 }])
 
-.controller('ZureEraraMotakCtrl', ['$scope', 'MultimediaZerrenda', 'ZureErara', function($scope, MultimediaZerrenda, ZureErara) {
+.controller('ZureEraraMotakCtrl', ['$scope', 'Zerbitzaria', 'ZureErara', function($scope, Zerbitzaria, ZureErara) {
     
     $scope.elementu_motak = [];
     
@@ -174,7 +174,7 @@ angular.module('argia-multimedia-app.controllers', [])
         if (id !== ZureErara.eskuratuMota()) {
             
             // Zure erararen zerrendak garbitu behar dira.
-            MultimediaZerrenda.garbituZureEraraZerrendak();
+            Zerbitzaria.garbituZureEraraZerrendak();
         }
         
         // Hautatutako mota gorde
@@ -183,17 +183,17 @@ angular.module('argia-multimedia-app.controllers', [])
     
     $scope.eskuratuDatuak = function() {
         
-        if (MultimediaZerrenda.elementu_motak.length === 0) {
+        if (Zerbitzaria.elementu_motak.length === 0) {
             
-            var promise = MultimediaZerrenda.getElementuMotak();
+            var promise = Zerbitzaria.getElementuMotak();
             
             promise.then(function() {
-                $scope.elementu_motak = MultimediaZerrenda.elementu_motak;
+                $scope.elementu_motak = Zerbitzaria.elementu_motak;
             });
             
         } else {
             
-            $scope.elementu_motak = MultimediaZerrenda.elementu_motak;
+            $scope.elementu_motak = Zerbitzaria.elementu_motak;
         }
     }
     
@@ -201,7 +201,7 @@ angular.module('argia-multimedia-app.controllers', [])
     
 }])
 
-.controller('ZureEraraZerrendaCtrl', ['$scope', '$ionicScrollDelegate', 'MultimediaZerrenda', 'ZureErara', function($scope, $ionicScrollDelegate, MultimediaZerrenda, ZureErara) {
+.controller('ZureEraraZerrendaCtrl', ['$scope', '$ionicScrollDelegate', 'Zerbitzaria', 'ZureErara', function($scope, $ionicScrollDelegate, Zerbitzaria, ZureErara) {
     
     $scope.active = ZureErara.eskuratuFitxaAktiboa();
     
@@ -254,7 +254,7 @@ angular.module('argia-multimedia-app.controllers', [])
         if (ZureErara.minutuak_aldatu_dira) {
             
             // Zure erararen zerrendak garbitu behar dira.
-            MultimediaZerrenda.garbituZureEraraZerrendak();
+            Zerbitzaria.garbituZureEraraZerrendak();
             
             // Berriz ere false jarri.
             ZureErara.minutuak_aldatu_dira = false;
@@ -264,8 +264,8 @@ angular.module('argia-multimedia-app.controllers', [])
         if ($scope.active == 'ikusienak') {
             
             if (!$scope.gehiago_kargatzen.ikusienak // Ez bagara dagoeneko gehiago kargatzen ari eta...
-                && (MultimediaZerrenda.zure_erara.ikusienak.length === 0                                // Ikusienen zerrenda hutsik badago edo...
-                    || MultimediaZerrenda.zure_erara.ikusienak.length === $scope.offsets.ikusienak)) {  // Hutsik ez dagoen kasuan ere gehiago kargatzeko da baldintza hau.
+                && (Zerbitzaria.zure_erara.ikusienak.length === 0                                // Ikusienen zerrenda hutsik badago edo...
+                    || Zerbitzaria.zure_erara.ikusienak.length === $scope.offsets.ikusienak)) {  // Hutsik ez dagoen kasuan ere gehiago kargatzeko da baldintza hau.
                 
                 console.log("bai");
                 
@@ -273,12 +273,12 @@ angular.module('argia-multimedia-app.controllers', [])
                 $scope.gehiago_kargatzen.ikusienak = true;
                 
                 // Zerbitzaritik elementu gehiago eskuratu.
-                var promise = MultimediaZerrenda.eskuratuZerrenda("ikusienak", ZureErara.eskuratuMota(), $scope.offsets.ikusienak, $scope.limits.ikusienak, $scope.segundoak);
+                var promise = Zerbitzaria.eskuratuZerrenda("ikusienak", ZureErara.eskuratuMota(), $scope.offsets.ikusienak, $scope.limits.ikusienak, $scope.segundoak);
                 
                 promise.then(function() {
                     
                     // Eguneratutako elementuen zerrenda gorde.
-                    $scope.zure_erara_zerrenda = MultimediaZerrenda.zure_erara.ikusienak;
+                    $scope.zure_erara_zerrenda = Zerbitzaria.zure_erara.ikusienak;
                     
                     // Ikusienak atalaren offseta eguneratu kargatu berri ditugun elementu kopuruarekin.
                     $scope.offsets.ikusienak += $scope.limits.ikusienak;
@@ -291,15 +291,15 @@ angular.module('argia-multimedia-app.controllers', [])
             } else {
                 
                 console.log("ez");
-                $scope.zure_erara_zerrenda = MultimediaZerrenda.zure_erara.ikusienak;
+                $scope.zure_erara_zerrenda = Zerbitzaria.zure_erara.ikusienak;
                 
             }
             
         } else {
             
             if (!$scope.gehiago_kargatzen.azkenak   // Ez bagara dagoeneko gehiago kargatzen ari eta...
-                && (MultimediaZerrenda.zure_erara.azkenak.length === 0                              // Ikusienen zerrenda hutsik badago edo...
-                    || MultimediaZerrenda.zure_erara.azkenak.length === $scope.offsets.azkenak)) {  // Hutsik ez dagoen kasuan ere gehiago kargatzeko da baldintza hau.
+                && (Zerbitzaria.zure_erara.azkenak.length === 0                              // Ikusienen zerrenda hutsik badago edo...
+                    || Zerbitzaria.zure_erara.azkenak.length === $scope.offsets.azkenak)) {  // Hutsik ez dagoen kasuan ere gehiago kargatzeko da baldintza hau.
             
                 console.log("bai");
                 
@@ -307,12 +307,12 @@ angular.module('argia-multimedia-app.controllers', [])
                 $scope.gehiago_kargatzen.azkenak = true;
                 
                 // Zerbitzaritik elementu gehiago eskuratu.
-                var promise = MultimediaZerrenda.eskuratuZerrenda("azkenak", ZureErara.eskuratuMota(), $scope.offsets.azkenak, $scope.limits.azkenak, $scope.segundoak);
+                var promise = Zerbitzaria.eskuratuZerrenda("azkenak", ZureErara.eskuratuMota(), $scope.offsets.azkenak, $scope.limits.azkenak, $scope.segundoak);
                 
                 promise.then(function() {
                     
                     // Eguneratutako elementuen zerrenda gorde.
-                    $scope.zure_erara_zerrenda = MultimediaZerrenda.zure_erara.azkenak;
+                    $scope.zure_erara_zerrenda = Zerbitzaria.zure_erara.azkenak;
                     
                     // Azkenak atalaren offseta eguneratu kargatu berri ditugun elementu kopuruarekin.
                     $scope.offsets.azkenak += $scope.limits.azkenak;
@@ -324,7 +324,7 @@ angular.module('argia-multimedia-app.controllers', [])
             } else {
                 
                 console.log("ez");
-                $scope.zure_erara_zerrenda = MultimediaZerrenda.zure_erara.azkenak;
+                $scope.zure_erara_zerrenda = Zerbitzaria.zure_erara.azkenak;
                 
             }
         }
@@ -333,14 +333,14 @@ angular.module('argia-multimedia-app.controllers', [])
     }
 }])
 
-.controller('ZureEraraXehetasunakCtrl', ['$scope', '$sce', '$stateParams', 'MultimediaZerrenda', function($scope, $sce, $stateParams, MultimediaZerrenda) {
+.controller('ZureEraraXehetasunakCtrl', ['$scope', '$sce', '$stateParams', 'Zerbitzaria', function($scope, $sce, $stateParams, Zerbitzaria) {
     
     $scope.eskuratuDatuak = function(id) {
         
-        var promise = MultimediaZerrenda.getElementua(id);
+        var promise = Zerbitzaria.getElementua(id);
         
         promise.then(function() {
-            $scope.multimedia = MultimediaZerrenda.elementua;
+            $scope.multimedia = Zerbitzaria.elementua;
         });
     }
     
@@ -352,14 +352,22 @@ angular.module('argia-multimedia-app.controllers', [])
     };
 }])
 
-.controller('NabarmenduakXehetasunakCtrl', ['$scope', '$sce', '$stateParams', 'MultimediaZerrenda', function($scope, $sce, $stateParams, MultimediaZerrenda) {
+.controller('NabarmenduakXehetasunakCtrl', ['$scope', '$sce', '$stateParams', 'Zerbitzaria', function($scope, $sce, $stateParams, Zerbitzaria) {
+    
+    $scope.multimedia = {};
+    
+    $scope.partekatuTwitter = function() {
+        console.log(Zerbitzaria.oinarrizko_url + $scope.multimedia.nice_name);
+        window.plugins.socialsharing.shareViaTwitter($scope.multimedia.izenburua, null, Zerbitzaria.oinarrizko_url + $scope.multimedia.nice_name);
+        //window.plugins.socialsharing.shareViaTwitter('Message and link via Twitter', null, 'http://www.x-services.nl');
+    }
     
     $scope.eskuratuDatuak = function(id) {
         
-        var promise = MultimediaZerrenda.getElementua(id);
+        var promise = Zerbitzaria.getElementua(id);
         
         promise.then(function() {
-            $scope.multimedia = MultimediaZerrenda.elementua;
+            $scope.multimedia = Zerbitzaria.elementua;
         });
     }
     
@@ -371,7 +379,7 @@ angular.module('argia-multimedia-app.controllers', [])
     };
 }])
 
-.controller('IgoZureaCtrl', ['$scope', '$http', function($scope, $http) {
+.controller('IgoZureaCtrl', ['$scope', '$http', 'Zerbitzaria', function($scope, $http, Zerbitzaria) {
     
     $scope.formData = {};
     $scope.formData.izenburua = "";
@@ -392,7 +400,7 @@ angular.module('argia-multimedia-app.controllers', [])
         // Horregatik application/x-www-urlencoded goiburua erabili behar izan dut eta datuak serializatu $.param erabiliz (jQuery).
         $http({
             method: 'POST',
-            url: 'http://192.168.2.174/argia-multimedia-zerbitzaria/proposamena',
+            url: Zerbitzaria.oinarrizko_url + 'proposamena',
             headers: {'Content-Type': 'application/x-www-form-urlencoded'},
             data: $.param($scope.formData)
         })

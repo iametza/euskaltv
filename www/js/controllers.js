@@ -354,6 +354,13 @@ angular.module('argia-multimedia-app.controllers', [])
 
 .controller('NabarmenduakXehetasunakCtrl', ['$scope', '$sce', '$stateParams', 'Zerbitzaria', function($scope, $sce, $stateParams, Zerbitzaria) {
     
+    $scope.multimedia = {};
+    
+    $scope.partekatuTwitter = function() {
+        console.log(Zerbitzaria.oinarrizko_url + $scope.multimedia.nice_name);
+        window.plugins.socialsharing.shareViaTwitter($scope.multimedia.izenburua, null, Zerbitzaria.oinarrizko_url + $scope.multimedia.nice_name);
+    }
+    
     $scope.eskuratuDatuak = function(id) {
         
         var promise = Zerbitzaria.getElementua(id);

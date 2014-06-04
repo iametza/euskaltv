@@ -13,7 +13,10 @@
             </div>
             <h3 id="xehetasunak-izenburua" ng-bind-html='multimedia.izenburua'></h3>
             <div id="xehetasunak-azalpena" ng-bind-html='multimedia.azalpena'></div>
-            <div id="xehetasunak-data">Data: {{multimedia.data}}</div>
+            <div id="xehetasunak-data">Data: {{ multimedia.data }}</div>
+            <div id="xehetasunak-partekatu">
+                <button ng-click="partekatuTwitter()">Twitter</button>
+            </div>
         </div>
     </ion-content>
 </ion-view>

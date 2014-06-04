@@ -1,8 +1,8 @@
 <!--
     This template loads for the 'tab.zerrenda-xehetasunak' state (app.js)
     'multimedia' is a $scope variable created in the MultimediaXehetasunakCtrl controller (controllers.js)
-    The MultimediaXehetasunakCtrl pulls data from the MultimediaZerrenda service (service.js)
-    The MultimediaZerrenda service returns an array of multimedia data
+    The MultimediaXehetasunakCtrl pulls data from the Zerbitzaria service (service.js)
+    The Zerbitzaria service returns an array of multimedia data
 -->
 <ion-view id="xehetasunak-goiko-izenburua" title="{{multimedia.izenburua}}">
     <ion-content has-header="true" padding="true">
@@ -13,7 +13,10 @@
             </div>
             <h3 id="xehetasunak-izenburua" ng-bind-html='multimedia.izenburua'></h3>
             <div id="xehetasunak-azalpena" ng-bind-html='multimedia.azalpena'></div>
-            <div id="xehetasunak-data">Data: {{multimedia.data}}</div>
+            <div id="xehetasunak-data">Data: {{ multimedia.data }}</div>
+            <div id="xehetasunak-partekatu">
+                <button ng-click="partekatuTwitter()">Twitter</button>
+            </div>
         </div>
     </ion-content>
 </ion-view>
