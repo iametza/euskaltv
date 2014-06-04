@@ -8,7 +8,7 @@ angular.module('argia-multimedia-app.controllers', [])
     }
     
     $scope.partekatuTwitter = function(twitter_esaldia, urla) {
-        // Noizbait IOSerako bertsioa ateratzen bada, kontutan izan honela hasi behar duela hurrengo lerroak:
+        // IOSerako bertsioa ateratzen bada, kontutan izan honela hasi behar duela hurrengo lerroak:
         // window.plugins.socialsharing.shareVia('com.apple.social.twitter'
         window.plugins.socialsharing.shareVia('twitter',
                 twitter_esaldia,
@@ -29,6 +29,35 @@ angular.module('argia-multimedia-app.controllers', [])
                         },                                      	// callback to invoke with index of button pressed
                         'Oharra',                   			 	// title
                         ['Ados']                            	    // buttonLabels
+                    );
+                }
+        )
+    }
+    
+    $scope.partekatuFacebook = function(facebook_izenburua, urla) {
+        // Androiderako Facebooken aplikazioan ezin da testua ezarri "by design":
+        // https://developers.facebook.com/x/bugs/332619626816423/
+        // Irudia edo esteka partekatu daiteke baina ez biak.
+        // IOSen mezua, irudia eta esteka, hirurak partekatu daitezke.
+        // IOSerako bertsioa ateratzen bada, kontutan izan honela hasi behar duela hurrengo lerroak:
+        // window.plugins.socialsharing.shareVia('com.apple.social.facebook'
+        window.plugins.socialsharing.shareVia('facebook',
+                facebook_izenburua,
+                null,
+                null,
+                urla,
+                function() {
+                    console.log('share ok')
+                },
+                function(msg) {
+                    // Facebook ez dago instalatuta. Erabiltzaileari jakinarazi.
+                    navigator.notification.confirm(
+                        'Facebook instalatu gabe daukazu edo ezin izan da ireki. Nabigatzailean irekiko da.',	// message
+                        function() {
+                            window.open("http://www.facebook.com/sharer.php?s=100&p[title]=" + encodeURIComponent(facebook_izenburua) + "&p[url]=" + encodeURIComponent(urla), '_system');
+                        },                                      	    // callback to invoke with index of button pressed
+                        'Oharra',                   			 	    // title
+                        ['Ados']                            	        // buttonLabels
                     );
                 }
         )
