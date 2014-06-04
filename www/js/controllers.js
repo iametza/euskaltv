@@ -396,12 +396,20 @@ angular.module('argia-multimedia-app.controllers', [])
 
 .controller('ZureEraraXehetasunakCtrl', ['$scope', '$stateParams', 'Zerbitzaria', function($scope, $stateParams, Zerbitzaria) {
     
+    $scope.multimedia = {};
+    
+    $scope.urla = "";
+    
     $scope.eskuratuDatuak = function(id) {
         
         var promise = Zerbitzaria.getElementua(id);
         
         promise.then(function() {
+            
             $scope.multimedia = Zerbitzaria.elementua;
+            
+            $scope.urla = Zerbitzaria.multimedia_url + $scope.multimedia.mota + "/" + $scope.multimedia.nice_name;
+            
         });
     }
     
