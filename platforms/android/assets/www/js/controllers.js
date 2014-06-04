@@ -70,9 +70,10 @@ angular.module('argia-multimedia-app.controllers', [])
     
     // Estekak gailuaren nabigatzailean irekitzeko erabiltzen dut hau, bestela aplikazioaren leiho barruan irekitzen ditu.
     // inappbrowser plugina instalatu behar da funtziona dezan.
-    $scope.irekiNabigatzailean = function(urla) {
+    $scope.irekiNabigatzailean = function($event, urla) {
         
-        event.preventDefault();
+        console.log("dsartu da");
+        $event.preventDefault();
         
         window.open(urla, "_system");
     }
