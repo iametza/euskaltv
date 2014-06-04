@@ -7,6 +7,32 @@ angular.module('argia-multimedia-app.controllers', [])
         $location.url(urla);
     }
     
+    $scope.partekatuTwitter = function(twitter_esaldia, urla) {
+        // Noizbait IOSerako bertsioa ateratzen bada, kontutan izan honela hasi behar duela hurrengo lerroak:
+        // window.plugins.socialsharing.shareVia('com.apple.social.twitter'
+        window.plugins.socialsharing.shareVia('twitter',
+                twitter_esaldia,
+                null,
+                null,
+                urla,
+                function() {
+                    console.log('share ok')
+                },
+                function(msg) {
+                    console.log(msg);
+                    
+                    // Twitter ez dago instalatuta. Erabiltzaileari jakinarazi.
+                    navigator.notification.confirm(
+                        'Twitter instalatu gabe daukazu edo ezin izan da ireki. Nabigatzailean irekiko da.',	// message
+                        function() {
+                            window.open("http://twitter.com/share?url=" + encodeURIComponent(urla) + "&text=" + encodeURIComponent(twitter_esaldia), '_system');
+                        },                                      	// callback to invoke with index of button pressed
+                        'Oharra',                   			 	// title
+                        ['Ados']                            	    // buttonLabels
+                    );
+                }
+        )
+    }
 }])
 
 .controller('FitxakCtrl', ['$scope', '$rootScope', function($scope, $rootScope) {
@@ -356,11 +382,7 @@ angular.module('argia-multimedia-app.controllers', [])
     
     $scope.multimedia = {};
     
-    $scope.partekatuTwitter = function() {
-        console.log(Zerbitzaria.oinarrizko_url + $scope.multimedia.nice_name);
-        window.plugins.socialsharing.shareViaTwitter($scope.multimedia.izenburua, null, Zerbitzaria.oinarrizko_url + $scope.multimedia.nice_name);
-        //window.plugins.socialsharing.shareViaTwitter('Message and link via Twitter', null, 'http://www.x-services.nl');
-    }
+    $scope.urla = "";
     
     $scope.eskuratuDatuak = function(id) {
         
@@ -368,6 +390,8 @@ angular.module('argia-multimedia-app.controllers', [])
         
         promise.then(function() {
             $scope.multimedia = Zerbitzaria.elementua;
+            
+            $scope.urla = Zerbitzaria.multimedia_url + $scope.multimedia.mota + "/" + $scope.multimedia.nice_name;
         });
     }
     
@@ -400,7 +424,7 @@ angular.module('argia-multimedia-app.controllers', [])
         // Horregatik application/x-www-urlencoded goiburua erabili behar izan dut eta datuak serializatu $.param erabiliz (jQuery).
         $http({
             method: 'POST',
-            url: Zerbitzaria.oinarrizko_url + 'proposamena',
+            url: Zerbitzaria.api_url + 'proposamena',
             headers: {'Content-Type': 'application/x-www-form-urlencoded'},
             data: $.param($scope.formData)
         })

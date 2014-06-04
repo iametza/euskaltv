@@ -6,7 +6,8 @@ angular.module('argia-multimedia-app.services', [])
 .factory('Zerbitzaria', ['$http','$q', function($http, $q) {
     var factory = {};
     
-    factory.oinarrizko_url = "http://192.168.2.174/argia-multimedia-zerbitzaria/";
+    factory.api_url ="http://192.168.2.174/argia-multimedia-zerbitzaria/";
+    factory.multimedia_url = "http://argia2012.ametza.com/multimedia/";
     
     factory.ikusienak = [];
     factory.azkenak = [];
@@ -21,7 +22,7 @@ angular.module('argia-multimedia-app.services', [])
         
         var d = $q.defer();
         
-        $http.get(factory.oinarrizko_url + 'elementuak', {
+        $http.get(factory.api_url + 'elementuak', {
             params: {
                 "ordenatu": ordenatu,
                 "mota": mota,
@@ -68,7 +69,7 @@ angular.module('argia-multimedia-app.services', [])
         
         var d = $q.defer();
         
-        $http.get(factory.oinarrizko_url + 'elementuak/motak/').success(function(data, status, headers) {
+        $http.get(factory.api_url + 'elementuak/motak/').success(function(data, status, headers) {
             factory.elementu_motak = data;
             d.resolve();
         }).error(function(data, status, headers) {            
@@ -85,7 +86,7 @@ angular.module('argia-multimedia-app.services', [])
         
         var d = $q.defer();
         
-        $http.get(factory.oinarrizko_url + 'elementua/' + id).success(function(data, status, headers) {
+        $http.get(factory.api_url + 'elementua/' + id).success(function(data, status, headers) {
             factory.elementua = data;
             d.resolve();
         }).error(function(data, status, headers) {
