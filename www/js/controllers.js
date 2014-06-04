@@ -1,6 +1,6 @@
 angular.module('argia-multimedia-app.controllers', [])
 
-.controller('OrokorraCtrl', ['$scope', '$location', function($scope, $location) {
+.controller('OrokorraCtrl', ['$scope', '$location', '$sce', function($scope, $location, $sce) {
     
     $scope.joanURLra = function(urla) {
         console.log(urla);
@@ -33,6 +33,12 @@ angular.module('argia-multimedia-app.controllers', [])
                 }
         )
     }
+    
+    // Hau gabe ez dut lortu embed kodea erabili ahal izatea, ng-bind-html-k ez baitu onartzen html etiketak ez diren guztia.
+    $scope.onartuEmbedKodeaHtmlBezala = function(kodea) {
+        return $sce.trustAsHtml(kodea);
+    }
+    
 }])
 
 .controller('FitxakCtrl', ['$scope', '$rootScope', function($scope, $rootScope) {
@@ -359,7 +365,7 @@ angular.module('argia-multimedia-app.controllers', [])
     }
 }])
 
-.controller('ZureEraraXehetasunakCtrl', ['$scope', '$sce', '$stateParams', 'Zerbitzaria', function($scope, $sce, $stateParams, Zerbitzaria) {
+.controller('ZureEraraXehetasunakCtrl', ['$scope', '$stateParams', 'Zerbitzaria', function($scope, $stateParams, Zerbitzaria) {
     
     $scope.eskuratuDatuak = function(id) {
         
@@ -372,13 +378,9 @@ angular.module('argia-multimedia-app.controllers', [])
     
     $scope.eskuratuDatuak($stateParams.multimediaId);
     
-    // Hau gabe ez dut lortu embed kodea erabili ahal izatea, ng-bind-html-k ez baitu onartzen html etiketak ez diren guztia.
-    $scope.onartu_embed_kodea_HTML_bezala = function(kodea) {
-        return $sce.trustAsHtml(kodea);
-    };
 }])
 
-.controller('NabarmenduakXehetasunakCtrl', ['$scope', '$sce', '$stateParams', 'Zerbitzaria', function($scope, $sce, $stateParams, Zerbitzaria) {
+.controller('NabarmenduakXehetasunakCtrl', ['$scope', '$stateParams', 'Zerbitzaria', function($scope, $stateParams, Zerbitzaria) {
     
     $scope.multimedia = {};
     
@@ -397,10 +399,6 @@ angular.module('argia-multimedia-app.controllers', [])
     
     $scope.eskuratuDatuak($stateParams.multimediaId);
     
-    // Hau gabe ez dut lortu embed kodea erabili ahal izatea, ng-bind-html-k ez baitu onartzen html etiketak ez diren guztia.
-    $scope.onartu_embed_kodea_HTML_bezala = function(kodea) {
-        return $sce.trustAsHtml(kodea);
-    };
 }])
 
 .controller('IgoZureaCtrl', ['$scope', '$http', 'Zerbitzaria', function($scope, $http, Zerbitzaria) {
