@@ -14,9 +14,10 @@
             <h3 id="zure-erara-xehetasunak-izenburua" ng-bind-html='multimedia.izenburua'></h3>
             <div id="zure-erara-xehetasunak-azalpena" ng-bind-html='multimedia.azalpena'></div>
             <div id="zure-erara-xehetasunak-data">Data: {{multimedia.data}}</div>
-            <div id="zure-erara-xehetasunak-partekatu">
-                <button ng-click="partekatuTwitter(multimedia.izenburua, urla)">Twitter</button>
-                <button ng-click="partekatuFacebook(multimedia.izenburua, urla)">Facebook</button>
+            <div id="zure-erara-xehetasunak-botoiak">
+                <button id="zure-erara-xehetasunak-botoiak-arazorik" class="button button-positive icon-left ion-bug" ng-click="joanURLra(/tab/zure-erara-xehetasunak-arazoa)">Arazorik?</button>
+                <button id="zure-erara-xehetasunak-botoiak-twitter" class="button button-positive icon-left ion-social-twitter" ng-click="partekatuTwitter(multimedia.izenburua, urla)">Twitter</button>
+                <button id="zure-erara-xehetasunak-botoiak-facebook" class="button button-positive icon-left ion-social-facebook" ng-click="partekatuFacebook(multimedia.izenburua, urla)">Facebook</button>
             </div>
         </div>
     </ion-content>

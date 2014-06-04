@@ -152,6 +152,19 @@ input[type="text"][knob] {
     height: 100%;
 }
 
+#zure-erara-xehetasunak-botoiak {
+    margin-top: 15px;
+}
+
+#zure-erara-xehetasunak-botoiak-facebook {
+    float: right;
+}
+
+#zure-erara-xehetasunak-botoiak-twitter {
+    float: right;
+}
+
+
 /****** Honi buruz bistaren estiloa ******/
 .honi-buruz-izenburua {
     text-align: center;
