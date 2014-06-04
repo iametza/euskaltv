@@ -52,6 +52,18 @@ input[type="text"][knob] {
     height: 100%;
 }
 
+#xehetasunak-botoiak {
+    margin-top: 15px;
+}
+
+#xehetasunak-botoiak-facebook {
+    float: right;
+}
+
+#xehetasunak-botoiak-twitter {
+    float: right;
+}
+
 /****** Zure erara bistaren estiloa ******/
 #zure-erara-denbora-goiko-testua {
     margin-top: 30px;
