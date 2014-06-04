@@ -19,6 +19,10 @@
                         {
                             "xml": "<feature name=\"SocialSharing\"><param name=\"android-package\" value=\"nl.xservices.plugins.SocialSharing\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Notification\"><param name=\"android-package\" value=\"org.apache.cordova.dialogs.Notification\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -49,6 +53,9 @@
             "PACKAGE_NAME": "com.iametza.argia_multimedia"
         },
         "nl.x-services.plugins.socialsharing": {
+            "PACKAGE_NAME": "com.iametza.argia_multimedia"
+        },
+        "org.apache.cordova.dialogs": {
             "PACKAGE_NAME": "com.iametza.argia_multimedia"
         }
     },
