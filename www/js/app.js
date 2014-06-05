@@ -114,6 +114,16 @@ angular.module('argia-multimedia-app', [
             }
         })
         
+        .state('tab.zure-erara-arazoa', {
+            url: '/zure-erara-arazoa',
+            views: {
+                'tab-zure-erara': {
+                    templateUrl: 'templates/tab-zure-erara-arazoa.html',
+                    controller: 'ZureEraraArazoaCtrl'
+                }
+            }
+        })
+        
         .state('tab.igo-zurea', {
             url: '/igo-zurea',
             views: {
