@@ -41,7 +41,7 @@ angular.module('argia-multimedia-app', [
         
         .state('honi-buruz', {
             url: '/honi-buruz',
-            templateUrl: 'templates/tab-honi-buruz.html',
+            templateUrl: 'templates/honi-buruz.html',
             controller: 'HoniBuruzCtrl'
         })
         
