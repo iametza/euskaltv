@@ -149,11 +149,14 @@ angular.module('argia-multimedia-app.services', [])
     // eskuratuIdMultimedia metodoa erabiliz eskuratzen da bere balioa.
     var id_multimedia = 0;
     
+    // Aldagai pribatua.
+    // Erabilitako azken fitxa zein den adierazten du.
+    // ezarriFitxaAktiboa metodoa erabiliz aldatzen da.
+    // eskuratuFitxaAktiboa metodoa erabiliz eskuratzen da bere balioa.
+    var fitxa_aktiboa = "azkenak";
+    
     // Erabiltzaileak bideoaren gehienezko iraupena aldatu duen adierazten du.
     factory.minutuak_aldatu_dira = false;
-    
-    // Erabilitako azken fitxa zein den adierazten du.
-    factory.fitxa_aktiboa = "azkenak";
     
     factory.ezarriMinutuak = function(m) {
         minutuak = m;
@@ -183,12 +186,12 @@ angular.module('argia-multimedia-app.services', [])
     
     factory.eskuratuFitxaAktiboa = function() {
         
-        return factory.fitxa_aktiboa;
+        return fitxa_aktiboa;
     }
     
     factory.ezarriFitxaAktiboa = function(fitxa) {
         
-        factory.fitxa_aktiboa = fitxa;
+        fitxa_aktiboa = fitxa;
         
     }
     
