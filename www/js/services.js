@@ -112,57 +112,12 @@ angular.module('argia-multimedia-app.services', [])
         // PHPk ez zidan onartzen datuak modu horretan bidaltzea:
         // Request header field Content-Type is not allowed by Access-Control-Allow-Headers.
         // Horregatik application/x-www-urlencoded goiburua erabili behar izan dut eta datuak serializatu $.param erabiliz (jQuery).
-        $http({
+        return $http({
             method: 'POST',
             url: factory.api_url + 'arazoa',
             headers: {'Content-Type': 'application/x-www-form-urlencoded'},
             data: $.param(formData)
         })
-        
-        .success(function(data, status, headers, config) {
-            
-            console.log(data);
-            console.log(status);
-            console.log(headers);
-            console.log(config);
-            
-            if (data.arrakasta) {
-                
-                
-                return {
-                    
-                    arrakasta: true
-                    
-                }
-                
-            } else {
-                
-                return {
-                    
-                    arrakasta: false,
-                    mezua: data.mezua
-                    
-                }
-                
-            }
-            
-        })
-        
-        .error(function(data, status, headers, config) {
-            
-            console.log(data);
-            console.log(status);
-            console.log(headers);
-            console.log(config);
-            
-            return {
-                
-                arrakasta: false,
-                mezua: data.mezua
-                
-            }
-            
-        });
     }
     
     return factory;

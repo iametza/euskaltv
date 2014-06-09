@@ -446,28 +446,30 @@ angular.module('argia-multimedia-app.controllers', [])
     
     $scope.bidali = function() {
         
-        var erantzuna = Zerbitzaria.bidaliArazoa($scope.formData);
-        
-        if (erantzuna.arrakasta) {
+        Zerbitzaria.bidaliArazoa($scope.formData).then(function(erantzuna) {
             
-            // Dena ondo joan dela adierazten duen mezua bistaratu (ngShow).
-            $scope.arrakastaBidaltzean = true;
+            if (erantzuna.data.arrakasta) {
+                
+                // Dena ondo joan dela adierazten duen mezua bistaratu (ngShow).
+                $scope.arrakastaBidaltzean = true;
+                
+                // Aurretik egon zitekeen errore mezua ezkutatu (ngShow).
+                $scope.erroreaBidaltzean = false;
+                
+            } else {
+                
+                // Arazoak egon direla adierazten duen mezua bistaratu (ngShow).
+                $scope.erroreaBidaltzean = true;
+                
+                // Aurretik egon zitekeen arrakasta mezua ezkutatu (ngShow).
+                $scope.arrakastaBidaltzean = false;
+                
+                // Zerbitzaritik jasotako errore mezua bistaratu.
+                $scope.erroreaBidaltzeanTestua = erantzuna.data.mezua;
+                
+            }
             
-            // Aurretik egon zitekeen errore mezua ezkutatu (ngShow).
-            $scope.erroreaBidaltzean = false;
-            
-        } else {
-            
-            // Arazoak egon direla adierazten duen mezua bistaratu (ngShow).
-            $scope.erroreaBidaltzean = true;
-            
-            // Aurretik egon zitekeen arrakasta mezua ezkutatu (ngShow).
-            $scope.arrakastaBidaltzean = false;
-            
-            // Zerbitzaritik jasotako errore mezua bistaratu.
-            $scope.erroreaBidaltzeanTestua = erantzuna.mezua;
-            
-        }
+        });
         
     }
     
