@@ -113,17 +113,20 @@ angular.module('argia-multimedia-app.services', [])
     
     var factory = {};
     
+    // Aldagai pribatua.
     // Erabilitako azken fitxa zein den adierazten du.
-    factory.fitxa_aktiboa = "azkenak";
+    // ezarriFitxaAktiboa metodoa erabiliz aldatzen da.
+    // eskuratuFitxaAktiboa metodoa erabiliz eskuratzen da bere balioa.
+    var fitxa_aktiboa = "azkenak";
     
     factory.eskuratuFitxaAktiboa = function() {
         
-        return factory.fitxa_aktiboa;
+        return fitxa_aktiboa;
     }
     
     factory.ezarriFitxaAktiboa = function(fitxa) {
         
-        factory.fitxa_aktiboa = fitxa;
+        fitxa_aktiboa = fitxa;
         
     }
     
