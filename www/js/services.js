@@ -134,7 +134,10 @@ angular.module('argia-multimedia-app.services', [])
     
     var factory = {};
     
-    factory.minutuak = 15;
+    // Aldagai pribatua.
+    // ezarriMinutuak metodoa erabiliz aldatzen da.
+    // eskuratuMinutuak metodoa erabiliz eskuratzen da bere balioa.
+    var minutuak = 15;
     
     factory.id_mota = 0;
     
@@ -144,12 +147,12 @@ angular.module('argia-multimedia-app.services', [])
     // Erabilitako azken fitxa zein den adierazten du.
     factory.fitxa_aktiboa = "azkenak";
     
-    factory.ezarriMinutuak = function(minutuak) {
-        factory.minutuak = minutuak;
+    factory.ezarriMinutuak = function(m) {
+        minutuak = m;
     }
     
     factory.eskuratuMinutuak = function() {
-        return factory.minutuak;
+        return minutuak;
     }
     
     factory.ezarriMota = function(id) {
