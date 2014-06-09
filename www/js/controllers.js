@@ -446,48 +446,17 @@ angular.module('argia-multimedia-app.controllers', [])
     
     $scope.bidali = function() {
         
-        // AngularJSk application/json erabiltzen du modu lehenetsian Content-type goiburu bezala.
-        // PHPk ez zidan onartzen datuak modu horretan bidaltzea:
-        // Request header field Content-Type is not allowed by Access-Control-Allow-Headers.
-        // Horregatik application/x-www-urlencoded goiburua erabili behar izan dut eta datuak serializatu $.param erabiliz (jQuery).
-        $http({
-            method: 'POST',
-            url: Zerbitzaria.api_url + 'arazoa',
-            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-            data: $.param($scope.formData)
-        })
+        var erantzuna = Zerbitzaria.bidaliArazoa($scope.formData);
         
-        .success(function(data, status, headers, config) {
+        if (erantzuna.arrakasta) {
             
-            if (data.arrakasta) {
-                
-                // Dena ondo joan dela adierazten duen mezua bistaratu (ngShow).
-                $scope.arrakastaBidaltzean = true;
-                
-                // Aurretik egon zitekeen errore mezua ezkutatu (ngShow).
-                $scope.erroreaBidaltzean = false;
-                
-            } else {
-                
-                // Arazoak egon direla adierazten duen mezua bistaratu (ngShow).
-                $scope.erroreaBidaltzean = true;
-                
-                // Aurretik egon zitekeen arrakasta mezua ezkutatu (ngShow).
-                $scope.arrakastaBidaltzean = false;
-                
-                // Zerbitzaritik jasotako errore mezua bistaratu.
-                $scope.erroreaBidaltzeanTestua = data.mezua;
-                
-            }
+            // Dena ondo joan dela adierazten duen mezua bistaratu (ngShow).
+            $scope.arrakastaBidaltzean = true;
             
-            console.log(data);
-            console.log(status);
-            console.log(headers);
-            console.log(config);
+            // Aurretik egon zitekeen errore mezua ezkutatu (ngShow).
+            $scope.erroreaBidaltzean = false;
             
-        })
-        
-        .error(function(data, status, headers, config) {            
+        } else {
             
             // Arazoak egon direla adierazten duen mezua bistaratu (ngShow).
             $scope.erroreaBidaltzean = true;
@@ -496,14 +465,9 @@ angular.module('argia-multimedia-app.controllers', [])
             $scope.arrakastaBidaltzean = false;
             
             // Zerbitzaritik jasotako errore mezua bistaratu.
-            $scope.erroreaBidaltzeanTestua = data.mezua;
+            $scope.erroreaBidaltzeanTestua = erantzuna.mezua;
             
-            console.log(data);
-            console.log(status);
-            console.log(headers);
-            console.log(config);
-            
-        });
+        }
         
     }
     
