@@ -144,6 +144,11 @@ angular.module('argia-multimedia-app.services', [])
     // eskuratuMota metodoa erabiliz eskuratzen da bere balioa.
     var id_mota = 0;
     
+    // Aldagai pribatua.
+    // ezarriIdMultimedia metodoa erabiliz aldatzen da.
+    // eskuratuIdMultimedia metodoa erabiliz eskuratzen da bere balioa.
+    var id_multimedia = 0;
+    
     // Erabiltzaileak bideoaren gehienezko iraupena aldatu duen adierazten du.
     factory.minutuak_aldatu_dira = false;
     
@@ -168,12 +173,12 @@ angular.module('argia-multimedia-app.services', [])
     }
     
     factory.ezarriIdMultimedia = function(id) {
-        factory.id_multimedia = id;
-        console.log("Id multimedia: " + factory.id_multimedia);
+        id_multimedia = id;
+        console.log("Id multimedia: " + id_multimedia);
     }
     
     factory.eskuratuIdMultimedia = function() {
-        return factory.id_multimedia;
+        return id_multimedia;
     }
     
     factory.eskuratuFitxaAktiboa = function() {
