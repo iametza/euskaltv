@@ -161,6 +161,15 @@ angular.module('argia-multimedia-app.services', [])
         return factory.id_mota;
     }
     
+    factory.ezarriIdMultimedia = function(id) {
+        factory.id_multimedia = id;
+        console.log("Id multimedia: " + factory.id_multimedia);
+    }
+    
+    factory.eskuratuIdMultimedia = function() {
+        return factory.id_multimedia;
+    }
+    
     factory.eskuratuFitxaAktiboa = function() {
         
         return factory.fitxa_aktiboa;

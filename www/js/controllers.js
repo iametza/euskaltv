@@ -403,7 +403,7 @@ angular.module('argia-multimedia-app.controllers', [])
     }
 }])
 
-.controller('ZureEraraXehetasunakCtrl', ['$scope', '$stateParams', 'Zerbitzaria', function($scope, $stateParams, Zerbitzaria) {
+.controller('ZureEraraXehetasunakCtrl', ['$scope', '$stateParams', 'Zerbitzaria', 'ZureErara', function($scope, $stateParams, Zerbitzaria, ZureErara) {
     
     $scope.multimedia = {};
     
@@ -422,14 +422,21 @@ angular.module('argia-multimedia-app.controllers', [])
         });
     }
     
+    // ZureErara factory-an gorde hautatutako multimedia elementuaren id-a.
+    ZureErara.ezarriIdMultimedia($stateParams.multimediaId);
+    
+    // Hautatutako multimedia elementuaren datuak eskuratu.
     $scope.eskuratuDatuak($stateParams.multimediaId);
     
 }])
 
-.controller('ZureEraraArazoaCtrl', ['$scope', '$http', 'Zerbitzaria', function($scope, $http, Zerbitzaria) {
+.controller('ZureEraraArazoaCtrl', ['$scope', '$http', 'Zerbitzaria', 'ZureErara', function($scope, $http, Zerbitzaria, ZureErara) {
     
     $scope.formData = {};
     $scope.formData.azalpena = "";
+    
+    // Formularioaren datuei multimedia elementuaren id-a gehitu.
+    $scope.formData.id_multimedia = ZureErara.eskuratuIdMultimedia();
     
     $scope.arrakastaBidaltzean = false;
     $scope.arrakastaBidaltzeanTestua = "Zure proposamena behar bezala bidali da!";
