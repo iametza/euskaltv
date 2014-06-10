@@ -74,6 +74,16 @@ angular.module('argia-multimedia-app', [
             }
         })
         
+        .state('tab.nabarmenduak-arazoa', {
+            url: '/nabarmenduak-arazoa',
+            views: {
+                'tab-nabarmenduak': {
+                    templateUrl: 'templates/tab-nabarmenduak-arazoa.html',
+                    controller: 'NabarmenduakArazoaCtrl'
+                }
+            }
+        })
+        
         .state('tab.zure-erara-denbora', {
             url: '/zure-erara-denbora',
             views: {

@@ -496,6 +496,12 @@ angular.module('argia-multimedia-app.controllers', [])
     
 }])
 
+.controller('NabarmenduakArazoaCtrl', ['$scope', function($scope) {
+    
+    
+    
+}])
+
 .controller('IgoZureaCtrl', ['$scope', '$http', 'Zerbitzaria', function($scope, $http, Zerbitzaria) {
     
     $scope.formData = {};
