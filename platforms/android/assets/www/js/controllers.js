@@ -622,9 +622,30 @@ angular.module('argia-multimedia-app.controllers', [])
     
 }])
 
-.controller('HoniBuruzCtrl', function($scope, $ionicNavBarDelegate) {
+.controller('HoniBuruzCtrl', ['$scope', '$ionicNavBarDelegate', function($scope, $ionicNavBarDelegate) {
     $scope.atzera = function() {
         $ionicNavBarDelegate.back();
     }
-});
+}])
 
+.controller('KonfiguratuAlertakCtrl', ['$scope', '$ionicNavBarDelegate', function($scope, $ionicNavBarDelegate) {
+    
+    $scope.atzera = function() {
+        $ionicNavBarDelegate.back();
+    }
+    
+    $scope.etiketak = [{
+            izena: "bat",
+            hautatuta: true
+        }, {
+            izena: "bi",
+            hautatuta: false
+        },  {
+            izena: "hiru",
+            hautatuta: false
+        },  {
+            izena: "lau",
+            hautatuta: true
+        }
+    ];
+}]);

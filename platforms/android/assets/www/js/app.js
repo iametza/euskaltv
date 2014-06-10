@@ -12,7 +12,8 @@ angular.module('argia-multimedia-app', [
     'argia-multimedia-app.directives',
     'ngSanitize',
     'ngAnimate',
-    'ngTouch'
+    'ngTouch',
+    'multi-select'
 ])
 
 .run(function($ionicPlatform, $ionicSideMenuDelegate) {
@@ -43,6 +44,12 @@ angular.module('argia-multimedia-app', [
             url: '/honi-buruz',
             templateUrl: 'templates/honi-buruz.html',
             controller: 'HoniBuruzCtrl'
+        })
+        
+        .state('konfiguratu-alertak', {
+            url: '/konfiguratu-alertak',
+            templateUrl: 'templates/konfiguratu-alertak.html',
+            controller: 'KonfiguratuAlertakCtrl'
         })
         
         // setup an abstract state for the tabs directive
