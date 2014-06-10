@@ -12,7 +12,8 @@ angular.module('argia-multimedia-app', [
     'argia-multimedia-app.directives',
     'ngSanitize',
     'ngAnimate',
-    'ngTouch'
+    'ngTouch',
+    'multi-select'
 ])
 
 .run(function($ionicPlatform, $ionicSideMenuDelegate) {

@@ -634,4 +634,18 @@ angular.module('argia-multimedia-app.controllers', [])
         $ionicNavBarDelegate.back();
     }
     
+    $scope.etiketak = [{
+            izena: "bat",
+            hautatuta: true
+        }, {
+            izena: "bi",
+            hautatuta: false
+        },  {
+            izena: "hiru",
+            hautatuta: false
+        },  {
+            izena: "lau",
+            hautatuta: true
+        }
+    ];
 }]);
