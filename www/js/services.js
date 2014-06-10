@@ -133,6 +133,11 @@ angular.module('argia-multimedia-app.services', [])
     // eskuratuFitxaAktiboa metodoa erabiliz eskuratzen da bere balioa.
     var fitxa_aktiboa = "azkenak";
     
+    // Aldagai pribatua.
+    // ezarriIdElementua metodoa erabiliz aldatzen da.
+    // eskuratuIdElementua metodoa erabiliz eskuratzen da bere balioa.
+    var id_elementua = 0;
+    
     factory.eskuratuFitxaAktiboa = function() {
         
         return fitxa_aktiboa;
@@ -142,6 +147,15 @@ angular.module('argia-multimedia-app.services', [])
         
         fitxa_aktiboa = fitxa;
         
+    }
+    
+    factory.ezarriIdElementua = function(id) {
+        id_elementua = id;
+        console.log("Id elementua: " + id_elementua);
+    }
+    
+    factory.eskuratuIdElementua = function() {
+        return id_elementua;
     }
     
     return factory;

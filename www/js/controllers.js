@@ -475,7 +475,7 @@ angular.module('argia-multimedia-app.controllers', [])
     
 }])
 
-.controller('NabarmenduakXehetasunakCtrl', ['$scope', '$stateParams', 'Zerbitzaria', function($scope, $stateParams, Zerbitzaria) {
+.controller('NabarmenduakXehetasunakCtrl', ['$scope', '$stateParams', 'Zerbitzaria', 'Nabarmenduak', function($scope, $stateParams, Zerbitzaria, Nabarmenduak) {
     
     $scope.multimedia = {};
     
@@ -492,13 +492,55 @@ angular.module('argia-multimedia-app.controllers', [])
         });
     }
     
+    // Nabarmenduak factory-an gorde hautatutako multimedia elementuaren id-a.
+    Nabarmenduak.ezarriIdElementua($stateParams.multimediaId);
+    
     $scope.eskuratuDatuak($stateParams.multimediaId);
     
 }])
 
-.controller('NabarmenduakArazoaCtrl', ['$scope', function($scope) {
+.controller('NabarmenduakArazoaCtrl', ['$scope', '$http', 'Zerbitzaria', 'Nabarmenduak', function($scope, $http, Zerbitzaria, Nabarmenduak) {
     
+    $scope.formData = {};
+    $scope.formData.azalpena = "";
     
+    // Formularioaren datuei multimedia elementuaren id-a gehitu.
+    $scope.formData.id_multimedia = Nabarmenduak.eskuratuIdElementua();
+    
+    $scope.arrakastaBidaltzean = false;
+    $scope.arrakastaBidaltzeanTestua = "Zure proposamena behar bezala bidali da!";
+    
+    $scope.erroreaBidaltzean = false;
+    $scope.erroreaBidaltzeanTestua = "Errore bat gertatu da zure proposamena bidaltzean.";
+    
+    $scope.bidali = function() {
+        
+        Zerbitzaria.bidaliArazoa($scope.formData).then(function(erantzuna) {
+            
+            if (erantzuna.data.arrakasta) {
+                
+                // Dena ondo joan dela adierazten duen mezua bistaratu (ngShow).
+                $scope.arrakastaBidaltzean = true;
+                
+                // Aurretik egon zitekeen errore mezua ezkutatu (ngShow).
+                $scope.erroreaBidaltzean = false;
+                
+            } else {
+                
+                // Arazoak egon direla adierazten duen mezua bistaratu (ngShow).
+                $scope.erroreaBidaltzean = true;
+                
+                // Aurretik egon zitekeen arrakasta mezua ezkutatu (ngShow).
+                $scope.arrakastaBidaltzean = false;
+                
+                // Zerbitzaritik jasotako errore mezua bistaratu.
+                $scope.erroreaBidaltzeanTestua = erantzuna.data.mezua;
+                
+            }
+            
+        });
+        
+    }
     
 }])
 
