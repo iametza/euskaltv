@@ -41,7 +41,7 @@ angular.module('argia-multimedia-app', [
         
         .state('honi-buruz', {
             url: '/honi-buruz',
-            templateUrl: 'templates/tab-honi-buruz.html',
+            templateUrl: 'templates/honi-buruz.html',
             controller: 'HoniBuruzCtrl'
         })
         
@@ -70,6 +70,16 @@ angular.module('argia-multimedia-app', [
                 'tab-nabarmenduak': {
                     templateUrl: 'templates/tab-nabarmenduak-xehetasunak.html',
                     controller: 'NabarmenduakXehetasunakCtrl'
+                }
+            }
+        })
+        
+        .state('tab.nabarmenduak-arazoa', {
+            url: '/nabarmenduak-arazoa',
+            views: {
+                'tab-nabarmenduak': {
+                    templateUrl: 'templates/tab-nabarmenduak-arazoa.html',
+                    controller: 'NabarmenduakArazoaCtrl'
                 }
             }
         })
@@ -110,6 +120,16 @@ angular.module('argia-multimedia-app', [
                 'tab-zure-erara': {
                     templateUrl: 'templates/tab-zure-erara-xehetasunak.html',
                     controller: 'ZureEraraXehetasunakCtrl'
+                }
+            }
+        })
+        
+        .state('tab.zure-erara-arazoa', {
+            url: '/zure-erara-arazoa',
+            views: {
+                'tab-zure-erara': {
+                    templateUrl: 'templates/tab-zure-erara-arazoa.html',
+                    controller: 'ZureEraraArazoaCtrl'
                 }
             }
         })

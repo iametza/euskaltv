@@ -22,7 +22,7 @@ package com.iametza.argia_multimedia;
 import android.os.Bundle;
 import org.apache.cordova.*;
 
-public class Argiamultimedia extends CordovaActivity 
+public class EuskalTV extends CordovaActivity 
 {
     @Override
     public void onCreate(Bundle savedInstanceState)

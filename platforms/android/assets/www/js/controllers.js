@@ -403,7 +403,7 @@ angular.module('argia-multimedia-app.controllers', [])
     }
 }])
 
-.controller('ZureEraraXehetasunakCtrl', ['$scope', '$stateParams', 'Zerbitzaria', function($scope, $stateParams, Zerbitzaria) {
+.controller('ZureEraraXehetasunakCtrl', ['$scope', '$stateParams', 'Zerbitzaria', 'ZureErara', function($scope, $stateParams, Zerbitzaria, ZureErara) {
     
     $scope.multimedia = {};
     
@@ -421,29 +421,126 @@ angular.module('argia-multimedia-app.controllers', [])
             
         });
     }
+    
+    // ZureErara factory-an gorde hautatutako multimedia elementuaren id-a.
+    ZureErara.ezarriIdMultimedia($stateParams.multimediaId);
+    
+    // Hautatutako multimedia elementuaren datuak eskuratu.
+    $scope.eskuratuDatuak($stateParams.multimediaId);
+    
+}])
+
+.controller('ZureEraraArazoaCtrl', ['$scope', '$http', 'Zerbitzaria', 'ZureErara', function($scope, $http, Zerbitzaria, ZureErara) {
+    
+    $scope.formData = {};
+    $scope.formData.azalpena = "";
+    
+    // Formularioaren datuei multimedia elementuaren id-a gehitu.
+    $scope.formData.id_multimedia = ZureErara.eskuratuIdMultimedia();
+    
+    $scope.arrakastaBidaltzean = false;
+    $scope.arrakastaBidaltzeanTestua = "Zure proposamena behar bezala bidali da!";
+    
+    $scope.erroreaBidaltzean = false;
+    $scope.erroreaBidaltzeanTestua = "Errore bat gertatu da zure proposamena bidaltzean.";
+    
+    $scope.bidali = function() {
+        
+        Zerbitzaria.bidaliArazoa($scope.formData).then(function(erantzuna) {
+            
+            if (erantzuna.data.arrakasta) {
+                
+                // Dena ondo joan dela adierazten duen mezua bistaratu (ngShow).
+                $scope.arrakastaBidaltzean = true;
+                
+                // Aurretik egon zitekeen errore mezua ezkutatu (ngShow).
+                $scope.erroreaBidaltzean = false;
+                
+            } else {
+                
+                // Arazoak egon direla adierazten duen mezua bistaratu (ngShow).
+                $scope.erroreaBidaltzean = true;
+                
+                // Aurretik egon zitekeen arrakasta mezua ezkutatu (ngShow).
+                $scope.arrakastaBidaltzean = false;
+                
+                // Zerbitzaritik jasotako errore mezua bistaratu.
+                $scope.erroreaBidaltzeanTestua = erantzuna.data.mezua;
+                
+            }
+            
+        });
+        
+    }
+    
+}])
+
+.controller('NabarmenduakXehetasunakCtrl', ['$scope', '$stateParams', 'Zerbitzaria', 'Nabarmenduak', function($scope, $stateParams, Zerbitzaria, Nabarmenduak) {
+    
+    $scope.multimedia = {};
+    
+    $scope.urla = "";
+    
+    $scope.eskuratuDatuak = function(id) {
+        
+        var promise = Zerbitzaria.getElementua(id);
+        
+        promise.then(function() {
+            $scope.multimedia = Zerbitzaria.elementua;
+            
+            $scope.urla = Zerbitzaria.multimedia_url + $scope.multimedia.mota + "/" + $scope.multimedia.nice_name;
+        });
+    }
+    
+    // Nabarmenduak factory-an gorde hautatutako multimedia elementuaren id-a.
+    Nabarmenduak.ezarriIdElementua($stateParams.multimediaId);
     
     $scope.eskuratuDatuak($stateParams.multimediaId);
     
 }])
 
-.controller('NabarmenduakXehetasunakCtrl', ['$scope', '$stateParams', 'Zerbitzaria', function($scope, $stateParams, Zerbitzaria) {
+.controller('NabarmenduakArazoaCtrl', ['$scope', '$http', 'Zerbitzaria', 'Nabarmenduak', function($scope, $http, Zerbitzaria, Nabarmenduak) {
     
-    $scope.multimedia = {};
+    $scope.formData = {};
+    $scope.formData.azalpena = "";
     
-    $scope.urla = "";
+    // Formularioaren datuei multimedia elementuaren id-a gehitu.
+    $scope.formData.id_multimedia = Nabarmenduak.eskuratuIdElementua();
     
-    $scope.eskuratuDatuak = function(id) {
+    $scope.arrakastaBidaltzean = false;
+    $scope.arrakastaBidaltzeanTestua = "Zure proposamena behar bezala bidali da!";
+    
+    $scope.erroreaBidaltzean = false;
+    $scope.erroreaBidaltzeanTestua = "Errore bat gertatu da zure proposamena bidaltzean.";
+    
+    $scope.bidali = function() {
         
-        var promise = Zerbitzaria.getElementua(id);
-        
-        promise.then(function() {
-            $scope.multimedia = Zerbitzaria.elementua;
+        Zerbitzaria.bidaliArazoa($scope.formData).then(function(erantzuna) {
             
-            $scope.urla = Zerbitzaria.multimedia_url + $scope.multimedia.mota + "/" + $scope.multimedia.nice_name;
+            if (erantzuna.data.arrakasta) {
+                
+                // Dena ondo joan dela adierazten duen mezua bistaratu (ngShow).
+                $scope.arrakastaBidaltzean = true;
+                
+                // Aurretik egon zitekeen errore mezua ezkutatu (ngShow).
+                $scope.erroreaBidaltzean = false;
+                
+            } else {
+                
+                // Arazoak egon direla adierazten duen mezua bistaratu (ngShow).
+                $scope.erroreaBidaltzean = true;
+                
+                // Aurretik egon zitekeen arrakasta mezua ezkutatu (ngShow).
+                $scope.arrakastaBidaltzean = false;
+                
+                // Zerbitzaritik jasotako errore mezua bistaratu.
+                $scope.erroreaBidaltzeanTestua = erantzuna.data.mezua;
+                
+            }
+            
         });
+        
     }
-    
-    $scope.eskuratuDatuak($stateParams.multimediaId);
     
 }])
 
@@ -458,7 +555,7 @@ angular.module('argia-multimedia-app.controllers', [])
     $scope.arrakastaBidaltzeanTestua = "Zure proposamena behar bezala bidali da!";
     
     $scope.erroreaBidaltzean = false;
-    $scope.erroreaBidaltzeanTestua = "";
+    $scope.erroreaBidaltzeanTestua = "Errore bat gertatu da zure proposamena bidaltzean.";
     
     $scope.bidali = function() {
         

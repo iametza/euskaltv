@@ -1,0 +1,18 @@
+<ion-view title="Arazoa">
+    <ion-content class="has-header">
+        <form name="formularioa" ng-submit="bidali()" novalidate>
+            <div class="list">
+                <div id="nabarmenduak-arazoa-arrakasta-mezua" ng-show="arrakastaBidaltzean">{{arrakastaBidaltzeanTestua}}</div>
+                <div id="nabarmenduak-arazoa-errore-mezua" ng-show="erroreaBidaltzean">{{erroreaBidaltzeanTestua}}</div>
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">Arazoaren azalpena</span>
+                    <input type="text" placeholder="Idatzi azalpena hemen" ng-model="formData.azalpena" required>
+                </label>
+            </div>
+            
+            <div class="padding">
+                <button type="submit" class="button button-block button-positive" ng-disabled="formularioa.$invalid">Bidali</button>
+            </div>
+        </form>
+    </ion-content>
+</ion-view>

@@ -106,6 +106,20 @@ angular.module('argia-multimedia-app.services', [])
         
     }
     
+    factory.bidaliArazoa = function(formData) {
+        
+        // AngularJSk application/json erabiltzen du modu lehenetsian Content-type goiburu bezala.
+        // PHPk ez zidan onartzen datuak modu horretan bidaltzea:
+        // Request header field Content-Type is not allowed by Access-Control-Allow-Headers.
+        // Horregatik application/x-www-urlencoded goiburua erabili behar izan dut eta datuak serializatu $.param erabiliz (jQuery).
+        return $http({
+            method: 'POST',
+            url: factory.api_url + 'arazoa',
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+            data: $.param(formData)
+        })
+    }
+    
     return factory;
 }])
 
@@ -113,18 +127,35 @@ angular.module('argia-multimedia-app.services', [])
     
     var factory = {};
     
+    // Aldagai pribatua.
     // Erabilitako azken fitxa zein den adierazten du.
-    factory.fitxa_aktiboa = "azkenak";
+    // ezarriFitxaAktiboa metodoa erabiliz aldatzen da.
+    // eskuratuFitxaAktiboa metodoa erabiliz eskuratzen da bere balioa.
+    var fitxa_aktiboa = "azkenak";
+    
+    // Aldagai pribatua.
+    // ezarriIdElementua metodoa erabiliz aldatzen da.
+    // eskuratuIdElementua metodoa erabiliz eskuratzen da bere balioa.
+    var id_elementua = 0;
     
     factory.eskuratuFitxaAktiboa = function() {
         
-        return factory.fitxa_aktiboa;
+        return fitxa_aktiboa;
     }
     
     factory.ezarriFitxaAktiboa = function(fitxa) {
         
-        factory.fitxa_aktiboa = fitxa;
+        fitxa_aktiboa = fitxa;
         
+    }
+    
+    factory.ezarriIdElementua = function(id) {
+        id_elementua = id;
+        console.log("Id elementua: " + id_elementua);
+    }
+    
+    factory.eskuratuIdElementua = function() {
+        return id_elementua;
     }
     
     return factory;
@@ -134,41 +165,64 @@ angular.module('argia-multimedia-app.services', [])
     
     var factory = {};
     
-    factory.minutuak = 15;
+    // Aldagai pribatua.
+    // ezarriMinutuak metodoa erabiliz aldatzen da.
+    // eskuratuMinutuak metodoa erabiliz eskuratzen da bere balioa.
+    var minutuak = 15;
     
-    factory.id_mota = 0;
+    // Aldagai pribatua.
+    // ezarriMota metodoa erabiliz aldatzen da.
+    // eskuratuMota metodoa erabiliz eskuratzen da bere balioa.
+    var id_mota = 0;
+    
+    // Aldagai pribatua.
+    // ezarriIdMultimedia metodoa erabiliz aldatzen da.
+    // eskuratuIdMultimedia metodoa erabiliz eskuratzen da bere balioa.
+    var id_multimedia = 0;
+    
+    // Aldagai pribatua.
+    // Erabilitako azken fitxa zein den adierazten du.
+    // ezarriFitxaAktiboa metodoa erabiliz aldatzen da.
+    // eskuratuFitxaAktiboa metodoa erabiliz eskuratzen da bere balioa.
+    var fitxa_aktiboa = "azkenak";
     
     // Erabiltzaileak bideoaren gehienezko iraupena aldatu duen adierazten du.
     factory.minutuak_aldatu_dira = false;
     
-    // Erabilitako azken fitxa zein den adierazten du.
-    factory.fitxa_aktiboa = "azkenak";
-    
-    factory.ezarriMinutuak = function(minutuak) {
-        factory.minutuak = minutuak;
+    factory.ezarriMinutuak = function(m) {
+        minutuak = m;
     }
     
     factory.eskuratuMinutuak = function() {
-        return factory.minutuak;
+        return minutuak;
     }
     
     factory.ezarriMota = function(id) {
-        factory.id_mota = id;
-        console.log("Mota: " + factory.id_mota);
+        id_mota = id;
+        console.log("Mota: " + id_mota);
     }
     
-    factory.eskuratuMota = function(id) {
-        return factory.id_mota;
+    factory.eskuratuMota = function() {
+        return id_mota;
+    }
+    
+    factory.ezarriIdMultimedia = function(id) {
+        id_multimedia = id;
+        console.log("Id multimedia: " + id_multimedia);
+    }
+    
+    factory.eskuratuIdMultimedia = function() {
+        return id_multimedia;
     }
     
     factory.eskuratuFitxaAktiboa = function() {
         
-        return factory.fitxa_aktiboa;
+        return fitxa_aktiboa;
     }
     
     factory.ezarriFitxaAktiboa = function(fitxa) {
         
-        factory.fitxa_aktiboa = fitxa;
+        fitxa_aktiboa = fitxa;
         
     }
     
