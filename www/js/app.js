@@ -45,6 +45,12 @@ angular.module('argia-multimedia-app', [
             controller: 'HoniBuruzCtrl'
         })
         
+        .state('konfiguratu-alertak', {
+            url: '/konfiguratu-alertak',
+            templateUrl: 'templates/konfiguratu-alertak.html',
+            controller: 'KonfiguratuAlertakCtrl'
+        })
+        
         // setup an abstract state for the tabs directive
         .state('tab', {
             url: "/tab",
