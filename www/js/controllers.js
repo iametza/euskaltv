@@ -622,11 +622,11 @@ angular.module('argia-multimedia-app.controllers', [])
     
 }])
 
-.controller('HoniBuruzCtrl', function($scope, $ionicNavBarDelegate) {
+.controller('HoniBuruzCtrl', ['$scope', '$ionicNavBarDelegate', function($scope, $ionicNavBarDelegate) {
     $scope.atzera = function() {
         $ionicNavBarDelegate.back();
     }
-})
+}])
 
 .controller('KonfiguratuAlertakCtrl', ['$scope', '$ionicNavBarDelegate', function($scope, $ionicNavBarDelegate) {
     
