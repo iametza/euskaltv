@@ -242,6 +242,19 @@ angular.module('argia-multimedia-app.controllers', [])
             $scope.multimedia = Zerbitzaria.elementua;
             
             $scope.urla = Zerbitzaria.multimedia_url + $scope.multimedia.mota + "/" + $scope.multimedia.nice_name;
+            
+            for (var i = 0; i < $scope.multimedia.embed.length; i++) {
+                
+                if (!$($scope.multimedia.embed[i].embed_kodea).attr('src').indexOf('http') !== 0) {
+                    
+                    //$($scope.multimedia.embed[i].embed_kodea).attr('src', "http:" + $($scope.multimedia.embed[i].embed_kodea).attr('src'));
+                    
+                    $scope.multimedia.embed[i].embed_kodea = $scope.multimedia.embed[i].embed_kodea.replace("src=\"", "src=\"https:")
+                    
+                    console.log($scope.multimedia.embed[i].embed_kodea);
+                }
+                
+            }
         });
     }
     
@@ -361,6 +374,9 @@ angular.module('argia-multimedia-app.controllers', [])
     $scope.gehiago_kargatzen.azkenak = false;
     $scope.gehiago_kargatzen.ikusienak = false;
     
+    // Zerbitzaritik elementu berriak kargatu ditugula adierazten du.
+    $scope.elementu_gehiago_daude = true;
+    
     $scope.segundoak = ZureErara.eskuratuMinutuak() * 60;
     
     $scope.isActive = function(type) {
@@ -416,6 +432,13 @@ angular.module('argia-multimedia-app.controllers', [])
                 
                 promise.then(function() {
                     
+                    // Zerrendaren luzera ez bada aldatu, elementu berririk ez dagoela esan nahi du.
+                    if ($scope.zure_erara_zerrenda.length === Zerbitzaria.zure_erara.ikusienak.length) {
+                        
+                        $scope.elementu_gehiago_daude = false;
+                        
+                    }
+                    
                     // Eguneratutako elementuen zerrenda gorde.
                     $scope.zure_erara_zerrenda = Zerbitzaria.zure_erara.ikusienak;
                     
@@ -449,6 +472,13 @@ angular.module('argia-multimedia-app.controllers', [])
                 var promise = Zerbitzaria.eskuratuZerrenda("azkenak", ZureErara.eskuratuMota(), $scope.offsets.azkenak, $scope.limits.azkenak, $scope.segundoak);
                 
                 promise.then(function() {
+                    
+                    // Zerrendaren luzera ez bada aldatu, elementu berririk ez dagoela esan nahi du.
+                    if ($scope.zure_erara_zerrenda.length === Zerbitzaria.zure_erara.azkenak.length) {
+                        
+                        $scope.elementu_gehiago_daude = false;
+                        
+                    }
                     
                     // Eguneratutako elementuen zerrenda gorde.
                     $scope.zure_erara_zerrenda = Zerbitzaria.zure_erara.azkenak;

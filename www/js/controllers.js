@@ -242,6 +242,19 @@ angular.module('argia-multimedia-app.controllers', [])
             $scope.multimedia = Zerbitzaria.elementua;
             
             $scope.urla = Zerbitzaria.multimedia_url + $scope.multimedia.mota + "/" + $scope.multimedia.nice_name;
+            
+            for (var i = 0; i < $scope.multimedia.embed.length; i++) {
+                
+                if (!$($scope.multimedia.embed[i].embed_kodea).attr('src').indexOf('http') !== 0) {
+                    
+                    //$($scope.multimedia.embed[i].embed_kodea).attr('src', "http:" + $($scope.multimedia.embed[i].embed_kodea).attr('src'));
+                    
+                    $scope.multimedia.embed[i].embed_kodea = $scope.multimedia.embed[i].embed_kodea.replace("src=\"", "src=\"https:")
+                    
+                    console.log($scope.multimedia.embed[i].embed_kodea);
+                }
+                
+            }
         });
     }
     
