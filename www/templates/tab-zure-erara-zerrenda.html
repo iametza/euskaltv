@@ -5,7 +5,11 @@
             <a class="button" ng-class="{'button-positive': isActive('ikusienak')}" ng-click="changeTab('ikusienak')">Ikusienak</a>
         </div>
     </div>
+    
     <ion-content class="has-header has-subheader">
+        
+        <div ng-hide="zure_erara_zerrenda.length">Ez dago elementurik.</div>
+        
         <ion-list>
             <ion-item class="zure-erara-zerrenda-elementua item item-thumbnail-left" ng-repeat="elementua in zure_erara_zerrenda" type="item-text-wrap" href="#/tab/zure-erara-xehetasunak/{{elementua.id}}">
                 <img class="zure-erara-zerrenda-elementua-irudia" ng-src="{{elementua.irudia}}" />
