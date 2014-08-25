@@ -245,7 +245,7 @@ angular.module('argia-multimedia-app.controllers', [])
             
             for (var i = 0; i < $scope.multimedia.embed.length; i++) {
                 
-                if (!$($scope.multimedia.embed[i].embed_kodea).attr('src').indexOf('http') !== 0) {
+                if ($($scope.multimedia.embed[i].embed_kodea).attr('src').indexOf('http') !== 0) {
                     
                     //$($scope.multimedia.embed[i].embed_kodea).attr('src', "http:" + $($scope.multimedia.embed[i].embed_kodea).attr('src'));
                     
