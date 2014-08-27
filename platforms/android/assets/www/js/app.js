@@ -156,4 +156,159 @@ angular.module('argia-multimedia-app', [
 
 });
 
+// Hauek zerbitzu bezala jartzea hobe litzateke.
+// https://github.com/driftyco/ng-cordova/issues/104
 
+// handle APNS notifications for iOS
+function onNotificationAPN(e) {
+    if (e.alert) {
+         console.log('push-notification: ' + e.alert);
+         navigator.notification.alert(e.alert);
+    }
+        
+    if (e.sound) {
+        var snd = new Media(e.sound);
+        snd.play();
+    }
+    
+    if (e.badge) {
+        pushNotification.setApplicationIconBadgeNumber(successHandler, e.badge);
+    }
+}
+
+// handle GCM notifications for Android
+function onNotificationGCM(e) {
+    console.log('EVENT -> RECEIVED:' + e.event);
+    
+    switch( e.event )
+    {
+        case 'registered':
+        if ( e.regid.length > 0 )
+        {
+            console.log('REGISTERED -> REGID:' + e.regid);
+            // Your GCM push server needs to know the regID before it can push to this device
+            // here is where you might want to send it the regID for later use.
+            console.log("regID = " + e.regid);
+            
+            var data = {'mota': 'android', 'id_gailua': e.regid, 'aukerak':'12345'};
+            
+            console.log(data);
+            console.log($.param(data));
+            
+            $.ajax({
+                url: 'http://192.168.2.174/argia-multimedia-zerbitzaria/erregistroa',
+                type: 'POST',
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                data: $.param(data)
+            })
+            .done(function(data, textStatus, jqXHR) {
+                console.log(data);
+                console.log(textStatus);
+                alert("OK!");
+            })
+            .fail(function(jqXHR, textStatus, errorThrown) {
+                console.log(textStatus);
+                console.log(errorThrown);
+                alert("Errorea!");
+            });
+            
+            // AngularJSk application/json erabiltzen du modu lehenetsian Content-type goiburu bezala.
+            // PHPk ez zidan onartzen datuak modu horretan bidaltzea:
+            // Request header field Content-Type is not allowed by Access-Control-Allow-Headers.
+            // Horregatik application/x-www-urlencoded goiburua erabili behar izan dut eta datuak serializatu $.param erabiliz (jQuery).
+            /*$http({
+                method: 'POST',
+                //url: Zerbitzaria.api_url + 'erregistroa',
+                url: 'http://192.168.2.174/argia-multimedia-zerbitzaria/erregistroa',
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                data: $.param(data)
+            })
+            
+            .success(function(data, status, headers, config) {
+                
+                if (data.arrakasta) {
+                    
+                    // Dena ondo joan dela adierazten duen mezua bistaratu (ngShow).
+                    $scope.arrakastaBidaltzean = true;
+                    
+                    // Aurretik egon zitekeen errore mezua ezkutatu (ngShow).
+                    $scope.erroreaBidaltzean = false;
+                    
+                } else {
+                    
+                    // Arazoak egon direla adierazten duen mezua bistaratu (ngShow).
+                    $scope.erroreaBidaltzean = true;
+                    
+                    // Aurretik egon zitekeen arrakasta mezua ezkutatu (ngShow).
+                    $scope.arrakastaBidaltzean = false;
+                    
+                    // Zerbitzaritik jasotako errore mezua bistaratu.
+                    $scope.erroreaBidaltzeanTestua = data.mezua;
+                    
+                }
+                
+                console.log(data);
+                console.log(status);
+                console.log(headers);
+                console.log(config);
+                
+                alert("OK!");
+                
+            })
+            
+            .error(function(data, status, headers, config) {            
+                
+                // Arazoak egon direla adierazten duen mezua bistaratu (ngShow).
+                $scope.erroreaBidaltzean = true;
+                
+                // Aurretik egon zitekeen arrakasta mezua ezkutatu (ngShow).
+                $scope.arrakastaBidaltzean = false;
+                
+                // Zerbitzaritik jasotako errore mezua bistaratu.
+                $scope.erroreaBidaltzeanTestua = data.mezua;
+                
+                console.log(data);
+                console.log(status);
+                console.log(headers);
+                console.log(config);
+                
+                alert("Errorea!");
+                
+            });*/
+            
+            
+        }
+        break;
+        
+        case 'message':
+            // if this flag is set, this notification happened while we were in the foreground.
+            // you might want to play a sound to get the user's attention, throw up a dialog, etc.
+            if (e.foreground)
+            {
+                console.log('--INLINE NOTIFICATION--');
+                
+                // if the notification contains a soundname, play it.
+                var my_media = new Media("/android_asset/www/"+e.soundname);
+                my_media.play();
+            }
+            else
+            {	// otherwise we were launched because the user touched a notification in the notification tray.
+                if (e.coldstart)
+                    console.log('--COLDSTART NOTIFICATION--');
+                else
+                console.log('--BACKGROUND NOTIFICATION--');
+            }
+                
+            console.log('MESSAGE -> MSG: ' + e.payload.message);
+            console.log('MESSAGE -> MSGCNT: ' + e.payload.msgcnt);
+        break;
+        
+        case 'error':
+            console.log('ERROR -> MSG:' + e.msg);
+        break;
+        
+        default:
+            console.log('EVENT -> Unknown, an event was received and we do not know what it is');
+        break;
+    }
+}

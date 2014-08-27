@@ -691,4 +691,67 @@ angular.module('argia-multimedia-app.controllers', [])
             hautatuta: true
         }
     ];
+    
+    $scope.bidali = function() {
+        
+        var pushNotification;
+        
+        function tokenHandler (result) {
+            console.log('token: '+ result +'');
+            // Your iOS push server needs to know the token before it can push to this device
+            // here is where you might want to send it the token for later use.
+            
+            var data = {'mota': 'ios', 'id_gailua': result, 'aukerak':'12345'};
+            
+            $.ajax({
+              url: url,
+              type: 'POST',
+              contentType:'application/json',
+              data: JSON.stringify(data),
+              dataType:'json'
+            })
+            .done(function(data, textStatus, jqXHR) {
+                console.log(data);
+                console.log(textStatus);
+                alert("OK!");
+            })
+            .fail(function(jqXHR, textStatus, errorThrown) {
+                console.log(textStatus);
+                console.log(errorThrown);
+                alert("Errorea!");
+            });
+        }
+        
+        function successHandler (result) {
+            console.log('success:'+ result +'');
+        }
+        
+        function errorHandler (error) {
+            console.log('error:'+ error +'');
+        }
+        
+        try {
+            
+            pushNotification = window.plugins.pushNotification;
+            
+            if (device.platform == 'android' || device.platform == 'Android') {
+                
+                console.log('registering android');
+                pushNotification.register(successHandler, errorHandler, {"senderID": "774479497781", "ecb": "onNotificationGCM"});
+                
+            } else {
+                
+                console.log('registering iOS');
+                pushNotification.register(tokenHandler, errorHandler, {"badge": "true", "sound": "true", "alert": "true", "ecb": "onNotificationAPN"});
+                
+            }
+            
+        } catch(err) {
+            
+            txt="Errore bat gertatu da zerbitzarira konektatzean.\n\n"; 
+            txt += "Deskribapena: " + err.message + "\n\n"; 
+            
+            alert(txt); 
+        }
+    }
 }]);
