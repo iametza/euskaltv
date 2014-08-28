@@ -42,10 +42,25 @@ angular.module('argia-multimedia-app.directives', [])
 }])
 
 .directive('prettyembed', function() {
+    
+    // Helper function: get video ID from youtube URLs (prettyembed-en kodetik hartu dut.)
+    function youtube_parser(url) {
+        var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
+        var match = url.match(regExp);
+        if (match && match[7].length == 11) {
+            return match[7];
+        } else {
+            console.error('PrettyEmbed.js Error: Bad URL.');
+        }
+    }
+    
     return {
         restrict: 'A',
         link: function(scope, element, attrs) {
-            $(element).prettyEmbed();//{ useFitVids: true });
+            $(element).prettyEmbed({
+                videoID: youtube_parser(scope.element.embed_src),
+                useFitVids: true
+            });
         }
     }
 });
