@@ -706,9 +706,8 @@ angular.module('argia-multimedia-app.controllers', [])
             $.ajax({
               url: url,
               type: 'POST',
-              contentType:'application/json',
-              data: JSON.stringify(data),
-              dataType:'json'
+              headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+              data: $.param(data)
             })
             .done(function(data, textStatus, jqXHR) {
                 console.log(data);
