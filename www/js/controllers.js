@@ -256,6 +256,18 @@ angular.module('argia-multimedia-app.controllers', [])
                     
                     console.log($scope.multimedia.embed[i].embed_kodea);
                     console.log($scope.multimedia.embed[i].embed_src);
+                    
+                    // Youtube-ko esteka da ala ez?
+                    if ($scope.multimedia.embed[i].embed_src.indexOf('youtube') === -1) {
+                        
+                        $scope.multimedia.embed[i].youtubekoEstekaDa = false;
+                        
+                    } else {
+                        
+                        $scope.multimedia.embed[i].youtubekoEstekaDa = true;
+                        
+                    }
+                    
                 }
             }
         });

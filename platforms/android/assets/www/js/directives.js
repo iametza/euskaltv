@@ -43,7 +43,7 @@ angular.module('argia-multimedia-app.directives', [])
 
 .directive('prettyembed', function() {
     
-    // Helper function: get video ID from youtube URLs
+    // Helper function: get video ID from youtube URLs (prettyembed-en kodetik hartu dut.)
     function youtube_parser(url) {
         var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
         var match = url.match(regExp);
@@ -58,9 +58,7 @@ angular.module('argia-multimedia-app.directives', [])
         restrict: 'A',
         link: function(scope, element, attrs) {
             $(element).prettyEmbed({
-                videoID: youtube_parser(scope.element.embed_src),
-                previewSize: "hd",
-                useFitVids: true
+                videoID: youtube_parser(scope.element.embed_src)
             });
         }
     }
