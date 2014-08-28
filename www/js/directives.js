@@ -39,4 +39,13 @@ angular.module('argia-multimedia-app.directives', [])
             };
         }
     };
-}]);
+}])
+
+.directive('prettyembed', function() {
+    return {
+        restrict: 'A',
+        link: function(scope, element, attrs) {
+            $(element).prettyEmbed();//{ useFitVids: true });
+        }
+    }
+});

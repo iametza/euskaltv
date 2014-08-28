@@ -245,15 +245,18 @@ angular.module('argia-multimedia-app.controllers', [])
             
             for (var i = 0; i < $scope.multimedia.embed.length; i++) {
                 
-                if ($($scope.multimedia.embed[i].embed_kodea).attr('src') && $($scope.multimedia.embed[i].embed_kodea).attr('src').indexOf('http') !== 0) {
+                $scope.multimedia.embed[i].embed_src = $($scope.multimedia.embed[i].embed_kodea).attr('src');
+                
+                if ($scope.multimedia.embed[i].embed_src && $scope.multimedia.embed[i].embed_src.indexOf('http') !== 0) {
                     
                     // Txertatzeko kodea ez bada http-rekin hasten gehitu egingo diogu.
                     // Bestela, gurasoaren protokoloa erabiltzen du. Aplikazio hibridoen kasuan file:// da eta bideoa ez du kargatzen.
-                    $scope.multimedia.embed[i].embed_kodea = $scope.multimedia.embed[i].embed_kodea.replace("src=\"", "src=\"https:")
+                    $scope.multimedia.embed[i].embed_kodea = $scope.multimedia.embed[i].embed_kodea.replace("src=\"", "src=\"https:");
+                    $scope.multimedia.embed[i].embed_src = "https:" + $scope.multimedia.embed[i].embed_src;
                     
                     console.log($scope.multimedia.embed[i].embed_kodea);
+                    console.log($scope.multimedia.embed[i].embed_src);
                 }
-                
             }
         });
     }
