@@ -58,8 +58,7 @@ angular.module('argia-multimedia-app.directives', [])
         restrict: 'A',
         link: function(scope, element, attrs) {
             $(element).prettyEmbed({
-                videoID: youtube_parser(scope.element.embed_src),
-                useFitVids: true
+                videoID: youtube_parser(scope.element.embed_src)
             });
         }
     }
