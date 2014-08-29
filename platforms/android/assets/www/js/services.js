@@ -9,11 +9,11 @@ angular.module('argia-multimedia-app.services', [])
     factory.api_url ="http://192.168.2.174/argia-multimedia-zerbitzaria/";
     factory.multimedia_url = "http://argia2012.ametza.com/multimedia/";
     
-    factory.ikusienak = [];
+    factory.alfabetikoki = [];
     factory.azkenak = [];
     
     factory.zure_erara = {};
-    factory.zure_erara.ikusienak = [];
+    factory.zure_erara.alfabetikoki = [];
     factory.zure_erara.azkenak = [];
     
     factory.elementu_motak = [];
@@ -34,16 +34,16 @@ angular.module('argia-multimedia-app.services', [])
             
             if (mota === 0) {
                 
-                if (ordenatu === "ikusienak") {
-                    factory.ikusienak = factory.ikusienak.concat(data);
+                if (ordenatu === "alfabetikoki") {
+                    factory.alfabetikoki = factory.alfabetikoki.concat(data);
                 } else {
                     factory.azkenak = factory.azkenak.concat(data);
                 }
                 
             } else {
                 
-                if (ordenatu === "ikusienak") {
-                    factory.zure_erara.ikusienak = factory.zure_erara.ikusienak.concat(data);
+                if (ordenatu === "alfabetikoki") {
+                    factory.zure_erara.alfabetikoki = factory.zure_erara.alfabetikoki.concat(data);
                 } else {
                     factory.zure_erara.azkenak = factory.zure_erara.azkenak.concat(data);
                 }
@@ -102,7 +102,7 @@ angular.module('argia-multimedia-app.services', [])
     factory.garbituZureEraraZerrendak = function() {
         
         factory.zure_erara.azkenak = [];
-        factory.zure_erara.ikusienak = [];
+        factory.zure_erara.alfabetikoki = [];
         
     }
     

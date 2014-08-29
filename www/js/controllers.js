@@ -119,17 +119,17 @@ angular.module('argia-multimedia-app.controllers', [])
     // Zenbagarren elementutik aurrera eskatu behar diren kasu bakoitzean.
     $scope.offsets = {};
     $scope.offsets.azkenak = 0;
-    $scope.offsets.ikusienak = 0;
+    $scope.offsets.alfabetikoki = 0;
     
     // Zenbat elementu eskatu behar diren aldiko kasu bakoitzean.
     $scope.limits = {};
     $scope.limits.azkenak = 10;
-    $scope.limits.ikusienak = 10;
+    $scope.limits.alfabetikoki = 10;
 
     // Zerbitzaritik elementu gehiago kargatzen ari garen ala ez.
     $scope.gehiago_kargatzen = {};
     $scope.gehiago_kargatzen.azkenak = false;
-    $scope.gehiago_kargatzen.ikusienak = false;
+    $scope.gehiago_kargatzen.alfabetikoki = false;
     
     $scope.isActive = function(type) {
         return type === $scope.active;
@@ -157,37 +157,37 @@ angular.module('argia-multimedia-app.controllers', [])
         
         console.log("kargatuGehiago");
         
-        if ($scope.active == 'ikusienak') {
+        if ($scope.active == 'alfabetikoki') {
             
-            if (!$scope.gehiago_kargatzen.ikusienak && (Zerbitzaria.ikusienak.length === 0 || Zerbitzaria.ikusienak.length === $scope.offsets.ikusienak)) {
+            if (!$scope.gehiago_kargatzen.alfabetikoki && (Zerbitzaria.alfabetikoki.length === 0 || Zerbitzaria.alfabetikoki.length === $scope.offsets.alfabetikoki)) {
                 
                 console.log("bai");
                 
                 // Zerbitzaritik elementu berriak kargatzen ari garela adierazi.
-                $scope.gehiago_kargatzen.ikusienak = true;
+                $scope.gehiago_kargatzen.alfabetikoki = true;
                 
                 // Zerbitzaritik elementu gehiago eskuratu.
-                var promise = Zerbitzaria.eskuratuZerrenda("ikusienak", 0, $scope.offsets.ikusienak, $scope.limits.ikusienak);
+                var promise = Zerbitzaria.eskuratuZerrenda("alfabetikoki", 0, $scope.offsets.alfabetikoki, $scope.limits.alfabetikoki);
                 
                 promise.then(function() {
                     
                     // Eguneratutako elementuen zerrenda gorde.
-                    $scope.multimediaZerrenda = Zerbitzaria.ikusienak;
+                    $scope.multimediaZerrenda = Zerbitzaria.alfabetikoki;
                     
                     console.log($scope.multimediaZerrenda);
                     
                     // Ikusienak atalaren offseta eguneratu kargatu berri ditugun elementu kopuruarekin.
-                    $scope.offsets.ikusienak += $scope.limits.ikusienak;
+                    $scope.offsets.alfabetikoki += $scope.limits.alfabetikoki;
                     
                     // Zerbitzaritik elementu berriak kargatzen bukatu dugula adierazi.
-                    $scope.gehiago_kargatzen.ikusienak = false;
+                    $scope.gehiago_kargatzen.alfabetikoki = false;
                     
                 });
                 
             } else {
                 
                 console.log("ez");
-                $scope.multimediaZerrenda = Zerbitzaria.ikusienak;
+                $scope.multimediaZerrenda = Zerbitzaria.alfabetikoki;
                 
             }
             
@@ -377,17 +377,17 @@ angular.module('argia-multimedia-app.controllers', [])
     // Zenbagarren elementutik aurrera eskatu behar diren kasu bakoitzean.
     $scope.offsets = {};
     $scope.offsets.azkenak = 0;
-    $scope.offsets.ikusienak = 0;
+    $scope.offsets.alfabetikoki = 0;
     
     // Zenbat elementu eskatu behar diren aldiko kasu bakoitzean.
     $scope.limits = {};
     $scope.limits.azkenak = 10;
-    $scope.limits.ikusienak = 10;
+    $scope.limits.alfabetikoki = 10;
 
     // Zerbitzaritik elementu gehiago kargatzen ari garen ala ez.
     $scope.gehiago_kargatzen = {};
     $scope.gehiago_kargatzen.azkenak = false;
-    $scope.gehiago_kargatzen.ikusienak = false;
+    $scope.gehiago_kargatzen.alfabetikoki = false;
     
     // Zerbitzaritik elementu berriak kargatu ditugula adierazten du.
     $scope.elementu_gehiago_daude = true;
@@ -431,44 +431,44 @@ angular.module('argia-multimedia-app.controllers', [])
             
         }
         
-        if ($scope.active == 'ikusienak') {
+        if ($scope.active == 'alfabetikoki') {
             
-            if (!$scope.gehiago_kargatzen.ikusienak // Ez bagara dagoeneko gehiago kargatzen ari eta...
-                && (Zerbitzaria.zure_erara.ikusienak.length === 0                                // Ikusienen zerrenda hutsik badago edo...
-                    || Zerbitzaria.zure_erara.ikusienak.length === $scope.offsets.ikusienak)) {  // Hutsik ez dagoen kasuan ere gehiago kargatzeko da baldintza hau.
+            if (!$scope.gehiago_kargatzen.alfabetikoki // Ez bagara dagoeneko gehiago kargatzen ari eta...
+                && (Zerbitzaria.zure_erara.alfabetikoki.length === 0                                // Ikusienen zerrenda hutsik badago edo...
+                    || Zerbitzaria.zure_erara.alfabetikoki.length === $scope.offsets.alfabetikoki)) {  // Hutsik ez dagoen kasuan ere gehiago kargatzeko da baldintza hau.
                 
                 console.log("bai");
                 
                 // Zerbitzaritik elementu berriak kargatzen ari garela adierazi.
-                $scope.gehiago_kargatzen.ikusienak = true;
+                $scope.gehiago_kargatzen.alfabetikoki = true;
                 
                 // Zerbitzaritik elementu gehiago eskuratu.
-                var promise = Zerbitzaria.eskuratuZerrenda("ikusienak", ZureErara.eskuratuMota(), $scope.offsets.ikusienak, $scope.limits.ikusienak, $scope.segundoak);
+                var promise = Zerbitzaria.eskuratuZerrenda("alfabetikoki", ZureErara.eskuratuMota(), $scope.offsets.alfabetikoki, $scope.limits.alfabetikoki, $scope.segundoak);
                 
                 promise.then(function() {
                     
                     // Zerrendaren luzera ez bada aldatu, elementu berririk ez dagoela esan nahi du.
-                    if ($scope.zure_erara_zerrenda.length === Zerbitzaria.zure_erara.ikusienak.length) {
+                    if ($scope.zure_erara_zerrenda.length === Zerbitzaria.zure_erara.alfabetikoki.length) {
                         
                         $scope.elementu_gehiago_daude = false;
                         
                     }
                     
                     // Eguneratutako elementuen zerrenda gorde.
-                    $scope.zure_erara_zerrenda = Zerbitzaria.zure_erara.ikusienak;
+                    $scope.zure_erara_zerrenda = Zerbitzaria.zure_erara.alfabetikoki;
                     
                     // Ikusienak atalaren offseta eguneratu kargatu berri ditugun elementu kopuruarekin.
-                    $scope.offsets.ikusienak += $scope.limits.ikusienak;
+                    $scope.offsets.alfabetikoki += $scope.limits.alfabetikoki;
                     
                     // Zerbitzaritik elementu berriak kargatzen bukatu dugula adierazi.
-                    $scope.gehiago_kargatzen.ikusienak = false;
+                    $scope.gehiago_kargatzen.alfabetikoki = false;
                     
                 });
                 
             } else {
                 
                 console.log("ez");
-                $scope.zure_erara_zerrenda = Zerbitzaria.zure_erara.ikusienak;
+                $scope.zure_erara_zerrenda = Zerbitzaria.zure_erara.alfabetikoki;
                 
             }
             
