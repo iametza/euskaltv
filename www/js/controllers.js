@@ -239,6 +239,7 @@ angular.module('argia-multimedia-app.controllers', [])
         var promise = Zerbitzaria.getElementua(id);
         
         promise.then(function() {
+            
             $scope.multimedia = Zerbitzaria.elementua;
             
             $scope.urla = Zerbitzaria.multimedia_url + $scope.multimedia.mota + "/" + $scope.multimedia.nice_name;
@@ -257,16 +258,16 @@ angular.module('argia-multimedia-app.controllers', [])
                     console.log($scope.multimedia.embed[i].embed_kodea);
                     console.log($scope.multimedia.embed[i].embed_src);
                     
-                    // Youtube-ko esteka da ala ez?
-                    if ($scope.multimedia.embed[i].embed_src.indexOf('youtube') === -1) {
-                        
-                        $scope.multimedia.embed[i].youtubekoEstekaDa = false;
-                        
-                    } else {
-                        
-                        $scope.multimedia.embed[i].youtubekoEstekaDa = true;
-                        
-                    }
+                }
+                
+                // Youtube-ko esteka da ala ez?
+                if ($scope.multimedia.embed[i].embed_src.indexOf('youtube') === -1) {
+                    
+                    $scope.multimedia.embed[i].youtubekoEstekaDa = false;
+                    
+                } else {
+                    
+                    $scope.multimedia.embed[i].youtubekoEstekaDa = true;
                     
                 }
             }
@@ -535,15 +536,30 @@ angular.module('argia-multimedia-app.controllers', [])
             
             for (var i = 0; i < $scope.multimedia.embed.length; i++) {
                 
-                // Txertatzeko kodea ez bada http-rekin hasten gehitu egingo diogu.
-                // Bestela, gurasoaren protokoloa erabiltzen du. Aplikazio hibridoen kasuan file:// da eta bideoa ez du kargatzen.
-                if ($($scope.multimedia.embed[i].embed_kodea).attr('src') &&  $($scope.multimedia.embed[i].embed_kodea).attr('src').indexOf('http') !== 0) {
+                $scope.multimedia.embed[i].embed_src = $($scope.multimedia.embed[i].embed_kodea).attr('src');
+                
+                if ($scope.multimedia.embed[i].embed_src && $scope.multimedia.embed[i].embed_src.indexOf('http') !== 0) {
                     
-                    $scope.multimedia.embed[i].embed_kodea = $scope.multimedia.embed[i].embed_kodea.replace("src=\"", "src=\"https:")
+                    // Txertatzeko kodea ez bada http-rekin hasten gehitu egingo diogu.
+                    // Bestela, gurasoaren protokoloa erabiltzen du. Aplikazio hibridoen kasuan file:// da eta bideoa ez du kargatzen.
+                    $scope.multimedia.embed[i].embed_kodea = $scope.multimedia.embed[i].embed_kodea.replace("src=\"", "src=\"https:");
+                    $scope.multimedia.embed[i].embed_src = "https:" + $scope.multimedia.embed[i].embed_src;
                     
                     console.log($scope.multimedia.embed[i].embed_kodea);
+                    console.log($scope.multimedia.embed[i].embed_src);
+                    
                 }
                 
+                // Youtube-ko esteka da ala ez?
+                if ($scope.multimedia.embed[i].embed_src.indexOf('youtube') === -1) {
+                    
+                    $scope.multimedia.embed[i].youtubekoEstekaDa = false;
+                    
+                } else {
+                    
+                    $scope.multimedia.embed[i].youtubekoEstekaDa = true;
+                    
+                }
             }
             
         });
