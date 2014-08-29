@@ -619,7 +619,9 @@ angular.module('argia-multimedia-app.controllers', [])
 }])
 
 
-.controller('KonfiguratuAlertakCtrl', ['$scope', function($scope) {
+.controller('KonfiguratuAlertakCtrl', ['$scope', 'Zerbitzaria', function($scope, Zerbitzaria) {
+    
+    $scope.elementu_motak = [];
     
     $scope.etiketak = [{
             izena: "bat",
@@ -697,6 +699,25 @@ angular.module('argia-multimedia-app.controllers', [])
             alert(txt); 
         }
     }
+    
+    $scope.eskuratuDatuak = function() {
+        
+        if (Zerbitzaria.elementu_motak.length === 0) {
+            
+            var promise = Zerbitzaria.getElementuMotak();
+            
+            promise.then(function() {
+                $scope.elementu_motak = Zerbitzaria.elementu_motak;
+            });
+            
+        } else {
+            
+            $scope.elementu_motak = Zerbitzaria.elementu_motak;
+        }
+    }
+    
+    $scope.eskuratuDatuak();
+    
 }])
 
 .controller('IgoZureaCtrl', ['$scope', '$http', '$ionicNavBarDelegate', 'Zerbitzaria', function($scope, $http, $ionicNavBarDelegate, Zerbitzaria) {
