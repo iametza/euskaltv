@@ -58,8 +58,31 @@ angular.module('argia-multimedia-app.directives', [])
         restrict: 'A',
         link: function(scope, element, attrs) {
             $(element).prettyEmbed({
-                videoID: youtube_parser(scope.element.embed_src)
+                videoID: youtube_parser(scope.element.embed_src),
+                customPreviewImage: scope.multimedia.irudia
             });
         }
     }
+})
+
+.directive('irudiembed', function() {
+    
+    return {
+        restrict: 'A',
+        link: function(scope, element, attrs) {
+            
+            // Aurrebista irudia gehitu.
+            $(element).html("<img width='100%' alt='Bideoaren aurrebista irudia' src='" + scope.multimedia.irudia + "'>");
+            
+            $(element).click(function() {
+                
+                // pretty-embed klasea kendu div-ari.
+                $(element).removeClass("pretty-embed");
+                
+                // Embed kodea txertatu div-ean.
+                $(element).html(scope.element.embed_kodea);
+            });
+        }
+    }
+    
 });
