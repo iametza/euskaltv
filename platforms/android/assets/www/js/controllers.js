@@ -619,7 +619,7 @@ angular.module('argia-multimedia-app.controllers', [])
 }])
 
 
-.controller('KonfiguratuAlertakCtrl', ['$scope', 'Zerbitzaria', function($scope, Zerbitzaria) {
+.controller('KonfiguratuAlertakCtrl', ['$scope', 'Zerbitzaria', 'push', function($scope, Zerbitzaria, push) {
     
     $scope.elementu_motak = [];
     
@@ -640,75 +640,54 @@ angular.module('argia-multimedia-app.controllers', [])
     
     $scope.bidali = function() {
         
-        var pushNotification;
+        console.log("bidali");
         
-        function tokenHandler (result) {
-            console.log('token: '+ result +'');
-            // Your iOS push server needs to know the token before it can push to this device
-            // here is where you might want to send it the token for later use.
+        var result = push.registerPush(function (result) {
             
-            var data = {'mota': 'ios', 'id_gailua': result, 'aukerak':'12345'};
-            
-            $.ajax({
-              url: url,
-              type: 'POST',
-              headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-              data: $.param(data)
-            })
-            .done(function(data, textStatus, jqXHR) {
-                console.log(data);
-                console.log(textStatus);
-                alert("OK!");
-            })
-            .fail(function(jqXHR, textStatus, errorThrown) {
-                console.log(textStatus);
-                console.log(errorThrown);
-                alert("Errorea!");
-            });
-        }
-        
-        function successHandler (result) {
-            console.log('success:'+ result +'');
-            
-            // Hautatutako alerta motak biltegiratze lokalean gordeko ditugu.
-            localStorage.setItem("hautatutako_alerta_motak", JSON.stringify([1,2,3]))
-        }
-        
-        function errorHandler (error) {
-            console.log('error:'+ error +'');
-        }
-        
-        try {
-            
-            pushNotification = window.plugins.pushNotification;
-            
-            if (device.platform == 'android' || device.platform == 'Android') {
+            if (result.type === 'registration') {
                 
-                console.log('registering android');
-                pushNotification.register(successHandler, errorHandler, {"senderID": "774479497781", "ecb": "onNotificationGCM"});
+                var data = {'mota': result.device, 'id_gailua': result.id, 'aukerak': JSON.stringify([1,2,3])};
                 
-            } else {
+                $.ajax({
+                    url: 'http://192.168.2.174/argia-multimedia-zerbitzaria/erregistroa',
+                    type: 'POST',
+                    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                    data: $.param(data)
+                })
+                .done(function(data, textStatus, jqXHR) {
                 
-                console.log('registering iOS');
-                pushNotification.register(tokenHandler, errorHandler, {"badge": "true", "sound": "true", "alert": "true", "ecb": "onNotificationAPN"});
+                    console.log(data);
+                    console.log(textStatus);
                 
+                    // Id-a eta gailu mota biltegiratze lokalean gordeko dugu.
+                    localStorage.setItem('regid', result.id);
+                    localStorage.setItem('gailua', result.device);
+                
+                    // Hautatutako alerta motak biltegiratze lokalean gordeko ditugu.
+                    localStorage.setItem("hautatutako_alerta_motak", JSON.stringify([1,2,3]));
+                
+                    alert("OK!");
+                
+                })
+                .fail(function(jqXHR, textStatus, errorThrown) {
+                    console.log(textStatus);
+                    console.log(errorThrown);
+                    alert("Errorea!");
+                });
+            
             }
             
-        } catch(err) {
-            
-            txt="Errore bat gertatu da zerbitzarira konektatzean.\n\n"; 
-            txt += "Deskribapena: " + err.message + "\n\n"; 
-            
-            alert(txt); 
-        }
+        });    
     }
     
     $scope.eskuratuDatuak = function() {
         
         var regid = localStorage.getItem('regid');
+        var gailua = localStorage.getItem('gailua');
         var hautatutako_alerta_motak = JSON.parse(localStorage.getItem("hautatutako_alerta_motak"));
         
         console.log(regid);
+        console.log(gailua);
         console.log(hautatutako_alerta_motak);
         console.log(Array.isArray(hautatutako_alerta_motak));
         
