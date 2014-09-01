@@ -669,6 +669,9 @@ angular.module('argia-multimedia-app.controllers', [])
         
         function successHandler (result) {
             console.log('success:'+ result +'');
+            
+            // Hautatutako alerta motak biltegiratze lokalean gordeko ditugu.
+            localStorage.setItem("hautatutako_alerta_motak", JSON.stringify([1,2,3]))
         }
         
         function errorHandler (error) {
@@ -701,6 +704,13 @@ angular.module('argia-multimedia-app.controllers', [])
     }
     
     $scope.eskuratuDatuak = function() {
+        
+        var regid = localStorage.getItem('regid');
+        var hautatutako_alerta_motak = JSON.parse(localStorage.getItem("hautatutako_alerta_motak"));
+        
+        console.log(regid);
+        console.log(hautatutako_alerta_motak);
+        console.log(Array.isArray(hautatutako_alerta_motak));
         
         if (Zerbitzaria.elementu_motak.length === 0) {
             

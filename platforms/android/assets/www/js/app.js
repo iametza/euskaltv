@@ -202,9 +202,15 @@ function onNotificationGCM(e) {
                 data: $.param(data)
             })
             .done(function(data, textStatus, jqXHR) {
+                
                 console.log(data);
                 console.log(textStatus);
+                
+                // Id-a biltegiratze lokalean gordeko dugu.
+                localStorage.setItem('regid', e.regid);
+                
                 alert("OK!");
+                
             })
             .fail(function(jqXHR, textStatus, errorThrown) {
                 console.log(textStatus);
