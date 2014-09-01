@@ -14,7 +14,7 @@ angular.module('cordova', [])
     document.addEventListener('deviceready', function () {
       $timeout(function() {
         $rootScope.$apply(loadingDeferred.resolve);
-      })
+      });
     });
     
     return function cordovaReady() {
