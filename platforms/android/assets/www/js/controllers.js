@@ -621,22 +621,7 @@ angular.module('argia-multimedia-app.controllers', [])
 
 .controller('KonfiguratuAlertakCtrl', ['$scope', 'Zerbitzaria', 'push', function($scope, Zerbitzaria, push) {
     
-    $scope.elementu_motak = [];
-    
-    $scope.etiketak = [{
-            izena: "bat",
-            hautatuta: true
-        }, {
-            izena: "bi",
-            hautatuta: false
-        },  {
-            izena: "hiru",
-            hautatuta: false
-        },  {
-            izena: "lau",
-            hautatuta: true
-        }
-    ];
+    $scope.alerta_motak = [];
     
     $scope.bidali = function() {
         
@@ -655,26 +640,23 @@ angular.module('argia-multimedia-app.controllers', [])
                     data: $.param(data)
                 })
                 .done(function(data, textStatus, jqXHR) {
-                
+                    
                     console.log(data);
                     console.log(textStatus);
-                
+                    
                     // Id-a eta gailu mota biltegiratze lokalean gordeko dugu.
                     localStorage.setItem('regid', result.id);
                     localStorage.setItem('gailua', result.device);
-                
-                    // Hautatutako alerta motak biltegiratze lokalean gordeko ditugu.
-                    localStorage.setItem("hautatutako_alerta_motak", JSON.stringify([1,2,3]));
-                
+                    
                     alert("OK!");
-                
+                    
                 })
                 .fail(function(jqXHR, textStatus, errorThrown) {
                     console.log(textStatus);
                     console.log(errorThrown);
                     alert("Errorea!");
                 });
-            
+                
             }
             
         });    
@@ -684,24 +666,25 @@ angular.module('argia-multimedia-app.controllers', [])
         
         var regid = localStorage.getItem('regid');
         var gailua = localStorage.getItem('gailua');
-        var hautatutako_alerta_motak = JSON.parse(localStorage.getItem("hautatutako_alerta_motak"));
         
         console.log(regid);
         console.log(gailua);
-        console.log(hautatutako_alerta_motak);
-        console.log(Array.isArray(hautatutako_alerta_motak));
         
-        if (Zerbitzaria.elementu_motak.length === 0) {
+        if (Zerbitzaria.alerta_motak.length === 0) {
             
-            var promise = Zerbitzaria.getElementuMotak();
+            var promise = Zerbitzaria.getAlertaMotak(regid);
             
             promise.then(function() {
-                $scope.elementu_motak = Zerbitzaria.elementu_motak;
+                
+                $scope.alerta_motak = Zerbitzaria.alerta_motak;
+                
+                console.log($scope.alerta_motak);
+                
             });
             
         } else {
             
-            $scope.elementu_motak = Zerbitzaria.elementu_motak;
+            $scope.alerta_motak = Zerbitzaria.alerta_motak;
         }
     }
     

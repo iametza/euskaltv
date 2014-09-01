@@ -18,6 +18,8 @@ angular.module('argia-multimedia-app.services', [])
     
     factory.elementu_motak = [];
     
+    factory.alerta_motak = [];
+    
     factory.eskuratuZerrenda = function(ordenatu, mota, offset, limit, iraupena) {
         
         var d = $q.defer();
@@ -71,6 +73,23 @@ angular.module('argia-multimedia-app.services', [])
         
         $http.get(factory.api_url + 'elementuak/motak/').success(function(data, status, headers) {
             factory.elementu_motak = data;
+            d.resolve();
+        }).error(function(data, status, headers) {            
+            console.log(data);
+            console.log(status);
+            console.log(headers);
+            d.reject();
+        });
+        
+        return d.promise;
+    }
+
+    factory.getAlertaMotak = function(regid) {
+        
+        var d = $q.defer();
+        
+        $http.get(factory.api_url + 'alertak/' + regid).success(function(data, status, headers) {
+            factory.alerta_motak = data.motak;
             d.resolve();
         }).error(function(data, status, headers) {            
             console.log(data);
