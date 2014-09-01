@@ -178,6 +178,11 @@ input[type="text"][knob] {
     width: 75%;
 }
 
+#konfiguratu-alertak-motak-ados-botoia {
+    margin-top: 30px;
+    text-align: center;
+}
+
 /****** Honi buruz bistaren estiloa ******/
 .honi-buruz-izenburua {
     text-align: center;
