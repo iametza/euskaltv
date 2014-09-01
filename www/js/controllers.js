@@ -629,9 +629,27 @@ angular.module('argia-multimedia-app.controllers', [])
         
         var result = push.registerPush(function (result) {
             
+            var eskatutako_alerta_motak = "";
+            var data;
+            
             if (result.type === 'registration') {
                 
-                var data = {'mota': result.device, 'id_gailua': result.id, 'aukerak': JSON.stringify([1,2,3])};
+                for (var i = 0; i < $scope.alerta_motak.length; i++) {
+                    
+                    if ($scope.alerta_motak[i].hautatuta) {
+                        
+                        eskatutako_alerta_motak = eskatutako_alerta_motak + $scope.alerta_motak[i].id;
+                        
+                        if (i !== $scope.alerta_motak.length - 1) {
+                            
+                            eskatutako_alerta_motak = eskatutako_alerta_motak + ",";
+                            
+                        }
+                    }
+                    
+                }
+                
+                data = {'mota': result.device, 'id_gailua': result.id, 'aukerak': eskatutako_alerta_motak};
                 
                 $.ajax({
                     url: 'http://192.168.2.174/argia-multimedia-zerbitzaria/erregistroa',
