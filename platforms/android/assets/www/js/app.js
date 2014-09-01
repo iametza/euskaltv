@@ -46,10 +46,10 @@ angular.module('argia-multimedia-app', [
             controller: 'HoniBuruzCtrl'
         })
         
-        .state('konfiguratu-alertak', {
-            url: '/konfiguratu-alertak',
-            templateUrl: 'templates/konfiguratu-alertak.html',
-            controller: 'KonfiguratuAlertakCtrl'
+        .state('igo-zurea', {
+            url: '/igo-zurea',
+            templateUrl: 'templates/igo-zurea.html',
+            controller: 'IgoZureaCtrl'
         })
         
         // setup an abstract state for the tabs directive
@@ -141,12 +141,12 @@ angular.module('argia-multimedia-app', [
             }
         })
         
-        .state('tab.igo-zurea', {
-            url: '/igo-zurea',
+        .state('tab.konfiguratu-alertak', {
+            url: '/konfiguratu-alertak',
             views: {
-                'tab-igo-zurea': {
-                    templateUrl: 'templates/tab-igo-zurea.html',
-                    controller: 'IgoZureaCtrl'
+                'tab-konfiguratu-alertak': {
+                    templateUrl: 'templates/tab-konfiguratu-alertak.html',
+                    controller: 'KonfiguratuAlertakCtrl'
                 }
             }
         })

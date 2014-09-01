@@ -618,95 +618,10 @@ angular.module('argia-multimedia-app.controllers', [])
     
 }])
 
-.controller('IgoZureaCtrl', ['$scope', '$http', 'Zerbitzaria', function($scope, $http, Zerbitzaria) {
-    
-    $scope.formData = {};
-    $scope.formData.izenburua = "";
-    $scope.formData.azalpena = "";
-    $scope.formData.txertatzeko = "";
-    
-    $scope.arrakastaBidaltzean = false;
-    $scope.arrakastaBidaltzeanTestua = "Zure proposamena behar bezala bidali da!";
-    
-    $scope.erroreaBidaltzean = false;
-    $scope.erroreaBidaltzeanTestua = "Errore bat gertatu da zure proposamena bidaltzean.";
-    
-    $scope.bidali = function() {
-        
-        // AngularJSk application/json erabiltzen du modu lehenetsian Content-type goiburu bezala.
-        // PHPk ez zidan onartzen datuak modu horretan bidaltzea:
-        // Request header field Content-Type is not allowed by Access-Control-Allow-Headers.
-        // Horregatik application/x-www-urlencoded goiburua erabili behar izan dut eta datuak serializatu $.param erabiliz (jQuery).
-        $http({
-            method: 'POST',
-            url: Zerbitzaria.api_url + 'proposamena',
-            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-            data: $.param($scope.formData)
-        })
-        
-        .success(function(data, status, headers, config) {
-            
-            if (data.arrakasta) {
-                
-                // Dena ondo joan dela adierazten duen mezua bistaratu (ngShow).
-                $scope.arrakastaBidaltzean = true;
-                
-                // Aurretik egon zitekeen errore mezua ezkutatu (ngShow).
-                $scope.erroreaBidaltzean = false;
-                
-            } else {
-                
-                // Arazoak egon direla adierazten duen mezua bistaratu (ngShow).
-                $scope.erroreaBidaltzean = true;
-                
-                // Aurretik egon zitekeen arrakasta mezua ezkutatu (ngShow).
-                $scope.arrakastaBidaltzean = false;
-                
-                // Zerbitzaritik jasotako errore mezua bistaratu.
-                $scope.erroreaBidaltzeanTestua = data.mezua;
-                
-            }
-            
-            console.log(data);
-            console.log(status);
-            console.log(headers);
-            console.log(config);
-            
-        })
-        
-        .error(function(data, status, headers, config) {            
-            
-            // Arazoak egon direla adierazten duen mezua bistaratu (ngShow).
-            $scope.erroreaBidaltzean = true;
-            
-            // Aurretik egon zitekeen arrakasta mezua ezkutatu (ngShow).
-            $scope.arrakastaBidaltzean = false;
-            
-            // Zerbitzaritik jasotako errore mezua bistaratu.
-            $scope.erroreaBidaltzeanTestua = data.mezua;
-            
-            console.log(data);
-            console.log(status);
-            console.log(headers);
-            console.log(config);
-            
-        });
-        
-    }
-    
-}])
 
-.controller('HoniBuruzCtrl', ['$scope', '$ionicNavBarDelegate', function($scope, $ionicNavBarDelegate) {
-    $scope.atzera = function() {
-        $ionicNavBarDelegate.back();
-    }
-}])
-
-.controller('KonfiguratuAlertakCtrl', ['$scope', '$ionicNavBarDelegate', function($scope, $ionicNavBarDelegate) {
+.controller('KonfiguratuAlertakCtrl', ['$scope', 'Zerbitzaria', function($scope, Zerbitzaria) {
     
-    $scope.atzera = function() {
-        $ionicNavBarDelegate.back();
-    }
+    $scope.elementu_motak = [];
     
     $scope.etiketak = [{
             izena: "bat",
@@ -783,5 +698,112 @@ angular.module('argia-multimedia-app.controllers', [])
             
             alert(txt); 
         }
+    }
+    
+    $scope.eskuratuDatuak = function() {
+        
+        if (Zerbitzaria.elementu_motak.length === 0) {
+            
+            var promise = Zerbitzaria.getElementuMotak();
+            
+            promise.then(function() {
+                $scope.elementu_motak = Zerbitzaria.elementu_motak;
+            });
+            
+        } else {
+            
+            $scope.elementu_motak = Zerbitzaria.elementu_motak;
+        }
+    }
+    
+    $scope.eskuratuDatuak();
+    
+}])
+
+.controller('IgoZureaCtrl', ['$scope', '$http', '$ionicNavBarDelegate', 'Zerbitzaria', function($scope, $http, $ionicNavBarDelegate, Zerbitzaria) {
+    
+    $scope.formData = {};
+    $scope.formData.izenburua = "";
+    $scope.formData.azalpena = "";
+    $scope.formData.txertatzeko = "";
+    
+    $scope.arrakastaBidaltzean = false;
+    $scope.arrakastaBidaltzeanTestua = "Zure proposamena behar bezala bidali da!";
+    
+    $scope.erroreaBidaltzean = false;
+    $scope.erroreaBidaltzeanTestua = "Errore bat gertatu da zure proposamena bidaltzean.";
+    
+    $scope.atzera = function() {
+        $ionicNavBarDelegate.back();
+    }
+    
+    $scope.bidali = function() {
+        
+        // AngularJSk application/json erabiltzen du modu lehenetsian Content-type goiburu bezala.
+        // PHPk ez zidan onartzen datuak modu horretan bidaltzea:
+        // Request header field Content-Type is not allowed by Access-Control-Allow-Headers.
+        // Horregatik application/x-www-urlencoded goiburua erabili behar izan dut eta datuak serializatu $.param erabiliz (jQuery).
+        $http({
+            method: 'POST',
+            url: Zerbitzaria.api_url + 'proposamena',
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+            data: $.param($scope.formData)
+        })
+        
+        .success(function(data, status, headers, config) {
+            
+            if (data.arrakasta) {
+                
+                // Dena ondo joan dela adierazten duen mezua bistaratu (ngShow).
+                $scope.arrakastaBidaltzean = true;
+                
+                // Aurretik egon zitekeen errore mezua ezkutatu (ngShow).
+                $scope.erroreaBidaltzean = false;
+                
+            } else {
+                
+                // Arazoak egon direla adierazten duen mezua bistaratu (ngShow).
+                $scope.erroreaBidaltzean = true;
+                
+                // Aurretik egon zitekeen arrakasta mezua ezkutatu (ngShow).
+                $scope.arrakastaBidaltzean = false;
+                
+                // Zerbitzaritik jasotako errore mezua bistaratu.
+                $scope.erroreaBidaltzeanTestua = data.mezua;
+                
+            }
+            
+            console.log(data);
+            console.log(status);
+            console.log(headers);
+            console.log(config);
+            
+        })
+        
+        .error(function(data, status, headers, config) {            
+            
+            // Arazoak egon direla adierazten duen mezua bistaratu (ngShow).
+            $scope.erroreaBidaltzean = true;
+            
+            // Aurretik egon zitekeen arrakasta mezua ezkutatu (ngShow).
+            $scope.arrakastaBidaltzean = false;
+            
+            // Zerbitzaritik jasotako errore mezua bistaratu.
+            $scope.erroreaBidaltzeanTestua = data.mezua;
+            
+            console.log(data);
+            console.log(status);
+            console.log(headers);
+            console.log(config);
+            
+        });
+        
+    }
+    
+}])
+
+.controller('HoniBuruzCtrl', ['$scope', '$ionicNavBarDelegate', function($scope, $ionicNavBarDelegate) {
+    $scope.atzera = function() {
+        $ionicNavBarDelegate.back();
     }
 }]);

@@ -9,7 +9,7 @@
         <div id="zure-erara-xehetasunak-edukia">
             <div class="zure-erara-xehetasunak-embed-div" ng-repeat='element in multimedia.embed'>
                 <div class="zure-erara-xehetasunak-embed-testua">{{ element.testua }}</div>
-                <div ng-if="!element.youtubekoEstekaDa" class="zure-erara-xehetasunak-embed-bideoa" ng-bind-html='onartuEmbedKodeaHtmlBezala(element.embed_kodea)'></div>
+                <div ng-if="!element.youtubekoEstekaDa" class="xehetasunak-embed-bideoa pretty-embed" irudiembed></div>
                 <div ng-if="element.youtubekoEstekaDa" class="zure-erara-xehetasunak-embed-bideoa" prettyembed></div>
             </div>
             <h3 id="zure-erara-xehetasunak-izenburua" ng-bind-html='multimedia.izenburua'></h3>
