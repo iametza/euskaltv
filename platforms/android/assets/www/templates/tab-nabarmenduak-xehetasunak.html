@@ -17,8 +17,10 @@
             <div id="xehetasunak-data">Data: {{ multimedia.data }}</div>
             <div id="xehetasunak-botoiak">
                 <button id="xehetasunak-botoiak-arazorik" class="button button-small button-positive icon-left ion-bug" ng-click="joanURLra('/tab/nabarmenduak-arazoa')">Arazorik?</button>
-                <button id="xehetasunak-botoiak-twitter" class="button button-small button-positive icon-left ion-social-twitter" ng-click="partekatuTwitter(multimedia.izenburua, urla)">Twitter</button>
-                <button id="xehetasunak-botoiak-facebook" class="button button-small button-positive icon-left ion-social-facebook" ng-click="partekatuFacebook(multimedia.izenburua, urla)">Facebook</button>
+                <div id="xehetasunak-botoiak-sare-sozialak">
+                    <button id="xehetasunak-botoiak-twitter" class="button button-small button-positive icon-left ion-social-twitter" ng-click="partekatuTwitter(multimedia.izenburua, urla)">Twitter</button>
+                    <button id="xehetasunak-botoiak-facebook" class="button button-small button-positive icon-left ion-social-facebook" ng-click="partekatuFacebook(multimedia.izenburua, urla)">Facebook</button>
+                </div>
             </div>
         </div>
     </ion-content>

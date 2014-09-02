@@ -91,7 +91,7 @@ angular.module('argia-multimedia-app.controllers', [])
         // Momentukoa baino ezkerrerago dagoen fitxa batera mugitu behar badugu fitxen arteko trantsizioaren norabidea alderantzikatu behar dugu.
         // Ez zait gehiegi gustatzen hau. Orokorragoa izan behar luke. Orain dagoen moduan azpi-fitxa batean bagaude ez du funtzionatzen eta
         // fitxen izenak aldatuz gero hemen ere aldatu beharko lirateke.
-        if ((fromState.name === "tab.igo-zurea" && toState.name === "tab.zure-erara-denbora") ||
+        if ((fromState.name === "tab.konfiguratu-alertak" && toState.name === "tab.zure-erara-denbora") ||
             (fromState.name === "tab.zure-erara-denbora" && toState.name === "tab.nabarmenduak-zerrenda")) {
             
             $scope.alderantzikatuBeharDa = true;

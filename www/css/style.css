@@ -54,13 +54,24 @@ input[type="text"][knob] {
 
 #xehetasunak-botoiak {
     margin-top: 15px;
+    position: relative;
 }
 
-#xehetasunak-botoiak-facebook {
-    float: right;
+#xehetasunak-botoiak-arazorik {
+    float: left;
+}
+
+#xehetasunak-botoiak-sare-sozialak {
+    position: absolute;
+    right: 0;
 }
 
 #xehetasunak-botoiak-twitter {
+    margin-right: 5px;
+    float: left;
+}
+
+#xehetasunak-botoiak-facebook {
     float: right;
 }
 
@@ -149,13 +160,24 @@ input[type="text"][knob] {
 
 #zure-erara-xehetasunak-botoiak {
     margin-top: 15px;
+    position: relative;
 }
 
-#zure-erara-xehetasunak-botoiak-facebook {
-    float: right;
+#zure-erara-xehetasunak-botoiak-arazorik {
+    float: left;
+}
+
+#zure-erara-xehetasunak-botoiak-sare-sozialak {
+    position: absolute;
+    right: 0;
 }
 
 #zure-erara-xehetasunak-botoiak-twitter {
+    margin-right: 5px;
+    float: left;
+}
+
+#zure-erara-xehetasunak-botoiak-facebook {
     float: right;
 }
 
