@@ -4,15 +4,7 @@
 		<h2 id="konfiguratu-alertak-motak-goiko-testua" class="padding">Hautatu mota...</h2>
 		
         <ion-list id="konfiguratu-alertak-motak-zerrenda">
-            <ion-item class="item item-toggle konfiguratu-alertak-motak-elementua" ng-repeat="mota in alerta_motak" ng-click="" type="item-text-wrap">
-                <h2 class="konfiguratu-alertak-motak-elementua-izenburua">{{mota.izena}}</h2>
-				<label class="toggle toggle-positive">
-					<input type="checkbox" ng-model="mota.hautatuta">
-					<div class="track">
-						<div class="handle"></div>
-					</div>
-				</label>
-            </ion-item>
+			<ion-toggle ng-repeat="mota in alerta_motak" ng-model="mota.hautatuta" toggle-class="toggle-positive" class="konfiguratu-alertak-motak-elementua">{{mota.izena}}</ion-toggle>
         </ion-list>
 		
 		<div id="konfiguratu-alertak-motak-ados-botoia">
