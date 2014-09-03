@@ -264,6 +264,10 @@ angular.module('argia-multimedia-app.services', [])
     // eskuratuIdElementua metodoa erabiliz eskuratzen da bere balioa.
     var id_elementua = 0;
     
+    // Aldagai pribatua.
+    // Erabiltzaileak bilatu nahi duen testua.
+    var bilaketa_testua = "";
+    
     factory.eskuratuFitxaAktiboa = function() {
         
         return fitxa_aktiboa;
@@ -282,6 +286,18 @@ angular.module('argia-multimedia-app.services', [])
     
     factory.eskuratuIdElementua = function() {
         return id_elementua;
+    }
+    
+    factory.ezarriBilaketa = function(testua) {
+        
+        bilaketa_testua = testua;
+        
+        console.log(bilaketa_testua);
+    }
+    
+    factory.eskuratuBilaketa = function() {
+        
+        return bilaketa_testua;
     }
     
     return factory;
