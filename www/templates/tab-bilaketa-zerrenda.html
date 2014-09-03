@@ -7,6 +7,14 @@
     </div>
     
     <ion-content class="has-header has-subheader">
+        <div id="bilaketa-input-div" class="item-input">
+            <label class="item-input-wrapper">
+                <i class="icon ion-search placeholder-icon"></i>
+                <input type="text" placeholder="Idatzi hemen...">
+            </label>
+            <a class="button button-positive button-small" href="#/tab/bilaketa-zerrenda">Bilatu</a>
+        </div>
+        
         <ion-list>
             <ion-item class="bilaketa-elementua item item-thumbnail-left" ng-repeat="elementua in bilaketaZerrenda" type="item-text-wrap" href="#/tab/bilaketa-xehetasunak/{{elementua.id}}">
                 <img class="bilaketa-elementua-irudia" ng-src="{{elementua.irudia}}" />
