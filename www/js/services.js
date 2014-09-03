@@ -20,7 +20,7 @@ angular.module('argia-multimedia-app.services', [])
     
     factory.alerta_motak = [];
     
-    factory.eskuratuZerrenda = function(ordenatu, mota, offset, limit, iraupena) {
+    factory.eskuratuZerrenda = function(ordenatu, mota, offset, limit, iraupena, bilaketa) {
         
         var d = $q.defer();
         
@@ -30,7 +30,8 @@ angular.module('argia-multimedia-app.services', [])
                 "mota": mota,
                 "offset": offset,
                 "limit": limit,
-                "iraupena": iraupena
+                "iraupena": iraupena,
+                "bilaketa": bilaketa
             }
         }).success(function(data, status, headers) {
             
