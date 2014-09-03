@@ -619,9 +619,13 @@ angular.module('argia-multimedia-app.controllers', [])
 }])
 
 
-.controller('KonfiguratuAlertakCtrl', ['$scope', 'Zerbitzaria', 'push', function($scope, Zerbitzaria, push) {
+.controller('KonfiguratuAlertakCtrl', ['$scope', '$ionicNavBarDelegate', 'Zerbitzaria', 'push', function($scope, $ionicNavBarDelegate, Zerbitzaria, push) {
     
     $scope.alerta_motak = [];
+    
+    $scope.atzera = function() {
+        $ionicNavBarDelegate.back();
+    }
     
     $scope.bidali = function() {
         
