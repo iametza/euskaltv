@@ -148,6 +148,16 @@ var app = angular.module('argia-multimedia-app', [
             }
         })
         
+        .state('tab.bilaketa', {
+            url: '/bilaketa',
+            views: {
+                'tab-bilaketa': {
+                    templateUrl: 'templates/tab-bilaketa.html',
+                    controller: 'BilaketaCtrl'
+                }
+            }
+        })
+        
         .state('tab.bilaketa-zerrenda', {
             url: '/bilaketa-zerrenda',
             views: {
