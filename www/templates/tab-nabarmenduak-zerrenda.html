@@ -6,6 +6,15 @@
         </div>
     </div>
     <ion-content class="has-header has-subheader">
+        
+        <div id="nabarmenduak-iragazi-input-div" class="item-input">
+            <label class="item-input-wrapper">
+                <i class="icon ion-search placeholder-icon"></i>
+                <input type="text" placeholder="Iragazi zerrenda...">
+            </label>
+            <button class="button button-positive button-small">Garbitu</button>
+        </div>
+        
         <ion-list>
             <ion-item class="nabarmenduak-elementua item item-thumbnail-left" ng-repeat="elementua in multimediaZerrenda" type="item-text-wrap" href="#/tab/nabarmenduak-xehetasunak/{{elementua.id}}">
                 <img class="nabarmenduak-elementua-irudia" ng-src="{{elementua.irudia}}" />

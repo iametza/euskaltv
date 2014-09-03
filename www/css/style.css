@@ -5,6 +5,14 @@ input[type="text"][knob] {
 }
 
 /****** Nabarmenduak bistaren estiloa ******/
+#nabarmenduak-iragazi-input-div {
+    margin-bottom: 15px;
+    margin-top: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 75%;
+}
+
 .nabarmenduak-elementua {
     border-color: #DDDDDD;
     border-style: solid;
