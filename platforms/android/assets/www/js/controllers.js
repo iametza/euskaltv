@@ -116,6 +116,8 @@ angular.module('argia-multimedia-app.controllers', [])
     
     $scope.multimediaZerrenda = [];
     
+    $scope.bilaketa_testua = "";
+    
     // Zenbagarren elementutik aurrera eskatu behar diren kasu bakoitzean.
     $scope.offsets = {};
     $scope.offsets.azkenak = 0;
@@ -153,6 +155,16 @@ angular.module('argia-multimedia-app.controllers', [])
         
     }
     
+    $scope.iragazi = function(keyEvent) {
+        
+        if (keyEvent.which === 13) {
+            
+            alert($scope.bilaketa_testua);
+            
+        }
+        
+    }
+    
     $scope.kargatuGehiago = function() {
         
         console.log("kargatuGehiago");
@@ -167,7 +179,7 @@ angular.module('argia-multimedia-app.controllers', [])
                 $scope.gehiago_kargatzen.alfabetikoki = true;
                 
                 // Zerbitzaritik elementu gehiago eskuratu.
-                var promise = Zerbitzaria.eskuratuZerrenda("alfabetikoki", 0, $scope.offsets.alfabetikoki, $scope.limits.alfabetikoki);
+                var promise = Zerbitzaria.eskuratuZerrenda("alfabetikoki", 0, $scope.offsets.alfabetikoki, $scope.limits.alfabetikoki, null, $scope.bilaketa_testua);
                 
                 promise.then(function() {
                     

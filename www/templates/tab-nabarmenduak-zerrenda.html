@@ -7,16 +7,18 @@
     </div>
     <ion-content class="has-header has-subheader">
         
+        <form ng-submit="bidali()" id="form" name="form">
         <div id="nabarmenduak-iragazi-input-div" class="item-input">
             <label class="item-input-wrapper">
                 <i class="icon ion-search placeholder-icon"></i>
-                <input type="text" placeholder="Iragazi zerrenda...">
+                <input type="text" placeholder="Iragazi zerrenda..." ng-model="testua">
             </label>
-            <button class="button button-positive button-small">Garbitu</button>
+            
+            <button class="button button-positive button-small" ng-click="garbitu()">Garbitu</button>
         </div>
-        
+        </form>
         <ion-list>
-            <ion-item class="nabarmenduak-elementua item item-thumbnail-left" ng-repeat="elementua in multimediaZerrenda" type="item-text-wrap" href="#/tab/nabarmenduak-xehetasunak/{{elementua.id}}">
+            <ion-item class="nabarmenduak-elementua item item-thumbnail-left" ng-repeat="elementua in multimediaZerrenda | filter: bilaketa.testua" type="item-text-wrap" href="#/tab/nabarmenduak-xehetasunak/{{elementua.id}}">
                 <img class="nabarmenduak-elementua-irudia" ng-src="{{elementua.irudia}}" />
                 <h2 class="nabarmenduak-elementua-izenburua">{{elementua.izenburua}}</h2>
                 <p class="nabarmenduak-elementua-mota">{{elementua.mota}}</p>

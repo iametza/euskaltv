@@ -116,6 +116,12 @@ angular.module('argia-multimedia-app.controllers', [])
     
     $scope.multimediaZerrenda = [];
     
+    $scope.testua = "daf";
+    
+    $scope.bilaketa = {
+        testua: ""
+    }
+    
     // Zenbagarren elementutik aurrera eskatu behar diren kasu bakoitzean.
     $scope.offsets = {};
     $scope.offsets.azkenak = 0;
@@ -153,6 +159,39 @@ angular.module('argia-multimedia-app.controllers', [])
         
     }
     
+    $scope.bidali = function() {
+        console.log(this);
+        console.log(this.testua);
+        console.log($scope.testua);
+        console.log(this == $scope);
+        console.log($scope.multimediaZerrenda);
+        alert(this.testua);
+    }
+    
+    $scope.iragazi = function(keyEvent) {
+        
+        console.log($scope.bilaketa.testua);
+        
+        if (keyEvent.which === 13) {
+            
+            alert($scope.bilaketa.testua);
+            
+            // Zerrenda berriz kargatu, erabiltzaileak sartutako testuaren arabera iragazita.
+            
+            
+        }
+        
+    }
+    
+    $scope.garbitu = function() {
+        
+        $scope.bilaketa.testua = "";
+        
+        // Zerrenda berriz kargatu.
+        
+        
+    }
+    
     $scope.kargatuGehiago = function() {
         
         console.log("kargatuGehiago");
@@ -167,7 +206,7 @@ angular.module('argia-multimedia-app.controllers', [])
                 $scope.gehiago_kargatzen.alfabetikoki = true;
                 
                 // Zerbitzaritik elementu gehiago eskuratu.
-                var promise = Zerbitzaria.eskuratuZerrenda("alfabetikoki", 0, $scope.offsets.alfabetikoki, $scope.limits.alfabetikoki);
+                var promise = Zerbitzaria.eskuratuZerrenda("alfabetikoki", 0, $scope.offsets.alfabetikoki, $scope.limits.alfabetikoki, null, $scope.bilaketa_testua);
                 
                 promise.then(function() {
                     
