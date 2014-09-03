@@ -53,6 +53,12 @@ var app = angular.module('argia-multimedia-app', [
             controller: 'IgoZureaCtrl'
         })
         
+        .state('konfiguratu-alertak', {
+            url: '/konfiguratu-alertak',
+            templateUrl: 'templates/konfiguratu-alertak.html',
+            controller: 'KonfiguratuAlertakCtrl'
+        })
+        
         // setup an abstract state for the tabs directive
         .state('tab', {
             url: "/tab",
@@ -142,15 +148,25 @@ var app = angular.module('argia-multimedia-app', [
             }
         })
         
-        .state('tab.konfiguratu-alertak', {
-            url: '/konfiguratu-alertak',
+        .state('tab.bilaketa', {
+            url: '/bilaketa',
             views: {
-                'tab-konfiguratu-alertak': {
-                    templateUrl: 'templates/tab-konfiguratu-alertak.html',
-                    controller: 'KonfiguratuAlertakCtrl'
+                'tab-bilaketa': {
+                    templateUrl: 'templates/tab-bilaketa.html',
+                    controller: 'BilaketaCtrl'
                 }
             }
         })
+        
+        .state('tab.bilaketa-zerrenda', {
+            url: '/bilaketa-zerrenda',
+            views: {
+                'tab-bilaketa': {
+                    templateUrl: 'templates/tab-bilaketa-zerrenda.html',
+                    controller: 'BilaketaZerrendaCtrl'
+                }
+            }
+        });
     
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/tab/nabarmenduak-zerrenda');

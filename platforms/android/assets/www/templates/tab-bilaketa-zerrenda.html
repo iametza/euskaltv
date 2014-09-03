@@ -1,0 +1,30 @@
+<ion-view title="Bilaketa">
+    <div class="bar bar-subheader">
+        <div class="button-bar">
+            <a class="button" ng-class="{'button-positive': isActive('azkenak')}" ng-click="changeTab('azkenak')">Azkenak</a>
+            <a class="button" ng-class="{'button-positive': isActive('alfabetikoki')}" ng-click="changeTab('alfabetikoki')">Alfabetikoki</a>
+        </div>
+    </div>
+    
+    <ion-content class="has-header has-subheader">
+        <div id="bilaketa-input-div" class="item-input">
+            <label class="item-input-wrapper">
+                <i class="icon ion-search placeholder-icon"></i>
+                <input type="text" placeholder="Idatzi hemen...">
+            </label>
+            <a class="button button-positive button-small" href="#/tab/bilaketa-zerrenda">Bilatu</a>
+        </div>
+        
+        <ion-list>
+            <ion-item class="bilaketa-elementua item item-thumbnail-left" ng-repeat="elementua in bilaketaZerrenda" type="item-text-wrap" href="#/tab/bilaketa-xehetasunak/{{elementua.id}}">
+                <img class="bilaketa-elementua-irudia" ng-src="{{elementua.irudia}}" />
+                <h2 class="bilaketa-elementua-izenburua">{{elementua.izenburua}}</h2>
+                <p class="bilaketa-elementua-mota">{{elementua.mota}}</p>
+            </ion-item>
+        </ion-list>
+        <ion-infinite-scroll
+            on-infinite="kargatuGehiago()"
+            distance="10%">
+        </ion-infinite-scroll>
+    </ion-content>
+</ion-view>

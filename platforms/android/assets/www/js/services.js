@@ -20,7 +20,7 @@ angular.module('argia-multimedia-app.services', [])
     
     factory.alerta_motak = [];
     
-    factory.eskuratuZerrenda = function(ordenatu, mota, offset, limit, iraupena) {
+    factory.eskuratuZerrenda = function(ordenatu, mota, offset, limit, iraupena, bilaketa) {
         
         var d = $q.defer();
         
@@ -30,24 +30,25 @@ angular.module('argia-multimedia-app.services', [])
                 "mota": mota,
                 "offset": offset,
                 "limit": limit,
-                "iraupena": iraupena
+                "iraupena": iraupena,
+                "bilaketa": bilaketa
             }
         }).success(function(data, status, headers) {
             
             if (mota === 0) {
                 
                 if (ordenatu === "alfabetikoki") {
-                    factory.alfabetikoki = factory.alfabetikoki.concat(data);
+                    factory.alfabetikoki = factory.alfabetikoki.concat(data.elementuak);
                 } else {
-                    factory.azkenak = factory.azkenak.concat(data);
+                    factory.azkenak = factory.azkenak.concat(data.elementuak);
                 }
                 
             } else {
                 
                 if (ordenatu === "alfabetikoki") {
-                    factory.zure_erara.alfabetikoki = factory.zure_erara.alfabetikoki.concat(data);
+                    factory.zure_erara.alfabetikoki = factory.zure_erara.alfabetikoki.concat(data.elementuak);
                 } else {
-                    factory.zure_erara.azkenak = factory.zure_erara.azkenak.concat(data);
+                    factory.zure_erara.azkenak = factory.zure_erara.azkenak.concat(data.elementuak);
                 }
                 
             }
@@ -243,6 +244,60 @@ angular.module('argia-multimedia-app.services', [])
         
         fitxa_aktiboa = fitxa;
         
+    }
+    
+    return factory;
+})
+
+.factory('Bilaketa', function() {
+    
+    var factory = {};
+    
+    // Aldagai pribatua.
+    // Erabilitako azken fitxa zein den adierazten du.
+    // ezarriFitxaAktiboa metodoa erabiliz aldatzen da.
+    // eskuratuFitxaAktiboa metodoa erabiliz eskuratzen da bere balioa.
+    var fitxa_aktiboa = "azkenak";
+    
+    // Aldagai pribatua.
+    // ezarriIdElementua metodoa erabiliz aldatzen da.
+    // eskuratuIdElementua metodoa erabiliz eskuratzen da bere balioa.
+    var id_elementua = 0;
+    
+    // Aldagai pribatua.
+    // Erabiltzaileak bilatu nahi duen testua.
+    var bilaketa_testua = "";
+    
+    factory.eskuratuFitxaAktiboa = function() {
+        
+        return fitxa_aktiboa;
+    }
+    
+    factory.ezarriFitxaAktiboa = function(fitxa) {
+        
+        fitxa_aktiboa = fitxa;
+        
+    }
+    
+    factory.ezarriIdElementua = function(id) {
+        id_elementua = id;
+        console.log("Id elementua: " + id_elementua);
+    }
+    
+    factory.eskuratuIdElementua = function() {
+        return id_elementua;
+    }
+    
+    factory.ezarriBilaketa = function(testua) {
+        
+        bilaketa_testua = testua;
+        
+        console.log(bilaketa_testua);
+    }
+    
+    factory.eskuratuBilaketa = function() {
+        
+        return bilaketa_testua;
     }
     
     return factory;
