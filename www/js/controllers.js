@@ -114,9 +114,7 @@ angular.module('argia-multimedia-app.controllers', [])
     
     $scope.active = Nabarmenduak.eskuratuFitxaAktiboa();
     
-    $scope.multimediaZerrenda = [];
-    
-    $scope.testua = "daf";
+    $scope.multimediaZerrenda = [];  
     
     $scope.bilaketa = {
         testua: ""
@@ -159,28 +157,12 @@ angular.module('argia-multimedia-app.controllers', [])
         
     }
     
-    $scope.bidali = function() {
-        console.log(this);
-        console.log(this.testua);
-        console.log($scope.testua);
-        console.log(this == $scope);
-        console.log($scope.multimediaZerrenda);
-        alert(this.testua);
-    }
+   
     
     $scope.iragazi = function(keyEvent) {
-        
-        console.log($scope.bilaketa.testua);
-        
-        if (keyEvent.which === 13) {
-            
+        if(keyEvent.keyCode === 13){
             alert($scope.bilaketa.testua);
-            
-            // Zerrenda berriz kargatu, erabiltzaileak sartutako testuaren arabera iragazita.
-            
-            
         }
-        
     }
     
     $scope.garbitu = function() {
