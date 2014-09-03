@@ -146,6 +146,16 @@ var app = angular.module('argia-multimedia-app', [
                     controller: 'ZureEraraArazoaCtrl'
                 }
             }
+        })
+        
+        .state('tab.bilaketa-zerrenda', {
+            url: '/bilaketa-zerrenda',
+            views: {
+                'tab-bilaketa': {
+                    templateUrl: 'templates/tab-bilaketa-zerrenda.html',
+                    controller: 'BilaketaZerrendaCtrl'
+                }
+            }
         });
     
     // if none of the above states are matched, use this as the fallback
