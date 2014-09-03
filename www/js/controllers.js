@@ -421,6 +421,15 @@ angular.module('argia-multimedia-app.controllers', [])
     
     $scope.zure_erara_zerrenda = [];
     
+    // ion-content direktibak $scope-tik heredatzen duen scope berri bat sortzen du,
+    // ondorioz hemengo aldagaiak irakur daitezke scope umetik baina umean egindako aldaketak ez dira ikusten gurasotik.
+    // Javascript-en objektuak erreferentzia bezala pasatzen direnez, umean bilaketa.testua aldatzean gurasokoa ere aldatzen da,
+    // horregatik erabiltzen dut bilaketa.testua eta ez testua zuzenean.
+    // Ikusi hau: https://www.youtube.com/watch?v=ZhfUv0spHCY&feature=youtu.be&t=30m
+    $scope.bilaketa = {
+        testua: ""
+    }
+    
     // Zenbagarren elementutik aurrera eskatu behar diren kasu bakoitzean.
     $scope.offsets = {};
     $scope.offsets.azkenak = 0;
@@ -463,6 +472,43 @@ angular.module('argia-multimedia-app.controllers', [])
         
     }
     
+    $scope.birkargatuZerrenda = function() {
+        
+        // Nabarmenduak motako zerrendak garbitu, bai Zerbitzaria zerbitzuan bai momentuko scope-an.
+        Zerbitzaria.garbituZerrendak(ZureErara.eskuratuMota());
+        $scope.zure_erara_zerrenda = [];
+        
+        // Offset-ak eguneratu.
+        $scope.offsets.azkenak = 0;
+        $scope.offsets.alfabetikoki = 0;
+        
+        // Bilaketarekin bat datozen elementuak eskuratu zerbitzaritik.
+        $scope.kargatuGehiago();
+        
+    }
+    
+    $scope.iragazi = function(keyEvent) {
+        
+        // Erabiltzaileak teklatuko Joan/Go/Ir botoia sakatu badu.
+        if(keyEvent.keyCode === 13){
+            
+            // Bilaketaren emaitzak bistaratu behar dira, horretarako zerrenda berriz kargatuko dugu.
+            $scope.birkargatuZerrenda();
+            
+        }
+        
+    }
+    
+    $scope.garbitu = function() {
+        
+        $scope.bilaketa.testua = "";
+        
+        // Zerrenda berriz kargatu.
+        
+        $scope.birkargatuZerrenda();
+        
+    }
+    
     $scope.kargatuGehiago = function() {
         
         console.log("kargatuGehiago");
@@ -490,7 +536,7 @@ angular.module('argia-multimedia-app.controllers', [])
                 $scope.gehiago_kargatzen.alfabetikoki = true;
                 
                 // Zerbitzaritik elementu gehiago eskuratu.
-                var promise = Zerbitzaria.eskuratuZerrenda("alfabetikoki", ZureErara.eskuratuMota(), $scope.offsets.alfabetikoki, $scope.limits.alfabetikoki, $scope.segundoak);
+                var promise = Zerbitzaria.eskuratuZerrenda("alfabetikoki", ZureErara.eskuratuMota(), $scope.offsets.alfabetikoki, $scope.limits.alfabetikoki, $scope.segundoak, $scope.bilaketa.testua);
                 
                 promise.then(function() {
                     
@@ -531,7 +577,7 @@ angular.module('argia-multimedia-app.controllers', [])
                 $scope.gehiago_kargatzen.azkenak = true;
                 
                 // Zerbitzaritik elementu gehiago eskuratu.
-                var promise = Zerbitzaria.eskuratuZerrenda("azkenak", ZureErara.eskuratuMota(), $scope.offsets.azkenak, $scope.limits.azkenak, $scope.segundoak);
+                var promise = Zerbitzaria.eskuratuZerrenda("azkenak", ZureErara.eskuratuMota(), $scope.offsets.azkenak, $scope.limits.azkenak, $scope.segundoak, $scope.bilaketa.testua);
                 
                 promise.then(function() {
                     

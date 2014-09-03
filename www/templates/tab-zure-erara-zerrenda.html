@@ -8,6 +8,15 @@
     
     <ion-content class="has-header has-subheader">
         
+        <div id="zure-erara-iragazi-input-div" class="item-input">
+            <label class="item-input-wrapper">
+                <i class="icon ion-search placeholder-icon"></i>
+                <input type="text" placeholder="Iragazi zerrenda..." ng-model="bilaketa.testua" ng-keypress="iragazi($event);">
+            </label>
+         
+            <button class="button button-positive button-small" ng-click="garbitu()">Garbitu</button>
+        </div>
+        
         <div ng-hide="zure_erara_zerrenda.length">Ez dago elementurik.</div>
         
         <ion-list>
