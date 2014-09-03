@@ -37,17 +37,17 @@ angular.module('argia-multimedia-app.services', [])
             if (mota === 0) {
                 
                 if (ordenatu === "alfabetikoki") {
-                    factory.alfabetikoki = factory.alfabetikoki.concat(data);
+                    factory.alfabetikoki = factory.alfabetikoki.concat(data.elementuak);
                 } else {
-                    factory.azkenak = factory.azkenak.concat(data);
+                    factory.azkenak = factory.azkenak.concat(data.elementuak);
                 }
                 
             } else {
                 
                 if (ordenatu === "alfabetikoki") {
-                    factory.zure_erara.alfabetikoki = factory.zure_erara.alfabetikoki.concat(data);
+                    factory.zure_erara.alfabetikoki = factory.zure_erara.alfabetikoki.concat(data.elementuak);
                 } else {
-                    factory.zure_erara.azkenak = factory.zure_erara.azkenak.concat(data);
+                    factory.zure_erara.azkenak = factory.zure_erara.azkenak.concat(data.elementuak);
                 }
                 
             }
