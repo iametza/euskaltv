@@ -20,6 +20,24 @@ angular.module('argia-multimedia-app.services', [])
     
     factory.alerta_motak = [];
     
+    factory.garbituZerrendak = function(mota) {
+        
+        if (mota === 0) {
+            
+            factory.alfabetikoki = [];
+            
+            factory.azkenak = [];
+            
+        } else {
+            
+            factory.zure_erara.alfabetikoki = [];
+            
+            factory.zure_erara.azkenak = [];
+            
+        }
+        
+    }
+    
     factory.eskuratuZerrenda = function(ordenatu, mota, offset, limit, iraupena, bilaketa) {
         
         var d = $q.defer();
