@@ -5,21 +5,25 @@
 -->
 <ion-tabs class="tabs-icon-only nav-title-slide-ios7" ng-controller="FitxakCtrl" ng-class="{reverse:alderantzikatuBeharDa}">
 
-
+  <!-- Igo zurea fitxa -->
+  <ion-tab icon="ikonoa-igo-zurea" href="#/tab/nabarmenduak-zerrenda">
+    <ion-nav-view name="tab-igo-zurea"></ion-nav-view>
+  </ion-tab>
+  
   <!-- Nabarmenduak fitxa -->
-  <ion-tab title="Nabarmenduak" icon="icon ion-star" href="#/tab/nabarmenduak-zerrenda">
+  <ion-tab icon="ikonoa-nabarmenduak" href="#/tab/nabarmenduak-zerrenda">
     <ion-nav-view name="tab-nabarmenduak"></ion-nav-view>
   </ion-tab>
 
 
   <!-- Zure erara fitxa -->
-  <ion-tab title="Zure erara" icon="icon ion-person" href="#/tab/zure-erara-denbora">
+  <ion-tab icon="ikonoa-zure-erara" href="#/tab/zure-erara-denbora">
     <ion-nav-view name="tab-zure-erara"></ion-nav-view>
   </ion-tab>
 
 
-  <!-- Bilaketa fitxa -->
-  <ion-tab title="Bilaketa" icon="icon ion-alert" href="#/tab/konfiguratu-alertak">
+  <!-- Konfiguratu alertak fitxa -->
+  <ion-tab icon="ikonoa-alertak" href="#/tab/konfiguratu-alertak">
     <ion-nav-view name="tab-konfiguratu-alertak"></ion-nav-view>
   </ion-tab>
 

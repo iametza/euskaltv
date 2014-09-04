@@ -29,3 +29,39 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', end
 .checkbox input:before, .checkbox .checkbox-icon:before {
     border-color: #e6332a;
 }
+
+.tabs {
+    background-color: #e6332a;
+}
+
+.tab-item .icon {
+    height: 48px;
+}
+
+.ikonoa-igo-zurea {
+    background-image: url('ikonoak/euskaltv_03.png');
+    background-repeat: no-repeat;
+    background-position:center;
+    background-size: 48px auto;
+}
+
+.ikonoa-nabarmenduak {
+    background-repeat: no-repeat;
+    background-position:center;
+    background-size: 48px auto;
+    background-image: url('ikonoak/euskaltv_05.png');
+}
+
+.ikonoa-zure-erara {
+    background-image: url('ikonoak/euskaltv_07.png');
+    background-repeat: no-repeat;
+    background-position:center;
+    background-size: 48px auto;
+}
+
+.ikonoa-alertak {
+    background-image: url('ikonoak/euskaltv_09.png');
+    background-repeat: no-repeat;
+    background-position:center;
+    background-size: 48px auto;
+}
