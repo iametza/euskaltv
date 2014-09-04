@@ -31,24 +31,25 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', end
 }
 
 .tabs {
-    background-color: #e6332a;
+    background-color: #e6332a !important;
+    height: 64px;
 }
 
 .tab-item .icon {
-    height: 48px;
+    height: 64px;
 }
 
 .ikonoa-igo-zurea {
     background-image: url('ikonoak/euskaltv_03.png');
     background-repeat: no-repeat;
     background-position:center;
-    background-size: 48px auto;
+    background-size: 64px auto;
 }
 
 .ikonoa-nabarmenduak {
     background-repeat: no-repeat;
     background-position:center;
-    background-size: 48px auto;
+    background-size: 64px auto;
     background-image: url('ikonoak/euskaltv_05.png');
 }
 
@@ -56,12 +57,12 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', end
     background-image: url('ikonoak/euskaltv_07.png');
     background-repeat: no-repeat;
     background-position:center;
-    background-size: 48px auto;
+    background-size: 64px auto;
 }
 
 .ikonoa-alertak {
     background-image: url('ikonoak/euskaltv_09.png');
     background-repeat: no-repeat;
     background-position:center;
-    background-size: 48px auto;
+    background-size: 64px auto;
 }
