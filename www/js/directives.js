@@ -14,8 +14,8 @@ angular.module('argia-multimedia-app.directives', [])
                 min: 0,                 // default: 0
                 max: 90,                // default: 100
                 step: 1,                // default: 1
-                fgColor: "#4A87EE",     // Arkuaren kolorea.
-                inputColor: "#4A87EE",  // Erdiko zenbakiaren kolorea
+                fgColor: "#e6332a",     // Arkuaren kolorea.
+                inputColor: "#e6332a",  // Erdiko zenbakiaren kolorea
                 width: 300,             // Zabalera eta altuera dinamikoki ezartzea hobe litzateke ala ez? Pantaila-tamainaren arabera?
                 height: 300,
                 change: function(value) {
