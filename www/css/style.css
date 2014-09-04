@@ -119,6 +119,14 @@ input[type="text"][knob] {
 }
 
 /****** Zure erara zerrendaren estiloa ******/
+#zure-erara-zerrenda-iragazi-input-div {
+    margin-bottom: 15px;
+    margin-top: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 75%;
+}
+
 .zure-erara-zerrenda-elementua {
     border-color: #DDDDDD;
     border-style: solid;
