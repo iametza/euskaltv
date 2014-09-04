@@ -16,6 +16,8 @@
             <button class="button button-positive button-small" ng-click="garbitu()">Garbitu</button>
         </div>
        
+        <div ng-hide="multimediaZerrenda.length">Ez dago elementurik.</div>
+       
         <ion-list>
             <ion-item class="nabarmenduak-elementua item item-thumbnail-left" ng-repeat="elementua in multimediaZerrenda" type="item-text-wrap" href="#/tab/nabarmenduak-xehetasunak/{{elementua.id}}">
                 <img class="nabarmenduak-elementua-irudia" ng-src="{{elementua.irudia}}" />
@@ -24,6 +26,7 @@
             </ion-item>
         </ion-list>
         <ion-infinite-scroll
+            ng-if="elementu_gehiago_daude"
             on-infinite="kargatuGehiago()"
             distance="10%">
         </ion-infinite-scroll>

@@ -140,6 +140,11 @@ angular.module('argia-multimedia-app.controllers', [])
     $scope.gehiago_kargatzen.azkenak = false;
     $scope.gehiago_kargatzen.alfabetikoki = false;
     
+    // Zerbitzaritik elementu berriak kargatu ditugula adierazten du.
+    // Begiratu ion-infinite-scroll elementuaren ng-if.
+    // Hau gabe behin eta berriz zerbitzarira eskaerak egiten hasten da.
+    $scope.elementu_gehiago_daude = true;
+    
     $scope.isActive = function(type) {
         return type === $scope.active;
     };
@@ -217,6 +222,17 @@ angular.module('argia-multimedia-app.controllers', [])
                 
                 promise.then(function() {
                     
+                    // Zerrendaren luzera ez bada aldatu, elementu berririk ez dagoela esan nahi du.
+                    if ($scope.multimediaZerrenda.length === Zerbitzaria.alfabetikoki.length) {
+                        
+                        $scope.elementu_gehiago_daude = false;
+                        
+                    } else {
+                        
+                        $scope.elementu_gehiago_daude = true;
+                        
+                    }
+                    
                     // Eguneratutako elementuen zerrenda gorde.
                     $scope.multimediaZerrenda = Zerbitzaria.alfabetikoki;
                     
@@ -250,6 +266,17 @@ angular.module('argia-multimedia-app.controllers', [])
                 var promise = Zerbitzaria.eskuratuZerrenda("azkenak", 0, $scope.offsets.azkenak, $scope.limits.azkenak, null, $scope.bilaketa.testua);
                 
                 promise.then(function() {
+                    
+                    // Zerrendaren luzera ez bada aldatu, elementu berririk ez dagoela esan nahi du.
+                    if ($scope.multimediaZerrenda.length === Zerbitzaria.azkenak.length) {
+                        
+                        $scope.elementu_gehiago_daude = false;
+                        
+                    } else {
+                        
+                        $scope.elementu_gehiago_daude = true;
+                        
+                    }
                     
                     // Eguneratutako elementuen zerrenda gorde.
                     $scope.multimediaZerrenda = Zerbitzaria.azkenak;
@@ -446,6 +473,8 @@ angular.module('argia-multimedia-app.controllers', [])
     $scope.gehiago_kargatzen.alfabetikoki = false;
     
     // Zerbitzaritik elementu berriak kargatu ditugula adierazten du.
+    // Begiratu ion-infinite-scroll elementuaren ng-if.
+    // Hau gabe behin eta berriz zerbitzarira eskaerak egiten hasten da.
     $scope.elementu_gehiago_daude = true;
     
     $scope.segundoak = ZureErara.eskuratuMinutuak() * 60;
@@ -545,6 +574,10 @@ angular.module('argia-multimedia-app.controllers', [])
                         
                         $scope.elementu_gehiago_daude = false;
                         
+                    } else {
+                        
+                        $scope.elementu_gehiago_daude = true;
+                        
                     }
                     
                     // Eguneratutako elementuen zerrenda gorde.
@@ -585,6 +618,10 @@ angular.module('argia-multimedia-app.controllers', [])
                     if ($scope.zure_erara_zerrenda.length === Zerbitzaria.zure_erara.azkenak.length) {
                         
                         $scope.elementu_gehiago_daude = false;
+                        
+                    } else {
+                        
+                        $scope.elementu_gehiago_daude = true;
                         
                     }
                     
