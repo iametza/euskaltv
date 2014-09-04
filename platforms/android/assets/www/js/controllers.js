@@ -91,7 +91,7 @@ angular.module('argia-multimedia-app.controllers', [])
         // Momentukoa baino ezkerrerago dagoen fitxa batera mugitu behar badugu fitxen arteko trantsizioaren norabidea alderantzikatu behar dugu.
         // Ez zait gehiegi gustatzen hau. Orokorragoa izan behar luke. Orain dagoen moduan azpi-fitxa batean bagaude ez du funtzionatzen eta
         // fitxen izenak aldatuz gero hemen ere aldatu beharko lirateke.
-        if ((fromState.name === "tab.bilaketa" && toState.name === "tab.zure-erara-denbora") ||
+        if ((fromState.name === "tab.konfiguratu-alertak" && toState.name === "tab.zure-erara-denbora") ||
             (fromState.name === "tab.zure-erara-denbora" && toState.name === "tab.nabarmenduak-zerrenda")) {
             
             $scope.alderantzikatuBeharDa = true;
@@ -114,9 +114,16 @@ angular.module('argia-multimedia-app.controllers', [])
     
     $scope.active = Nabarmenduak.eskuratuFitxaAktiboa();
     
-    $scope.multimediaZerrenda = [];
+    $scope.multimediaZerrenda = [];  
     
-    $scope.bilaketa_testua = "";
+    // ion-content direktibak $scope-tik heredatzen duen scope berri bat sortzen du,
+    // ondorioz hemengo aldagaiak irakur daitezke scope umetik baina umean egindako aldaketak ez dira ikusten gurasotik.
+    // Javascript-en objektuak erreferentzia bezala pasatzen direnez, umean bilaketa.testua aldatzean gurasokoa ere aldatzen da,
+    // horregatik erabiltzen dut bilaketa.testua eta ez testua zuzenean.
+    // Ikusi hau: https://www.youtube.com/watch?v=ZhfUv0spHCY&feature=youtu.be&t=30m
+    $scope.bilaketa = {
+        testua: ""
+    }
     
     // Zenbagarren elementutik aurrera eskatu behar diren kasu bakoitzean.
     $scope.offsets = {};
@@ -132,6 +139,11 @@ angular.module('argia-multimedia-app.controllers', [])
     $scope.gehiago_kargatzen = {};
     $scope.gehiago_kargatzen.azkenak = false;
     $scope.gehiago_kargatzen.alfabetikoki = false;
+    
+    // Zerbitzaritik elementu berriak kargatu ditugula adierazten du.
+    // Begiratu ion-infinite-scroll elementuaren ng-if.
+    // Hau gabe behin eta berriz zerbitzarira eskaerak egiten hasten da.
+    $scope.elementu_gehiago_daude = true;
     
     $scope.isActive = function(type) {
         return type === $scope.active;
@@ -155,13 +167,40 @@ angular.module('argia-multimedia-app.controllers', [])
         
     }
     
+    $scope.birkargatuZerrenda = function() {
+        
+        // Nabarmenduak motako zerrendak garbitu, bai Zerbitzaria zerbitzuan bai momentuko scope-an.
+        Zerbitzaria.garbituZerrendak(0);
+        $scope.multimediaZerrenda = [];
+        
+        // Offset-ak eguneratu.
+        $scope.offsets.azkenak = 0;
+        $scope.offsets.alfabetikoki = 0;
+        
+        // Bilaketarekin bat datozen elementuak eskuratu zerbitzaritik.
+        $scope.kargatuGehiago();
+        
+    }
+    
     $scope.iragazi = function(keyEvent) {
         
-        if (keyEvent.which === 13) {
+        // Erabiltzaileak teklatuko Joan/Go/Ir botoia sakatu badu.
+        if(keyEvent.keyCode === 13){
             
-            alert($scope.bilaketa_testua);
+            // Bilaketaren emaitzak bistaratu behar dira, horretarako zerrenda berriz kargatuko dugu.
+            $scope.birkargatuZerrenda();
             
         }
+        
+    }
+    
+    $scope.garbitu = function() {
+        
+        $scope.bilaketa.testua = "";
+        
+        // Zerrenda berriz kargatu.
+        
+        $scope.birkargatuZerrenda();
         
     }
     
@@ -179,9 +218,20 @@ angular.module('argia-multimedia-app.controllers', [])
                 $scope.gehiago_kargatzen.alfabetikoki = true;
                 
                 // Zerbitzaritik elementu gehiago eskuratu.
-                var promise = Zerbitzaria.eskuratuZerrenda("alfabetikoki", 0, $scope.offsets.alfabetikoki, $scope.limits.alfabetikoki, null, $scope.bilaketa_testua);
+                var promise = Zerbitzaria.eskuratuZerrenda("alfabetikoki", 0, $scope.offsets.alfabetikoki, $scope.limits.alfabetikoki, null, $scope.bilaketa.testua);
                 
                 promise.then(function() {
+                    
+                    // Zerrendaren luzera ez bada aldatu, elementu berririk ez dagoela esan nahi du.
+                    if ($scope.multimediaZerrenda.length === Zerbitzaria.alfabetikoki.length) {
+                        
+                        $scope.elementu_gehiago_daude = false;
+                        
+                    } else {
+                        
+                        $scope.elementu_gehiago_daude = true;
+                        
+                    }
                     
                     // Eguneratutako elementuen zerrenda gorde.
                     $scope.multimediaZerrenda = Zerbitzaria.alfabetikoki;
@@ -213,9 +263,20 @@ angular.module('argia-multimedia-app.controllers', [])
                 $scope.gehiago_kargatzen.azkenak = true;
                 
                 // Zerbitzaritik elementu gehiago eskuratu.
-                var promise = Zerbitzaria.eskuratuZerrenda("azkenak", 0, $scope.offsets.azkenak, $scope.limits.azkenak);
+                var promise = Zerbitzaria.eskuratuZerrenda("azkenak", 0, $scope.offsets.azkenak, $scope.limits.azkenak, null, $scope.bilaketa.testua);
                 
                 promise.then(function() {
+                    
+                    // Zerrendaren luzera ez bada aldatu, elementu berririk ez dagoela esan nahi du.
+                    if ($scope.multimediaZerrenda.length === Zerbitzaria.azkenak.length) {
+                        
+                        $scope.elementu_gehiago_daude = false;
+                        
+                    } else {
+                        
+                        $scope.elementu_gehiago_daude = true;
+                        
+                    }
                     
                     // Eguneratutako elementuen zerrenda gorde.
                     $scope.multimediaZerrenda = Zerbitzaria.azkenak;
@@ -387,6 +448,15 @@ angular.module('argia-multimedia-app.controllers', [])
     
     $scope.zure_erara_zerrenda = [];
     
+    // ion-content direktibak $scope-tik heredatzen duen scope berri bat sortzen du,
+    // ondorioz hemengo aldagaiak irakur daitezke scope umetik baina umean egindako aldaketak ez dira ikusten gurasotik.
+    // Javascript-en objektuak erreferentzia bezala pasatzen direnez, umean bilaketa.testua aldatzean gurasokoa ere aldatzen da,
+    // horregatik erabiltzen dut bilaketa.testua eta ez testua zuzenean.
+    // Ikusi hau: https://www.youtube.com/watch?v=ZhfUv0spHCY&feature=youtu.be&t=30m
+    $scope.bilaketa = {
+        testua: ""
+    }
+    
     // Zenbagarren elementutik aurrera eskatu behar diren kasu bakoitzean.
     $scope.offsets = {};
     $scope.offsets.azkenak = 0;
@@ -403,6 +473,8 @@ angular.module('argia-multimedia-app.controllers', [])
     $scope.gehiago_kargatzen.alfabetikoki = false;
     
     // Zerbitzaritik elementu berriak kargatu ditugula adierazten du.
+    // Begiratu ion-infinite-scroll elementuaren ng-if.
+    // Hau gabe behin eta berriz zerbitzarira eskaerak egiten hasten da.
     $scope.elementu_gehiago_daude = true;
     
     $scope.segundoak = ZureErara.eskuratuMinutuak() * 60;
@@ -426,6 +498,43 @@ angular.module('argia-multimedia-app.controllers', [])
         
         // Elementu gehiago kargatzeko funtzioari deitu.
         $scope.kargatuGehiago();
+        
+    }
+    
+    $scope.birkargatuZerrenda = function() {
+        
+        // Nabarmenduak motako zerrendak garbitu, bai Zerbitzaria zerbitzuan bai momentuko scope-an.
+        Zerbitzaria.garbituZerrendak(ZureErara.eskuratuMota());
+        $scope.zure_erara_zerrenda = [];
+        
+        // Offset-ak eguneratu.
+        $scope.offsets.azkenak = 0;
+        $scope.offsets.alfabetikoki = 0;
+        
+        // Bilaketarekin bat datozen elementuak eskuratu zerbitzaritik.
+        $scope.kargatuGehiago();
+        
+    }
+    
+    $scope.iragazi = function(keyEvent) {
+        
+        // Erabiltzaileak teklatuko Joan/Go/Ir botoia sakatu badu.
+        if(keyEvent.keyCode === 13){
+            
+            // Bilaketaren emaitzak bistaratu behar dira, horretarako zerrenda berriz kargatuko dugu.
+            $scope.birkargatuZerrenda();
+            
+        }
+        
+    }
+    
+    $scope.garbitu = function() {
+        
+        $scope.bilaketa.testua = "";
+        
+        // Zerrenda berriz kargatu.
+        
+        $scope.birkargatuZerrenda();
         
     }
     
@@ -456,7 +565,7 @@ angular.module('argia-multimedia-app.controllers', [])
                 $scope.gehiago_kargatzen.alfabetikoki = true;
                 
                 // Zerbitzaritik elementu gehiago eskuratu.
-                var promise = Zerbitzaria.eskuratuZerrenda("alfabetikoki", ZureErara.eskuratuMota(), $scope.offsets.alfabetikoki, $scope.limits.alfabetikoki, $scope.segundoak);
+                var promise = Zerbitzaria.eskuratuZerrenda("alfabetikoki", ZureErara.eskuratuMota(), $scope.offsets.alfabetikoki, $scope.limits.alfabetikoki, $scope.segundoak, $scope.bilaketa.testua);
                 
                 promise.then(function() {
                     
@@ -464,6 +573,10 @@ angular.module('argia-multimedia-app.controllers', [])
                     if ($scope.zure_erara_zerrenda.length === Zerbitzaria.zure_erara.alfabetikoki.length) {
                         
                         $scope.elementu_gehiago_daude = false;
+                        
+                    } else {
+                        
+                        $scope.elementu_gehiago_daude = true;
                         
                     }
                     
@@ -497,7 +610,7 @@ angular.module('argia-multimedia-app.controllers', [])
                 $scope.gehiago_kargatzen.azkenak = true;
                 
                 // Zerbitzaritik elementu gehiago eskuratu.
-                var promise = Zerbitzaria.eskuratuZerrenda("azkenak", ZureErara.eskuratuMota(), $scope.offsets.azkenak, $scope.limits.azkenak, $scope.segundoak);
+                var promise = Zerbitzaria.eskuratuZerrenda("azkenak", ZureErara.eskuratuMota(), $scope.offsets.azkenak, $scope.limits.azkenak, $scope.segundoak, $scope.bilaketa.testua);
                 
                 promise.then(function() {
                     
@@ -505,6 +618,10 @@ angular.module('argia-multimedia-app.controllers', [])
                     if ($scope.zure_erara_zerrenda.length === Zerbitzaria.zure_erara.azkenak.length) {
                         
                         $scope.elementu_gehiago_daude = false;
+                        
+                    } else {
+                        
+                        $scope.elementu_gehiago_daude = true;
                         
                     }
                     
@@ -630,134 +747,9 @@ angular.module('argia-multimedia-app.controllers', [])
     
 }])
 
-.controller('BilaketaCtrl', ['$scope', 'Bilaketa', function($scope, Bilaketa) {
-}])
-
-.controller('BilaketaZerrendaCtrl', ['$scope', '$ionicScrollDelegate', 'Bilaketa', 'Zerbitzaria', function($scope, $ionicScrollDelegate, Bilaketa, Zerbitzaria) {
-    
-    $scope.active = Bilaketa.eskuratuFitxaAktiboa();
-    
-    $scope.bilaketaZerrenda = [];
-    
-    // Zenbagarren elementutik aurrera eskatu behar diren kasu bakoitzean.
-    $scope.offsets = {};
-    $scope.offsets.azkenak = 0;
-    $scope.offsets.alfabetikoki = 0;
-    
-    // Zenbat elementu eskatu behar diren aldiko kasu bakoitzean.
-    $scope.limits = {};
-    $scope.limits.azkenak = 10;
-    $scope.limits.alfabetikoki = 10;
-
-    // Zerbitzaritik elementu gehiago kargatzen ari garen ala ez.
-    $scope.gehiago_kargatzen = {};
-    $scope.gehiago_kargatzen.azkenak = false;
-    $scope.gehiago_kargatzen.alfabetikoki = false;
-    
-    $scope.isActive = function(type) {
-        return type === $scope.active;
-    };
-    
-    $scope.changeTab = function(type) {
-        
-        // Fitxa aktiboa eguneratu.
-        $scope.active = type;
-        Bilaketa.ezarriFitxaAktiboa(type);
-        
-        // Scroll-a goraino eraman.
-        // Hau gabe gauza arraroak egiten zituen. Arazoa erreproduzitzeko iruzkindu hurrengo lerro hau eta:
-        //      1. Korritu scroll-a beherantz Azkenak zerrendan (Ikusienak fitxara sartu aurretik).
-        //      2. Ikusienak fitxara joan. Scroll-a oso behean agertzen da eta elementuak ez dira ikusten ez baduzu scroll-a goraino eramaten.
-        //         Fitxa hutsik dagoela ematen du.
-        $ionicScrollDelegate.scrollTop();
-        
-        // Elementu gehiago kargatzeko funtzioari deitu.
-        $scope.kargatuGehiago();
-        
-    }
-    
-    $scope.kargatuGehiago = function() {
-        
-        console.log("kargatuGehiago");
-        
-        if ($scope.active == 'alfabetikoki') {
-            
-            if (!$scope.gehiago_kargatzen.alfabetikoki && (Zerbitzaria.alfabetikoki.length === 0 || Zerbitzaria.alfabetikoki.length === $scope.offsets.alfabetikoki)) {
-                
-                console.log("bai");
-                
-                // Zerbitzaritik elementu berriak kargatzen ari garela adierazi.
-                $scope.gehiago_kargatzen.alfabetikoki = true;
-                
-                // Zerbitzaritik elementu gehiago eskuratu.
-                var promise = Zerbitzaria.eskuratuZerrenda("alfabetikoki", 0, $scope.offsets.alfabetikoki, $scope.limits.alfabetikoki);
-                
-                promise.then(function() {
-                    
-                    // Eguneratutako elementuen zerrenda gorde.
-                    $scope.bilaketaZerrenda = Zerbitzaria.alfabetikoki;
-                    
-                    console.log($scope.bilaketaZerrenda);
-                    
-                    // Ikusienak atalaren offseta eguneratu kargatu berri ditugun elementu kopuruarekin.
-                    $scope.offsets.alfabetikoki += $scope.limits.alfabetikoki;
-                    
-                    // Zerbitzaritik elementu berriak kargatzen bukatu dugula adierazi.
-                    $scope.gehiago_kargatzen.alfabetikoki = false;
-                    
-                });
-                
-            } else {
-                
-                console.log("ez");
-                $scope.bilaketaZerrenda = Zerbitzaria.alfabetikoki;
-                
-            }
-            
-        } else {
-            
-            if (!$scope.gehiago_kargatzen.azkenak && (Zerbitzaria.azkenak.length === 0 || Zerbitzaria.azkenak.length === $scope.offsets.azkenak)) {
-                
-                console.log("bai");
-                
-                // Zerbitzaritik elementu berriak kargatzen ari garela adierazi.
-                $scope.gehiago_kargatzen.azkenak = true;
-                
-                // Zerbitzaritik elementu gehiago eskuratu.
-                var promise = Zerbitzaria.eskuratuZerrenda("azkenak", 0, $scope.offsets.azkenak, $scope.limits.azkenak);
-                
-                promise.then(function() {
-                    
-                    // Eguneratutako elementuen zerrenda gorde.
-                    $scope.bilaketaZerrenda = Zerbitzaria.azkenak;
-                    
-                    // Azkenak atalaren offseta eguneratu kargatu berri ditugun elementu kopuruarekin.
-                    $scope.offsets.azkenak += $scope.limits.azkenak;
-                    
-                    // Zerbitzaritik elementu berriak kargatzen bukatu dugula adierazi.
-                    $scope.gehiago_kargatzen.azkenak = false;
-                });
-                
-            } else {
-                
-                console.log("ez");
-                $scope.bilaketaZerrenda = Zerbitzaria.azkenak;
-                
-            }    
-            
-        }
-        
-        $scope.$broadcast('scroll.infiniteScrollComplete');
-    }
-}])
-
-.controller('KonfiguratuAlertakCtrl', ['$scope', '$ionicNavBarDelegate', 'Zerbitzaria', 'push', function($scope, $ionicNavBarDelegate, Zerbitzaria, push) {
+.controller('KonfiguratuAlertakCtrl', ['$scope', 'Zerbitzaria', 'push', function($scope, Zerbitzaria, push) {
     
     $scope.alerta_motak = [];
-    
-    $scope.atzera = function() {
-        $ionicNavBarDelegate.back();
-    }
     
     $scope.bidali = function() {
         

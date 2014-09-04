@@ -119,6 +119,14 @@ input[type="text"][knob] {
 }
 
 /****** Zure erara zerrendaren estiloa ******/
+#zure-erara-zerrenda-iragazi-input-div {
+    margin-bottom: 15px;
+    margin-top: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 75%;
+}
+
 .zure-erara-zerrenda-elementua {
     border-color: #DDDDDD;
     border-style: solid;
@@ -187,25 +195,6 @@ input[type="text"][knob] {
 
 #zure-erara-xehetasunak-botoiak-facebook {
     float: right;
-}
-
-/****** Bilaketa bistaren estiloa ******/
-#bilaketa-goiko-testua {
-    margin-top: 30px;
-    text-align: center;
-}
-
-#bilaketa-input-div {
-    margin-bottom: 15px;
-    margin-top: 15px;
-    margin-left: auto;
-    margin-right: auto;
-    width: 75%;
-}
-
-#bilaketa-aurrera-botoia {
-    text-align: center;
-    margin-top: 30px;
 }
 
 /****** Alerta motak bistaren estiloa ******/

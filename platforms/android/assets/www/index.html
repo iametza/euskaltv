@@ -8,6 +8,7 @@
         <link href="lib/ionic/css/ionic.css" rel="stylesheet">
         <link href="css/style.css" rel="stylesheet">
         <link href="css/angular-multi-select.css" rel="stylesheet">
+        <link href="css/itxura.css" rel="stylesheet">
         
         <!-- irudiembed direktiban erabiltzen dut. pretty-embed-etik hartu nuen. -->
         <style id="pretty-embed-style">
@@ -47,7 +48,7 @@
                 <!-- 
                     The nav bar that will be updated as we navigate between views.
                 -->
-                <ion-nav-bar class="bar-stable nav-title-slide-ios7" ng-controller="NavBarCtrl">
+                <ion-nav-bar class="bar-stable nav-title-slide-ios7 goiko-barra" ng-controller="NavBarCtrl">
                     <ion-nav-back-button class="button-icon icon ion-chevron-left">
                         Atzera
                     </ion-nav-back-button>
@@ -78,8 +79,7 @@
                     <ul class="list">
                         <a href="#/tab/nabarmenduak-zerrenda" class="item" menu-close><i class="icon ion-star padding"></i>Nabarmenduak</a>
                         <a href="#/tab/zure-erara-denbora" class="item" menu-close><i class="icon ion-person padding"></i>Zure erara</a>
-                        <a href="#/tab/bilaketa-zerrenda" class="item" menu-close><i class="icon ion-search padding"></i>Bilaketa</a>
-                        <a href="#/konfiguratu-alertak" class="item" menu-close><i class="icon ion-alert padding"></i>Alertak</a>
+                        <a href="#/tab/konfiguratu-alertak" class="item" menu-close><i class="icon ion-alert padding"></i>Alertak</a>
                         <a href="#/igo-zurea" class="item" menu-close><i class="icon ion-upload padding"></i>Igo zurea</a>
                         <a href="#/honi-buruz" class="item" menu-close><i class="icon ion-help-circled padding"></i>Honi buruz</a>
                     </ul>
