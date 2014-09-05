@@ -17,9 +17,11 @@ var app = angular.module('argia-multimedia-app', [
     'cordova'
 ])
 
-.run(function($ionicPlatform, $ionicSideMenuDelegate) {
+.run(function($ionicPlatform, $ionicSideMenuDelegate, $location, $timeout, $rootScope) {
     
     $ionicPlatform.ready(function() {
+        
+        var konexioa_galdu_aurreko_orria = "#/tab/nabarmenduak-zerrenda";
         
         if(window.StatusBar) {
           // org.apache.cordova.statusbar required
@@ -29,6 +31,33 @@ var app = angular.module('argia-multimedia-app', [
         // Ez utzi albo-menua arrastatuz bistaratzen.
         $ionicSideMenuDelegate.canDragContent(false);
         
+        document.addEventListener(  "offline",
+                                    function() {
+                                        
+                                        console.log("offline");
+                                        
+                                        konexioa_galdu_aurreko_orria = document.location.hash;
+                                        
+                                        console.log(document.location.hash);
+                                        
+                                        document.location.href = "#/konexiorik-gabe";
+                                        
+                                    },
+                                    false);
+        
+        document.addEventListener(  "online",
+                                    function() {
+                                        
+                                        console.log("online");
+                                        
+                                        console.log(konexioa_galdu_aurreko_orria);
+                                        
+                                        document.location.href = konexioa_galdu_aurreko_orria;
+                                        
+                                        console.log(document.location.hash);
+                                        
+                                    },
+                                    false);
     });
     
 })
@@ -41,16 +70,16 @@ var app = angular.module('argia-multimedia-app', [
     // Each state's controller can be found in controllers.js
     $stateProvider
         
+        .state('konexiorik-gabe',  {
+            url: '/konexiorik-gabe',
+            templateUrl: 'templates/konexiorik-gabe.html',
+            controller: ''
+        })
+        
         .state('honi-buruz', {
             url: '/honi-buruz',
             templateUrl: 'templates/honi-buruz.html',
             controller: 'HoniBuruzCtrl'
-        })
-        
-        .state('igo-zurea', {
-            url: '/igo-zurea',
-            templateUrl: 'templates/igo-zurea.html',
-            controller: 'IgoZureaCtrl'
         })
         
         // setup an abstract state for the tabs directive
@@ -61,6 +90,22 @@ var app = angular.module('argia-multimedia-app', [
         })
         
         // Each tab has its own nav history stack:
+        
+        .state('igo-zurea', {
+            url: '/igo-zurea',
+            templateUrl: 'templates/igo-zurea.html',
+            controller: 'IgoZureaCtrl'
+        })
+        
+        .state('tab.igo-zurea', {
+            url: '/igo-zurea',
+            views: {
+                'tab-igo-zurea': {
+                    templateUrl: 'templates/tab-igo-zurea.html',
+                    controller: 'IgoZureaCtrl'
+                }
+            }
+        })
         
         .state('tab.nabarmenduak-zerrenda', {
             url: '/nabarmenduak-zerrenda',

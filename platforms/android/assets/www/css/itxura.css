@@ -22,3 +22,52 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', end
 .button.button-positive.active, .button.button-positive.activated{
   background-color:#e6332a!important;
 }
+
+.checkbox input:checked:before, .checkbox input:checked + .checkbox-icon:before {
+    background: none repeat scroll 0 0 #e6332a;
+}
+.checkbox input:before, .checkbox .checkbox-icon:before {
+    border-color: #e6332a;
+}
+
+/* Fitxen barrari altuera gehiago eman diot. .has-tabs-en barraren altuera + 1 jarri behar da. */
+.tabs {
+    background-color: #e6332a !important;
+    height: 64px;
+}
+
+.tab-item .icon {
+    height: 64px;
+}
+
+.has-tabs, .bar-footer.has-tabs {
+    bottom: 65px;
+}
+
+.ikonoa-igo-zurea {
+    background-image: url('ikonoak/euskaltv_03.png');
+    background-repeat: no-repeat;
+    background-position:center;
+    background-size: 64px auto;
+}
+
+.ikonoa-nabarmenduak {
+    background-repeat: no-repeat;
+    background-position:center;
+    background-size: 64px auto;
+    background-image: url('ikonoak/euskaltv_05.png');
+}
+
+.ikonoa-zure-erara {
+    background-image: url('ikonoak/euskaltv_07.png');
+    background-repeat: no-repeat;
+    background-position:center;
+    background-size: 64px auto;
+}
+
+.ikonoa-alertak {
+    background-image: url('ikonoak/euskaltv_09.png');
+    background-repeat: no-repeat;
+    background-position:center;
+    background-size: 64px auto;
+}

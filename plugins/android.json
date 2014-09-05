@@ -9,6 +9,10 @@
                 "parents": {
                     "/*": [
                         {
+                            "xml": "<feature name=\"PushPlugin\"><param name=\"android-package\" value=\"com.plugin.gcm.PushPlugin\" /></feature>",
+                            "count": 1
+                        },
+                        {
                             "xml": "<feature name=\"SocialSharing\"><param name=\"android-package\" value=\"nl.xservices.plugins.SocialSharing\" /></feature>",
                             "count": 1
                         },
@@ -25,10 +29,6 @@
                             "count": 1
                         },
                         {
-                            "xml": "<feature name=\"PushPlugin\"><param name=\"android-package\" value=\"com.plugin.gcm.PushPlugin\" /></feature>",
-                            "count": 1
-                        },
-                        {
                             "xml": "<feature name=\"NetworkStatus\"><param name=\"android-package\" value=\"org.apache.cordova.networkinformation.NetworkManager\" /></feature>",
                             "count": 1
                         }
@@ -38,10 +38,6 @@
             "AndroidManifest.xml": {
                 "parents": {
                     "/manifest": [
-                        {
-                            "xml": "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\" />",
-                            "count": 1
-                        },
                         {
                             "xml": "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\" />",
                             "count": 1
@@ -68,6 +64,10 @@
                         },
                         {
                             "xml": "<uses-permission android:name=\"com.iametza.argia_multimedia.permission.C2D_MESSAGE\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\" />",
                             "count": 1
                         }
                     ],
@@ -96,6 +96,9 @@
         }
     },
     "installed_plugins": {
+        "com.phonegap.plugins.PushPlugin": {
+            "PACKAGE_NAME": "com.iametza.argia_multimedia"
+        },
         "nl.x-services.plugins.socialsharing": {
             "PACKAGE_NAME": "com.iametza.argia_multimedia"
         },
@@ -111,13 +114,10 @@
         "org.apache.cordova.inappbrowser": {
             "PACKAGE_NAME": "com.iametza.argia_multimedia"
         },
-        "org.apache.cordova.statusbar": {
-            "PACKAGE_NAME": "com.iametza.argia_multimedia"
-        },
-        "com.phonegap.plugins.PushPlugin": {
-            "PACKAGE_NAME": "com.iametza.argia_multimedia"
-        },
         "org.apache.cordova.network-information": {
+            "PACKAGE_NAME": "com.iametza.argia_multimedia"
+        },
+        "org.apache.cordova.statusbar": {
             "PACKAGE_NAME": "com.iametza.argia_multimedia"
         }
     },

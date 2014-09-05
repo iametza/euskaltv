@@ -92,7 +92,8 @@ angular.module('argia-multimedia-app.controllers', [])
         // Ez zait gehiegi gustatzen hau. Orokorragoa izan behar luke. Orain dagoen moduan azpi-fitxa batean bagaude ez du funtzionatzen eta
         // fitxen izenak aldatuz gero hemen ere aldatu beharko lirateke.
         if ((fromState.name === "tab.konfiguratu-alertak" && toState.name === "tab.zure-erara-denbora") ||
-            (fromState.name === "tab.zure-erara-denbora" && toState.name === "tab.nabarmenduak-zerrenda")) {
+            (fromState.name === "tab.zure-erara-denbora" && toState.name === "tab.nabarmenduak-zerrenda" ||
+             fromState.name === "tab.nabarmenduak-zerrenda" && toState.name === "tab.igo-zurea")) {
             
             $scope.alderantzikatuBeharDa = true;
             
@@ -850,10 +851,6 @@ angular.module('argia-multimedia-app.controllers', [])
     
     $scope.erroreaBidaltzean = false;
     $scope.erroreaBidaltzeanTestua = "Errore bat gertatu da zure proposamena bidaltzean.";
-    
-    $scope.atzera = function() {
-        $ionicNavBarDelegate.back();
-    }
     
     $scope.bidali = function() {
         
