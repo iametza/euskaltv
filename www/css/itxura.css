@@ -30,6 +30,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', end
     border-color: #e6332a;
 }
 
+/* Fitxen barrari altuera gehiago eman diot. .has-tabs-en barraren altuera + 1 jarri behar da. */
 .tabs {
     background-color: #e6332a !important;
     height: 64px;
@@ -37,6 +38,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', end
 
 .tab-item .icon {
     height: 64px;
+}
+
+.has-tabs, .bar-footer.has-tabs {
+    bottom: 65px;
 }
 
 .ikonoa-igo-zurea {
