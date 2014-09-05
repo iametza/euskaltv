@@ -47,12 +47,6 @@ var app = angular.module('argia-multimedia-app', [
             controller: 'HoniBuruzCtrl'
         })
         
-        .state('igo-zurea', {
-            url: '/igo-zurea',
-            templateUrl: 'templates/igo-zurea.html',
-            controller: 'IgoZureaCtrl'
-        })
-        
         // setup an abstract state for the tabs directive
         .state('tab', {
             url: "/tab",
@@ -61,6 +55,22 @@ var app = angular.module('argia-multimedia-app', [
         })
         
         // Each tab has its own nav history stack:
+        
+        .state('igo-zurea', {
+            url: '/igo-zurea',
+            templateUrl: 'templates/igo-zurea.html',
+            controller: 'IgoZureaCtrl'
+        })
+        
+        .state('tab.igo-zurea', {
+            url: '/igo-zurea',
+            views: {
+                'tab-igo-zurea': {
+                    templateUrl: 'templates/tab-igo-zurea.html',
+                    controller: 'IgoZureaCtrl'
+                }
+            }
+        })
         
         .state('tab.nabarmenduak-zerrenda', {
             url: '/nabarmenduak-zerrenda',
