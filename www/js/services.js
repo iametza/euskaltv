@@ -6,7 +6,7 @@ angular.module('argia-multimedia-app.services', [])
 .factory('Zerbitzaria', ['$http','$q', function($http, $q) {
     var factory = {};
     
-    factory.api_url ="http://192.168.2.174/argia-multimedia-zerbitzaria/";
+    factory.api_url ="http://euskal-tv-zerbitzaria.ametza.com/";
     factory.multimedia_url = "http://argia2012.ametza.com/multimedia/";
     
     factory.alfabetikoki = [];
