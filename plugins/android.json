@@ -27,6 +27,10 @@
                         {
                             "xml": "<feature name=\"PushPlugin\"><param name=\"android-package\" value=\"com.plugin.gcm.PushPlugin\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"NetworkStatus\"><param name=\"android-package\" value=\"org.apache.cordova.networkinformation.NetworkManager\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -80,6 +84,12 @@
                             "xml": "<service android:name=\"com.plugin.gcm.GCMIntentService\" />",
                             "count": 1
                         }
+                    ],
+                    "/*": [
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\" />",
+                            "count": 1
+                        }
                     ]
                 }
             }
@@ -105,6 +115,9 @@
             "PACKAGE_NAME": "com.iametza.argia_multimedia"
         },
         "com.phonegap.plugins.PushPlugin": {
+            "PACKAGE_NAME": "com.iametza.argia_multimedia"
+        },
+        "org.apache.cordova.network-information": {
             "PACKAGE_NAME": "com.iametza.argia_multimedia"
         }
     },
