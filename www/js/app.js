@@ -29,6 +29,17 @@ var app = angular.module('argia-multimedia-app', [
         // Ez utzi albo-menua arrastatuz bistaratzen.
         $ionicSideMenuDelegate.canDragContent(false);
         
+        document.addEventListener("offline",
+                                  function() {
+                                      console.log("offline");
+                                  },
+                                  false);
+        
+        document.addEventListener("online",
+                                  function() {
+                                      console.log("online");
+                                  },
+                                  false);
     });
     
 })
