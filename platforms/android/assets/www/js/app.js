@@ -13,7 +13,6 @@ var app = angular.module('argia-multimedia-app', [
     'ngSanitize',
     'ngAnimate',
     'ngTouch',
-    'multi-select',
     'cordova'
 ])
 
