@@ -781,7 +781,7 @@ angular.module('argia-multimedia-app.controllers', [])
                 data = {'mota': result.device, 'id_gailua': result.id, 'aukerak': eskatutako_alerta_motak};
                 
                 $.ajax({
-                    url: 'http://192.168.2.174/argia-multimedia-zerbitzaria/erregistroa',
+                    url: Zerbitzaria.api_url + 'erregistroa',
                     type: 'POST',
                     headers: {'Content-Type': 'application/x-www-form-urlencoded'},
                     data: $.param(data)
