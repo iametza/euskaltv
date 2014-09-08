@@ -19,7 +19,7 @@
         <div ng-hide="multimediaZerrenda.length">Ez dago elementurik.</div>
        
         <ion-list>
-            <ion-item class="nabarmenduak-elementua item item-thumbnail-left" ng-repeat="elementua in multimediaZerrenda" type="item-text-wrap" href="#/tab/nabarmenduak-xehetasunak/{{elementua.id}}">
+            <ion-item class="nabarmenduak-elementua item item-thumbnail-left" ng-repeat="elementua in multimediaZerrenda" type="item-text-wrap" href="/#!/tab/nabarmenduak-xehetasunak/{{elementua.id}}">
                 <img class="nabarmenduak-elementua-irudia" ng-src="{{elementua.irudia}}" />
                 <h2 class="nabarmenduak-elementua-izenburua">{{elementua.izenburua}}</h2>
                 <p class="nabarmenduak-elementua-mota">{{elementua.mota}}</p>

@@ -13,7 +13,8 @@ var app = angular.module('argia-multimedia-app', [
     'ngSanitize',
     'ngAnimate',
     'ngTouch',
-    'cordova'
+    'cordova',
+    'ngDisqus'
 ])
 
 .run(function($ionicPlatform, $ionicSideMenuDelegate, $location, $timeout, $rootScope, push) {
@@ -90,7 +91,7 @@ var app = angular.module('argia-multimedia-app', [
     
 })
 
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function($stateProvider, $urlRouterProvider, $locationProvider, $disqusProvider) {
 
     // Ionic uses AngularUI Router which uses the concept of states
     // Learn more here: https://github.com/angular-ui/ui-router
@@ -227,5 +228,11 @@ var app = angular.module('argia-multimedia-app', [
     
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/tab/nabarmenduak-zerrenda');
-
+    
+    // Hau gabe disqus ez dabil.
+    $locationProvider.hashPrefix('!');
+    
+    // Disqus konfiguratu.
+    $disqusProvider.setShortname('argia2');
+    
 });
