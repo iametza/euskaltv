@@ -71,3 +71,35 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', end
     background-position:center;
     background-size: 48px auto;
 }
+
+.ikonoa-igo-zurea-albo-menua {
+    background-image: url('ikonoak/euskaltv_03_alderantzizkoa.png');
+    background-repeat: no-repeat;
+    background-position:center;
+    background-size: 24px auto;
+    padding: 24px;
+}
+
+.ikonoa-nabarmenduak-albo-menua {
+    background-repeat: no-repeat;
+    background-position:center;
+    background-size: 24px auto;
+    background-image: url('ikonoak/euskaltv_05_alderantzizkoa.png');
+    padding: 24px;
+}
+
+.ikonoa-zure-erara-albo-menua {
+    background-image: url('ikonoak/euskaltv_07_alderantzizkoa.png');
+    background-repeat: no-repeat;
+    background-position:center;
+    background-size: 24px auto;
+    padding: 24px;
+}
+
+.ikonoa-alertak-albo-menua {
+    background-image: url('ikonoak/euskaltv_09_alderantzizkoa.png');
+    background-repeat: no-repeat;
+    background-position:center;
+    background-size: 24px auto;
+    padding: 24px;
+}
