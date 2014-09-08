@@ -17,7 +17,7 @@ var app = angular.module('argia-multimedia-app', [
     'cordova'
 ])
 
-.run(function($ionicPlatform, $ionicSideMenuDelegate, $location, $timeout, $rootScope) {
+.run(function($ionicPlatform, $ionicSideMenuDelegate, $location, $timeout, $rootScope, push) {
     
     $ionicPlatform.ready(function() {
         
@@ -30,6 +30,35 @@ var app = angular.module('argia-multimedia-app', [
         
         // Ez utzi albo-menua arrastatuz bistaratzen.
         $ionicSideMenuDelegate.canDragContent(false);
+        
+        var result = push.registerPush(function (result) {
+            
+            if (result.type === 'message') {
+                
+                console.log("mezua jasota");
+                console.log(result);
+                
+                // Mezua jasotzean aplikazioa 3 egoeratan egon daiteke:
+                // * Aurreko planoan exekutatzen -> foreground === true
+                // * Atzeko planoan ezkutuan baina memorian -> foreground === false && coldstart === false
+                // * Erabat geldi -> foreground === false && coldstart === true
+                if (result.foreground) {
+                    
+                } else {
+                    
+                    if (result.coldstart) {
+                        
+                    } else {
+                        
+                    }
+                    
+                }
+                
+                // Alertaren elementura bideratu.
+                document.location.href = "#/tab/nabarmenduak-xehetasunak/" + result.id_elementua;
+            }
+            
+        });
         
         document.addEventListener(  "offline",
                                     function() {

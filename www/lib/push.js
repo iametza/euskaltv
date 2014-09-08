@@ -74,13 +74,22 @@ angular.module('cordova', [])
 
               case 'message':
                 if (event.foreground) {
-                  var my_media = new Media("/android_asset/www/" + event.soundname);
-                  my_media.play();
+                  //var my_media = new Media("/android_asset/www/" + event.soundname);
+                  //my_media.play();
                 } else {
                   if (event.coldstart) {
                   } else {
                   }
                 }
+                
+                return fn({
+                    'type': 'message',
+                    'foreground': event.foreground,
+                    'coldstart': event.coldstart,
+                    'message': event.message,
+                    'id_elementua': event.payload.id_elementua
+                });
+                
                 break;
 
               case 'error':
