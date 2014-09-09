@@ -206,6 +206,10 @@ input[type="text"][knob] {
     float: right;
 }
 
+#zure-erara-xehetasunak-disqus {
+    height: 550px; /* PROBISIONALA! iframe-aren edukien altuerara egokitu behar luke */
+}
+
 /****** Alerta motak bistaren estiloa ******/
 #konfiguratu-alertak-motak-goiko-testua {
     text-align: center;
