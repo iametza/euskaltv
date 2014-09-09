@@ -302,7 +302,7 @@ angular.module('argia-multimedia-app.controllers', [])
     }
 }])
 
-.controller('NabarmenduakXehetasunakCtrl', ['$scope', '$stateParams', 'Zerbitzaria', 'Nabarmenduak', function($scope, $stateParams, Zerbitzaria, Nabarmenduak) {
+.controller('NabarmenduakXehetasunakCtrl', ['$sce', '$scope', '$stateParams', 'Zerbitzaria', 'Nabarmenduak', function($sce, $scope, $stateParams, Zerbitzaria, Nabarmenduak) {
     
     $scope.multimedia = {};
     
@@ -321,6 +321,8 @@ angular.module('argia-multimedia-app.controllers', [])
             for (var i = 0; i < $scope.multimedia.embed.length; i++) {
                 
                 $scope.multimedia.embed[i].embed_src = $($scope.multimedia.embed[i].embed_kodea).attr('src');
+                
+                $scope.multimedia.disqus_url = $sce.trustAsResourceUrl("http://euskal-tv-zerbitzaria.ametza.com/disqus?shortname=argia2&url=" + $scope.multimedia.argia_multimedia_url + "&title=Iruzkinak");
                 
                 if ($scope.multimedia.embed[i].embed_src && $scope.multimedia.embed[i].embed_src.indexOf('http') !== 0) {
                     
