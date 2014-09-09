@@ -827,8 +827,6 @@ angular.module('argia-multimedia-app.controllers', [])
                 
                 $scope.alerta_motak = Zerbitzaria.alerta_motak;
                 
-                console.log($scope.alerta_motak);
-                
             });
             
         } else {
