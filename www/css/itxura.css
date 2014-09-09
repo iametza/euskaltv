@@ -45,6 +45,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', end
 }
 
 .ikonoa-igo-zurea {
+    background-color: #dc2f29;
     background-image: url('ikonoak/euskaltv_03.png');
     background-repeat: no-repeat;
     background-position:center;
@@ -52,6 +53,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', end
 }
 
 .ikonoa-nabarmenduak {
+    background-color: #add5dd;
     background-repeat: no-repeat;
     background-position:center;
     background-size: 48px auto;
@@ -59,6 +61,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', end
 }
 
 .ikonoa-zure-erara {
+    background-color: #313131;
     background-image: url('ikonoak/euskaltv_07.png');
     background-repeat: no-repeat;
     background-position:center;
@@ -66,6 +69,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', end
 }
 
 .ikonoa-alertak {
+    background-color: #000000;
     background-image: url('ikonoak/euskaltv_09.png');
     background-repeat: no-repeat;
     background-position:center;
