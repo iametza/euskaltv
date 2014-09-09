@@ -13,6 +13,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', end
 .goiko-barra h1 {
     color: #FFF!important;;
 }
+.back-button {
+    color: #fff !important;
+}
 .button.active, .button.activated {
   background-color:#e6332a!important;
 }
