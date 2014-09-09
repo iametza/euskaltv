@@ -1,6 +1,10 @@
 angular.module('argia-multimedia-app.controllers', [])
 
-.controller('OrokorraCtrl', ['$scope', '$location', '$sce', function($scope, $location, $sce) {
+.controller('OrokorraCtrl', ['$scope', '$location', '$sce', '$ionicSideMenuDelegate', function($scope, $location, $sce, $ionicSideMenuDelegate) {
+    
+    $scope.txandakatuAlboMenua = function() {
+        $ionicSideMenuDelegate.toggleLeft();
+    }
     
     $scope.joanURLra = function(urla) {
         console.log(urla);
@@ -103,12 +107,6 @@ angular.module('argia-multimedia-app.controllers', [])
             
         }
     });
-}])
-
-.controller('NavBarCtrl', ['$scope', '$ionicSideMenuDelegate', function($scope, $ionicSideMenuDelegate) {
-    $scope.txandakatuAlboMenua = function() {
-        $ionicSideMenuDelegate.toggleRight();
-    }
 }])
 
 .controller('NabarmenduakZerrendaCtrl', ['$scope', '$ionicScrollDelegate', 'Nabarmenduak', 'Zerbitzaria', function($scope, $ionicScrollDelegate, Nabarmenduak, Zerbitzaria) {
