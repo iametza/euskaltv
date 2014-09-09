@@ -84,6 +84,7 @@ input[type="text"][knob] {
 }
 
 #xehetasunak-disqus {
+    height: 550px; /* PROBISIONALA! iframe-aren edukien altuerara egokitu behar luke */
 }
 
 /****** Zure erara bistaren estiloa ******/
