@@ -174,3 +174,16 @@
     font-size: 5em;
     margin-bottom: 20px;
 }
+
+.zerrenda-kargatzen {
+    color: #666;
+    text-align: center;
+    font-size: 1.5em;
+    margin-top: 50px;
+}
+
+.zerrenda-kargatzen .icon {
+    display: block;
+    font-size: 5em;
+    margin-bottom: 20px;
+}

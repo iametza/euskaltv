@@ -29,7 +29,10 @@
             Ez dago bat datorren elementurik
         </div>
         
-        <div ng-if="gehiago_kargatzen.azkenak || gehiago_kargatzen.alfabetikoki">Kargatzen...</div>
+        <div ng-if="gehiago_kargatzen.azkenak || gehiago_kargatzen.alfabetikoki" class="zerrenda-kargatzen">
+            <i class="icon ion-loading-a"></i>
+            Kargatzen...
+        </div>
         
         <ion-list ng-if="multimediaZerrenda.length" >
             <ion-item class="nabarmenduak-elementua item item-thumbnail-left" ng-repeat="elementua in multimediaZerrenda" type="item-text-wrap" href="#/tab/nabarmenduak-xehetasunak/{{elementua.id}}">
