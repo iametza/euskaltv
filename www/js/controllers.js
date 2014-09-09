@@ -109,7 +109,7 @@ angular.module('argia-multimedia-app.controllers', [])
     });
 }])
 
-.controller('NabarmenduakZerrendaCtrl', ['$scope', '$ionicScrollDelegate', 'Nabarmenduak', 'Zerbitzaria', function($scope, $ionicScrollDelegate, Nabarmenduak, Zerbitzaria) {
+.controller('NabarmenduakZerrendaCtrl', ['$scope', '$ionicScrollDelegate', '$ionicPopover', 'Nabarmenduak', 'Zerbitzaria', function($scope, $ionicScrollDelegate, $ionicPopover, Nabarmenduak, Zerbitzaria) {
     
     $scope.active = Nabarmenduak.eskuratuFitxaAktiboa();
     
@@ -143,6 +143,16 @@ angular.module('argia-multimedia-app.controllers', [])
     // Begiratu ion-infinite-scroll elementuaren ng-if.
     // Hau gabe behin eta berriz zerbitzarira eskaerak egiten hasten da.
     $scope.elementu_gehiago_daude = true;
+    
+    $ionicPopover.fromTemplateUrl('popoverra.html', {
+        scope: $scope,
+    }).then(function(popover) {
+        $scope.popover = popover;
+    });
+    
+    $scope.irekiPopoverra = function($event) {
+        $scope.popover.show($event);
+    }
     
     $scope.isActive = function(type) {
         return type === $scope.active;

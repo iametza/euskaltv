@@ -3,7 +3,7 @@
 </ion-nav-buttons>
 
 <ion-nav-buttons side="right">
-    <button class="button button-icon button-clear ion-search" ng-click=""></button>
+    <button class="button button-icon button-clear ion-search" ng-click="irekiPopoverra($event)"></button>
 </ion-nav-buttons>
 
 <ion-view title="Nabarmenduak" ng-swipe-left="joanURLra('/tab/zure-erara-denbora')" ng-swipe-right="joanURLra('/tab/igo-zurea')">
@@ -13,8 +13,8 @@
             <a class="button" ng-class="{'button-positive': isActive('alfabetikoki')}" ng-click="changeTab('alfabetikoki')">Alfabetikoki</a>
         </div>
     </div>
-    <ion-content class="has-header has-subheader">      
-       
+    <ion-content class="has-header has-subheader">
+        
         <div id="nabarmenduak-iragazi-input-div" class="item-input">
             <label class="item-input-wrapper">
                 <i class="icon ion-search placeholder-icon"></i>
@@ -23,16 +23,19 @@
          
             <button class="button button-positive button-small" ng-click="garbitu()">Garbitu</button>
         </div>
-       
-        <div ng-hide="multimediaZerrenda.length">Ez dago elementurik.</div>
-       
-        <ion-list>
+        
+        <div ng-if="!multimediaZerrenda.length && !(gehiago_kargatzen.azkenak || gehiago_kargatzen.alfabetikoki)">Ez dago elementurik.</div>
+        
+        <div ng-if="gehiago_kargatzen.azkenak || gehiago_kargatzen.alfabetikoki">Kargatzen...</div>
+        
+        <ion-list ng-if="multimediaZerrenda.length" >
             <ion-item class="nabarmenduak-elementua item item-thumbnail-left" ng-repeat="elementua in multimediaZerrenda" type="item-text-wrap" href="#/tab/nabarmenduak-xehetasunak/{{elementua.id}}">
                 <img class="nabarmenduak-elementua-irudia" ng-src="{{elementua.irudia}}" />
                 <h2 class="nabarmenduak-elementua-izenburua">{{elementua.izenburua}}</h2>
                 <p class="nabarmenduak-elementua-mota">{{elementua.mota}}</p>
             </ion-item>
         </ion-list>
+        
         <ion-infinite-scroll
             ng-if="elementu_gehiago_daude"
             on-infinite="kargatuGehiago()"
@@ -41,3 +44,21 @@
     </ion-content>
 </ion-view>
 
+<script id="popoverra.html" type="text/ng-template">
+  <ion-popover-view>
+    <!--<ion-header-bar>
+      <h1 class="title">Popover Header</h1>
+    </ion-header-bar>-->
+    <ion-content>
+      <div class="list">
+        <label class="item item-input">
+            <label class="item-input-wrapper">
+                <i class="icon ion-search placeholder-icon"></i>
+                <input type="text" placeholder="Iragazi zerrenda..." ng-model="bilaketa.testua" ng-keypress="iragazi($event);">
+            </label>
+        </label>
+        <button class="button button-block button-positive">Garbitu</button>
+      </div>
+    </ion-content>
+  </ion-popover-view>
+</script>
