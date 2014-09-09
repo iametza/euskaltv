@@ -84,6 +84,7 @@ input[type="text"][knob] {
 }
 
 #xehetasunak-disqus {
+    height: 550px; /* PROBISIONALA! iframe-aren edukien altuerara egokitu behar luke */
 }
 
 /****** Zure erara bistaren estiloa ******/
@@ -203,6 +204,10 @@ input[type="text"][knob] {
 
 #zure-erara-xehetasunak-botoiak-facebook {
     float: right;
+}
+
+#zure-erara-xehetasunak-disqus {
+    height: 550px; /* PROBISIONALA! iframe-aren edukien altuerara egokitu behar luke */
 }
 
 /****** Alerta motak bistaren estiloa ******/

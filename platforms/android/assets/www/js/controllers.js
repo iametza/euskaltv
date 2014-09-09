@@ -1,6 +1,10 @@
 angular.module('argia-multimedia-app.controllers', [])
 
-.controller('OrokorraCtrl', ['$scope', '$location', '$sce', function($scope, $location, $sce) {
+.controller('OrokorraCtrl', ['$scope', '$location', '$sce', '$ionicSideMenuDelegate', function($scope, $location, $sce, $ionicSideMenuDelegate) {
+    
+    $scope.txandakatuAlboMenua = function() {
+        $ionicSideMenuDelegate.toggleLeft();
+    }
     
     $scope.joanURLra = function(urla) {
         console.log(urla);
@@ -105,13 +109,7 @@ angular.module('argia-multimedia-app.controllers', [])
     });
 }])
 
-.controller('NavBarCtrl', ['$scope', '$ionicSideMenuDelegate', function($scope, $ionicSideMenuDelegate) {
-    $scope.txandakatuAlboMenua = function() {
-        $ionicSideMenuDelegate.toggleRight();
-    }
-}])
-
-.controller('NabarmenduakZerrendaCtrl', ['$scope', '$ionicScrollDelegate', 'Nabarmenduak', 'Zerbitzaria', function($scope, $ionicScrollDelegate, Nabarmenduak, Zerbitzaria) {
+.controller('NabarmenduakZerrendaCtrl', ['$scope', '$ionicScrollDelegate', '$ionicPopover', 'Nabarmenduak', 'Zerbitzaria', function($scope, $ionicScrollDelegate, $ionicPopover, Nabarmenduak, Zerbitzaria) {
     
     $scope.active = Nabarmenduak.eskuratuFitxaAktiboa();
     
@@ -145,6 +143,16 @@ angular.module('argia-multimedia-app.controllers', [])
     // Begiratu ion-infinite-scroll elementuaren ng-if.
     // Hau gabe behin eta berriz zerbitzarira eskaerak egiten hasten da.
     $scope.elementu_gehiago_daude = true;
+    
+    $ionicPopover.fromTemplateUrl('popoverra.html', {
+        scope: $scope,
+    }).then(function(popover) {
+        $scope.popover = popover;
+    });
+    
+    $scope.irekiPopoverra = function($event) {
+        $scope.popover.show($event);
+    }
     
     $scope.isActive = function(type) {
         return type === $scope.active;
@@ -318,11 +326,11 @@ angular.module('argia-multimedia-app.controllers', [])
             
             $scope.urla = Zerbitzaria.multimedia_url + $scope.multimedia.mota + "/" + $scope.multimedia.nice_name;
             
+            $scope.multimedia.disqus_url = $sce.trustAsResourceUrl("http://euskal-tv-zerbitzaria.ametza.com/disqus?shortname=argia2&url=" + $scope.multimedia.argia_multimedia_url + "&title=Iruzkinak");
+            
             for (var i = 0; i < $scope.multimedia.embed.length; i++) {
                 
                 $scope.multimedia.embed[i].embed_src = $($scope.multimedia.embed[i].embed_kodea).attr('src');
-                
-                $scope.multimedia.disqus_url = $sce.trustAsResourceUrl("http://euskal-tv-zerbitzaria.ametza.com/disqus?shortname=argia2&url=" + $scope.multimedia.argia_multimedia_url + "&title=Iruzkinak");
                 
                 if ($scope.multimedia.embed[i].embed_src && $scope.multimedia.embed[i].embed_src.indexOf('http') !== 0) {
                     
@@ -650,7 +658,7 @@ angular.module('argia-multimedia-app.controllers', [])
     }
 }])
 
-.controller('ZureEraraXehetasunakCtrl', ['$scope', '$stateParams', 'Zerbitzaria', 'ZureErara', function($scope, $stateParams, Zerbitzaria, ZureErara) {
+.controller('ZureEraraXehetasunakCtrl', ['$sce', '$scope', '$stateParams', 'Zerbitzaria', 'ZureErara', function($sce, $scope, $stateParams, Zerbitzaria, ZureErara) {
     
     $scope.multimedia = {};
     
@@ -665,6 +673,8 @@ angular.module('argia-multimedia-app.controllers', [])
             $scope.multimedia = Zerbitzaria.elementua;
             
             $scope.urla = Zerbitzaria.multimedia_url + $scope.multimedia.mota + "/" + $scope.multimedia.nice_name;
+            
+            $scope.multimedia.disqus_url = $sce.trustAsResourceUrl("http://euskal-tv-zerbitzaria.ametza.com/disqus?shortname=argia2&url=" + $scope.multimedia.argia_multimedia_url + "&title=Iruzkinak");
             
             for (var i = 0; i < $scope.multimedia.embed.length; i++) {
                 

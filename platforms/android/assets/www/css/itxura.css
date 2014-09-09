@@ -1,26 +1,27 @@
-.goiko-barra {
-background: rgb(69,72,77)!important; /* Old browsers */
-background: -moz-linear-gradient(top,  rgba(69,72,77,1) 0%, rgba(0,0,0,1) 100%)!important; /* FF3.6+ */
-background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(69,72,77,1)), color-stop(100%,rgba(0,0,0,1)))!important; /* Chrome,Safari4+ */
-background: -webkit-linear-gradient(top,  rgba(69,72,77,1) 0%,rgba(0,0,0,1) 100%)!important; /* Chrome10+,Safari5.1+ */
-background: -o-linear-gradient(top,  rgba(69,72,77,1) 0%,rgba(0,0,0,1) 100%)!important; /* Opera 11.10+ */
-background: -ms-linear-gradient(top,  rgba(69,72,77,1) 0%,rgba(0,0,0,1) 100%)!important; /* IE10+ */
-background: linear-gradient(to bottom,  rgba(69,72,77,1) 0%,rgba(0,0,0,1) 100%)!important; /* W3C */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', endColorstr='#000000',GradientType=0 )!important; /* IE6-9 */
-
-
+#goiko-barra {
+    background: rgb(69,72,77)!important; /* Old browsers */
+    background: -moz-linear-gradient(top,  rgba(69,72,77,1) 0%, rgba(0,0,0,1) 100%)!important; /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(69,72,77,1)), color-stop(100%,rgba(0,0,0,1)))!important; /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  rgba(69,72,77,1) 0%,rgba(0,0,0,1) 100%)!important; /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  rgba(69,72,77,1) 0%,rgba(0,0,0,1) 100%)!important; /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  rgba(69,72,77,1) 0%,rgba(0,0,0,1) 100%)!important; /* IE10+ */
+    background: linear-gradient(to bottom,  rgba(69,72,77,1) 0%,rgba(0,0,0,1) 100%)!important; /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', endColorstr='#000000',GradientType=0 )!important; /* IE6-9 */
 }
-.goiko-barra h1 {
+#goiko-barra h1 {
     color: #FFF!important;;
 }
+.back-button {
+    color: #fff !important;
+}
 .button.active, .button.activated {
-  background-color:#e6332a!important;
+    background-color:#e6332a!important;
 }
 .button.button-positive{
-  background-color:#e6332a!important;
+    background-color:#e6332a!important;
 }
 .button.button-positive.active, .button.button-positive.activated{
-  background-color:#e6332a!important;
+    background-color:#e6332a!important;
 }
 
 .checkbox input:checked:before, .checkbox input:checked + .checkbox-icon:before {
@@ -28,6 +29,23 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', end
 }
 .checkbox input:before, .checkbox .checkbox-icon:before {
     border-color: #e6332a;
+}
+
+#albo-menua-barra {
+    background: rgb(69,72,77)!important; /* Old browsers */
+    background: -moz-linear-gradient(top,  rgba(69,72,77,1) 0%, rgba(0,0,0,1) 100%)!important; /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(69,72,77,1)), color-stop(100%,rgba(0,0,0,1)))!important; /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  rgba(69,72,77,1) 0%,rgba(0,0,0,1) 100%)!important; /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  rgba(69,72,77,1) 0%,rgba(0,0,0,1) 100%)!important; /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  rgba(69,72,77,1) 0%,rgba(0,0,0,1) 100%)!important; /* IE10+ */
+    background: linear-gradient(to bottom,  rgba(69,72,77,1) 0%,rgba(0,0,0,1) 100%)!important; /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', endColorstr='#000000',GradientType=0 )!important; /* IE6-9 */
+}
+
+#albo-menua-barrako-irudia {
+    height: 43px;
+    padding-bottom: 10px;
+    padding-top: 10px;
 }
 
 /* Fitxen barrari altuera gehiago eman diot. .has-tabs-en barraren altuera + 1 jarri behar da. */
@@ -142,4 +160,30 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', end
     background-position: center;
     background-size: 24px auto;
     padding: 24px;
+}
+
+.zerrenda-emaitzarik-ez {
+    color: #666;
+    text-align: center;
+    font-size: 1.5em;
+    margin-top: 50px;
+}
+
+.zerrenda-emaitzarik-ez .icon {
+    display: block;
+    font-size: 5em;
+    margin-bottom: 20px;
+}
+
+.zerrenda-kargatzen {
+    color: #666;
+    text-align: center;
+    font-size: 1.5em;
+    margin-top: 50px;
+}
+
+.zerrenda-kargatzen .icon {
+    display: block;
+    font-size: 5em;
+    margin-bottom: 20px;
 }
