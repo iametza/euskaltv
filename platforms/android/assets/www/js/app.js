@@ -17,11 +17,9 @@ var app = angular.module('argia-multimedia-app', [
     'cordova'
 ])
 
-.run(function($ionicPlatform, $ionicSideMenuDelegate, $location, $timeout, $rootScope, push) {
+.run(function($ionicPlatform, $ionicSideMenuDelegate, $rootScope, push) {
     
     $ionicPlatform.ready(function() {
-        
-        var konexioa_galdu_aurreko_orria = "#/tab/nabarmenduak-zerrenda";
         
         if(window.StatusBar) {
           // org.apache.cordova.statusbar required
