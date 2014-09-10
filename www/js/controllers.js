@@ -109,7 +109,14 @@ angular.module('argia-multimedia-app.controllers', [])
     });
 }])
 
-.controller('NabarmenduakZerrendaCtrl', ['$scope', '$ionicScrollDelegate', '$ionicPopover', 'Nabarmenduak', 'Zerbitzaria', function($scope, $ionicScrollDelegate, $ionicPopover, Nabarmenduak, Zerbitzaria) {
+.controller('NabarmenduakZerrendaCtrl', ['$scope', '$ionicScrollDelegate', '$ionicPopover', '$cordovaNetwork', 'Nabarmenduak', 'Zerbitzaria', function($scope, $ionicScrollDelegate, $ionicPopover, $cordovaNetwork, Nabarmenduak, Zerbitzaria) {
+    
+    $scope.konexiorikBadago = function() {
+        
+        alert($cordovaNetwork.isOnline());
+        return $cordovaNetwork.isOnline();
+        
+    }
     
     $scope.active = Nabarmenduak.eskuratuFitxaAktiboa();
     
