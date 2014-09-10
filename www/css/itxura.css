@@ -67,7 +67,7 @@
 }
 
 .ikonoa-igo-zurea {
-    background-color: #dc2f29;
+    background-color: #e6332a;
     background-image: url('ikonoak/euskaltv_03.png');
     background-repeat: no-repeat;
     background-position: center;
@@ -75,7 +75,7 @@
 }
 
 .ikonoa-igo-zurea-alderantzizkoa {
-    background-color: #dc2f29;
+    background-color: #e6332a;
     background-image: url('ikonoak/euskaltv_03_alderantzizkoa.png');
     background-repeat: no-repeat;
     background-position: center;
@@ -115,7 +115,7 @@
 }
 
 .ikonoa-alertak {
-    background-color: #000000;
+    background-color: #66860f;
     background-image: url('ikonoak/euskaltv_09.png');
     background-repeat: no-repeat;
     background-position:center;
@@ -123,7 +123,7 @@
 }
 
 .ikonoa-alertak-alderantzizkoa {
-    background-color: #000000;
+    background-color: #66860f;
     background-image: url('ikonoak/euskaltv_09_alderantzizkoa.png');
     background-repeat: no-repeat;
     background-position:center;
@@ -186,4 +186,7 @@
     display: block;
     font-size: 5em;
     margin-bottom: 20px;
+}
+.button {
+    border:none!important;
 }
