@@ -187,6 +187,20 @@
     font-size: 5em;
     margin-bottom: 20px;
 }
+
+.konexiorik-ez {
+    color: #666;
+    text-align: center;
+    font-size: 1.5em;
+    margin-top: 50px;
+}
+
+.konexiorik-ez .icon {
+    display: block;
+    font-size: 5em;
+    margin-bottom: 20px;
+}
+
 .button {
     border:none!important;
 }
