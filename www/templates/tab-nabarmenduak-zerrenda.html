@@ -24,7 +24,10 @@
             <button class="button button-positive button-small" ng-click="garbitu()">Garbitu</button>
         </div>
         
-        <loading></loading>
+        <div ng-if="gehiago_kargatzen.azkenak || gehiago_kargatzen.alfabetikoki" class="zerrenda-kargatzen">
+            <i class="icon ion-loading-a"></i>
+            Kargatzen...
+        </div>
         
         <div ng-if="!multimediaZerrenda.length && !(gehiago_kargatzen.azkenak || gehiago_kargatzen.alfabetikoki)" class="zerrenda-emaitzarik-ez">
             <i class="icon ion-sad"></i>
