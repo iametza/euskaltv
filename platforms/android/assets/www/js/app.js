@@ -59,33 +59,6 @@ var app = angular.module('argia-multimedia-app', [
             
         });
         
-        document.addEventListener(  "offline",
-                                    function() {
-                                        
-                                        console.log("offline");
-                                        
-                                        konexioa_galdu_aurreko_orria = document.location.hash;
-                                        
-                                        console.log(document.location.hash);
-                                        
-                                        document.location.href = "#/konexiorik-gabe";
-                                        
-                                    },
-                                    false);
-        
-        document.addEventListener(  "online",
-                                    function() {
-                                        
-                                        console.log("online");
-                                        
-                                        console.log(konexioa_galdu_aurreko_orria);
-                                        
-                                        document.location.href = konexioa_galdu_aurreko_orria;
-                                        
-                                        console.log(document.location.hash);
-                                        
-                                    },
-                                    false);
     });
     
 })
