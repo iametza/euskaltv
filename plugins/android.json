@@ -114,10 +114,10 @@
         "org.apache.cordova.inappbrowser": {
             "PACKAGE_NAME": "com.iametza.argia_multimedia"
         },
-        "org.apache.cordova.network-information": {
+        "org.apache.cordova.statusbar": {
             "PACKAGE_NAME": "com.iametza.argia_multimedia"
         },
-        "org.apache.cordova.statusbar": {
+        "org.apache.cordova.network-information": {
             "PACKAGE_NAME": "com.iametza.argia_multimedia"
         }
     },

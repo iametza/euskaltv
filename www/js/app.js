@@ -6,6 +6,7 @@
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
 var app = angular.module('argia-multimedia-app', [
+    'ngCordova.plugins.network',
     'ionic',
     'argia-multimedia-app.controllers',
     'argia-multimedia-app.services',
