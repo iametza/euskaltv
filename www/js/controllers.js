@@ -12,7 +12,9 @@ angular.module('argia-multimedia-app.controllers', [])
     }
     
     $scope.atzera = function() {
-        $ionicNavBarDelegate.back();
+        if (window.navigator.connection && window.navigator.connection.type !== Connection.NONE) {
+            $ionicNavBarDelegate.back();
+        }
     }
     
     $scope.partekatuTwitter = function(twitter_esaldia, urla) {
@@ -225,7 +227,7 @@ angular.module('argia-multimedia-app.controllers', [])
         // Bigarren bueltarako prest egoten da eta orduan bai sartzen da hemen.
         if (window.navigator.connection && window.navigator.connection.type === Connection.NONE) {
                 
-                console.log("Konexiorik ez dago!!!");
+                console.log("Nabarmenduak zerrenda - Konexiorik ez dago!!!");
                 
                 window.location.href = "#/konexiorik-gabe";
                 
@@ -378,7 +380,21 @@ angular.module('argia-multimedia-app.controllers', [])
     // Nabarmenduak factory-an gorde hautatutako multimedia elementuaren id-a.
     Nabarmenduak.ezarriIdElementua($stateParams.multimediaId);
     
-    $scope.eskuratuDatuak($stateParams.multimediaId);
+    // Hau deitzen den lehen aldian window.navigator.connection undefined da. Network plugina oraindik kargatu ez duelako?
+    // Bigarren bueltarako prest egoten da eta orduan bai sartzen da hemen.
+    if (window.navigator.connection && window.navigator.connection.type === Connection.NONE) {
+        
+        console.log("Nabarmenduak xehetasunak - Konexiorik ez dago!!!");
+        
+        window.location.href = "#/konexiorik-gabe";
+        
+    } else {
+        
+        console.log("Nabarmenduak xehetasunak - else-ra sartu da");
+        
+        $scope.eskuratuDatuak($stateParams.multimediaId);
+        
+    }
     
 }])
 
