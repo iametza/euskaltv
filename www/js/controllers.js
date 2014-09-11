@@ -12,9 +12,7 @@ angular.module('argia-multimedia-app.controllers', [])
     }
     
     $scope.atzera = function() {
-        if (window.navigator.connection && window.navigator.connection.type !== Connection.NONE) {
-            $ionicNavBarDelegate.back();
-        }
+        $ionicNavBarDelegate.back();
     }
     
     $scope.partekatuTwitter = function(twitter_esaldia, urla) {
