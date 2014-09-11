@@ -480,7 +480,19 @@ angular.module('argia-multimedia-app.controllers', [])
         }
     }
     
-    $scope.eskuratuDatuak();
+    if (window.navigator.connection && window.navigator.connection.type === Connection.NONE) {
+        
+        console.log("Zure erara motak - Konexiorik ez dago!!!");
+        
+        window.location.href = "#/konexiorik-gabe";
+        
+    } else {
+        
+        console.log("Zure erara motak - else-ra sartu da");
+        
+        $scope.eskuratuDatuak();
+        
+    }
     
 }])
 
@@ -584,104 +596,113 @@ angular.module('argia-multimedia-app.controllers', [])
         
         console.log("kargatuGehiago");
         
-        // Erabiltzaileak bideoaren gehienezko iraupena aldatu badu.
-        if (ZureErara.minutuak_aldatu_dira) {
+        if (window.navigator.connection && window.navigator.connection.type === Connection.NONE) {
+                
+                console.log("Nabarmenduak zerrenda - Konexiorik ez dago!!!");
+                
+                window.location.href = "#/konexiorik-gabe";
+                
+        } else {
             
-            // Zure erararen zerrendak garbitu behar dira.
-            Zerbitzaria.garbituZureEraraZerrendak();
-            
-            // Berriz ere false jarri.
-            ZureErara.minutuak_aldatu_dira = false;
-            
-        }
-        
-        if ($scope.active == 'alfabetikoki') {
-            
-            if (!$scope.gehiago_kargatzen.alfabetikoki // Ez bagara dagoeneko gehiago kargatzen ari eta...
-                && (Zerbitzaria.zure_erara.alfabetikoki.length === 0                                // Ikusienen zerrenda hutsik badago edo...
-                    || Zerbitzaria.zure_erara.alfabetikoki.length === $scope.offsets.alfabetikoki)) {  // Hutsik ez dagoen kasuan ere gehiago kargatzeko da baldintza hau.
+            // Erabiltzaileak bideoaren gehienezko iraupena aldatu badu.
+            if (ZureErara.minutuak_aldatu_dira) {
                 
-                console.log("bai");
+                // Zure erararen zerrendak garbitu behar dira.
+                Zerbitzaria.garbituZureEraraZerrendak();
                 
-                // Zerbitzaritik elementu berriak kargatzen ari garela adierazi.
-                $scope.gehiago_kargatzen.alfabetikoki = true;
-                
-                // Zerbitzaritik elementu gehiago eskuratu.
-                var promise = Zerbitzaria.eskuratuZerrenda("alfabetikoki", ZureErara.eskuratuMota(), $scope.offsets.alfabetikoki, $scope.limits.alfabetikoki, $scope.segundoak, $scope.bilaketa.testua);
-                
-                promise.then(function() {
-                    
-                    // Zerrendaren luzera ez bada aldatu, elementu berririk ez dagoela esan nahi du.
-                    if ($scope.zure_erara_zerrenda.length === Zerbitzaria.zure_erara.alfabetikoki.length) {
-                        
-                        $scope.elementu_gehiago_daude = false;
-                        
-                    } else {
-                        
-                        $scope.elementu_gehiago_daude = true;
-                        
-                    }
-                    
-                    // Eguneratutako elementuen zerrenda gorde.
-                    $scope.zure_erara_zerrenda = Zerbitzaria.zure_erara.alfabetikoki;
-                    
-                    // Ikusienak atalaren offseta eguneratu kargatu berri ditugun elementu kopuruarekin.
-                    $scope.offsets.alfabetikoki += $scope.limits.alfabetikoki;
-                    
-                    // Zerbitzaritik elementu berriak kargatzen bukatu dugula adierazi.
-                    $scope.gehiago_kargatzen.alfabetikoki = false;
-                    
-                });
-                
-            } else {
-                
-                console.log("ez");
-                $scope.zure_erara_zerrenda = Zerbitzaria.zure_erara.alfabetikoki;
+                // Berriz ere false jarri.
+                ZureErara.minutuak_aldatu_dira = false;
                 
             }
             
-        } else {
-            
-            if (!$scope.gehiago_kargatzen.azkenak   // Ez bagara dagoeneko gehiago kargatzen ari eta...
-                && (Zerbitzaria.zure_erara.azkenak.length === 0                              // Ikusienen zerrenda hutsik badago edo...
-                    || Zerbitzaria.zure_erara.azkenak.length === $scope.offsets.azkenak)) {  // Hutsik ez dagoen kasuan ere gehiago kargatzeko da baldintza hau.
-            
-                console.log("bai");
+            if ($scope.active == 'alfabetikoki') {
                 
-                // Zerbitzaritik elementu berriak kargatzen ari garela adierazi.
-                $scope.gehiago_kargatzen.azkenak = true;
-                
-                // Zerbitzaritik elementu gehiago eskuratu.
-                var promise = Zerbitzaria.eskuratuZerrenda("azkenak", ZureErara.eskuratuMota(), $scope.offsets.azkenak, $scope.limits.azkenak, $scope.segundoak, $scope.bilaketa.testua);
-                
-                promise.then(function() {
+                if (!$scope.gehiago_kargatzen.alfabetikoki // Ez bagara dagoeneko gehiago kargatzen ari eta...
+                    && (Zerbitzaria.zure_erara.alfabetikoki.length === 0                                // Ikusienen zerrenda hutsik badago edo...
+                        || Zerbitzaria.zure_erara.alfabetikoki.length === $scope.offsets.alfabetikoki)) {  // Hutsik ez dagoen kasuan ere gehiago kargatzeko da baldintza hau.
                     
-                    // Zerrendaren luzera ez bada aldatu, elementu berririk ez dagoela esan nahi du.
-                    if ($scope.zure_erara_zerrenda.length === Zerbitzaria.zure_erara.azkenak.length) {
-                        
-                        $scope.elementu_gehiago_daude = false;
-                        
-                    } else {
-                        
-                        $scope.elementu_gehiago_daude = true;
-                        
-                    }
+                    console.log("bai");
                     
-                    // Eguneratutako elementuen zerrenda gorde.
-                    $scope.zure_erara_zerrenda = Zerbitzaria.zure_erara.azkenak;
+                    // Zerbitzaritik elementu berriak kargatzen ari garela adierazi.
+                    $scope.gehiago_kargatzen.alfabetikoki = true;
                     
-                    // Azkenak atalaren offseta eguneratu kargatu berri ditugun elementu kopuruarekin.
-                    $scope.offsets.azkenak += $scope.limits.azkenak;
+                    // Zerbitzaritik elementu gehiago eskuratu.
+                    var promise = Zerbitzaria.eskuratuZerrenda("alfabetikoki", ZureErara.eskuratuMota(), $scope.offsets.alfabetikoki, $scope.limits.alfabetikoki, $scope.segundoak, $scope.bilaketa.testua);
                     
-                    // Zerbitzaritik elementu berriak kargatzen bukatu dugula adierazi.
-                    $scope.gehiago_kargatzen.azkenak = false;
-                });
+                    promise.then(function() {
+                        
+                        // Zerrendaren luzera ez bada aldatu, elementu berririk ez dagoela esan nahi du.
+                        if ($scope.zure_erara_zerrenda.length === Zerbitzaria.zure_erara.alfabetikoki.length) {
+                            
+                            $scope.elementu_gehiago_daude = false;
+                            
+                        } else {
+                            
+                            $scope.elementu_gehiago_daude = true;
+                            
+                        }
+                        
+                        // Eguneratutako elementuen zerrenda gorde.
+                        $scope.zure_erara_zerrenda = Zerbitzaria.zure_erara.alfabetikoki;
+                        
+                        // Ikusienak atalaren offseta eguneratu kargatu berri ditugun elementu kopuruarekin.
+                        $scope.offsets.alfabetikoki += $scope.limits.alfabetikoki;
+                        
+                        // Zerbitzaritik elementu berriak kargatzen bukatu dugula adierazi.
+                        $scope.gehiago_kargatzen.alfabetikoki = false;
+                        
+                    });
+                    
+                } else {
+                    
+                    console.log("ez");
+                    $scope.zure_erara_zerrenda = Zerbitzaria.zure_erara.alfabetikoki;
+                    
+                }
                 
             } else {
                 
-                console.log("ez");
-                $scope.zure_erara_zerrenda = Zerbitzaria.zure_erara.azkenak;
+                if (!$scope.gehiago_kargatzen.azkenak   // Ez bagara dagoeneko gehiago kargatzen ari eta...
+                    && (Zerbitzaria.zure_erara.azkenak.length === 0                              // Ikusienen zerrenda hutsik badago edo...
+                        || Zerbitzaria.zure_erara.azkenak.length === $scope.offsets.azkenak)) {  // Hutsik ez dagoen kasuan ere gehiago kargatzeko da baldintza hau.
                 
+                    console.log("bai");
+                    
+                    // Zerbitzaritik elementu berriak kargatzen ari garela adierazi.
+                    $scope.gehiago_kargatzen.azkenak = true;
+                    
+                    // Zerbitzaritik elementu gehiago eskuratu.
+                    var promise = Zerbitzaria.eskuratuZerrenda("azkenak", ZureErara.eskuratuMota(), $scope.offsets.azkenak, $scope.limits.azkenak, $scope.segundoak, $scope.bilaketa.testua);
+                    
+                    promise.then(function() {
+                        
+                        // Zerrendaren luzera ez bada aldatu, elementu berririk ez dagoela esan nahi du.
+                        if ($scope.zure_erara_zerrenda.length === Zerbitzaria.zure_erara.azkenak.length) {
+                            
+                            $scope.elementu_gehiago_daude = false;
+                            
+                        } else {
+                            
+                            $scope.elementu_gehiago_daude = true;
+                            
+                        }
+                        
+                        // Eguneratutako elementuen zerrenda gorde.
+                        $scope.zure_erara_zerrenda = Zerbitzaria.zure_erara.azkenak;
+                        
+                        // Azkenak atalaren offseta eguneratu kargatu berri ditugun elementu kopuruarekin.
+                        $scope.offsets.azkenak += $scope.limits.azkenak;
+                        
+                        // Zerbitzaritik elementu berriak kargatzen bukatu dugula adierazi.
+                        $scope.gehiago_kargatzen.azkenak = false;
+                    });
+                    
+                } else {
+                    
+                    console.log("ez");
+                    $scope.zure_erara_zerrenda = Zerbitzaria.zure_erara.azkenak;
+                    
+                }
             }
         }
         
@@ -741,8 +762,21 @@ angular.module('argia-multimedia-app.controllers', [])
     // ZureErara factory-an gorde hautatutako multimedia elementuaren id-a.
     ZureErara.ezarriIdMultimedia($stateParams.multimediaId);
     
-    // Hautatutako multimedia elementuaren datuak eskuratu.
-    $scope.eskuratuDatuak($stateParams.multimediaId);
+    if (window.navigator.connection && window.navigator.connection.type === Connection.NONE) {
+        
+        console.log("Zure erara xehetasunak - Konexiorik ez dago!!!");
+        
+        window.location.href = "#/konexiorik-gabe";
+        
+    } else {
+        
+        console.log("Zure erara xehetasunak - else-ra sartu da");
+        
+        // Hautatutako multimedia elementuaren datuak eskuratu.
+        $scope.eskuratuDatuak($stateParams.multimediaId);
+        
+    }
+    
     
 }])
 

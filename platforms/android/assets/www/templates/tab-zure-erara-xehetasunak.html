@@ -5,6 +5,9 @@
     The Zerbitzaria service returns an array of multimedia data
 -->
 <ion-view id="zure-erara-xehetasunak-goiko-izenburua" title="{{multimedia.izenburua}}">
+    <ion-nav-buttons side="left">
+		<button class="button-icon icon ion-chevron-left button back-button" ng-click="atzera()"> Atzera </button>
+	</ion-nav-buttons>
     <ion-content has-header="true" padding="true">
         <div id="zure-erara-xehetasunak-edukia">
             <div class="zure-erara-xehetasunak-embed-div" ng-repeat='element in multimedia.embed'>
