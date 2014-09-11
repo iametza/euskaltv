@@ -73,7 +73,7 @@ var app = angular.module('argia-multimedia-app', [
         .state('konexiorik-gabe',  {
             url: '/konexiorik-gabe',
             templateUrl: 'templates/konexiorik-gabe.html',
-            controller: ''
+            controller: 'KonexiorikGabeCtrl'
         })
         
         .state('honi-buruz', {
