@@ -958,4 +958,17 @@ angular.module('argia-multimedia-app.controllers', [])
         
     }
     
+}])
+
+.controller('KonexiorikGabeCtrl', ['$scope', function($scope) {
+   
+    $scope.saiatuBerriz = function() {
+        
+        if (window.navigator.connection && window.navigator.connection.type !== Connection.NONE) {
+            
+            window.history.back();
+            
+        }
+        
+    }
 }]);
