@@ -25,7 +25,15 @@
             <button class="button button-positive button-small" ng-click="garbitu()">Garbitu</button>
         </div>
         
-        <div ng-hide="zure_erara_zerrenda.length">Ez dago elementurik.</div>
+        <div ng-if="gehiago_kargatzen.azkenak || gehiago_kargatzen.alfabetikoki" class="zerrenda-kargatzen">
+            <i class="icon ion-loading-a"></i>
+            Kargatzen...
+        </div>
+        
+        <div ng-if="!zure_erara_zerrenda.length && !(gehiago_kargatzen.azkenak || gehiago_kargatzen.alfabetikoki)" class="zerrenda-emaitzarik-ez">
+            <i class="icon ion-sad"></i>
+            Ez dago bat datorren elementurik
+        </div>
         
         <ion-list>
             <ion-item class="zure-erara-zerrenda-elementua item item-thumbnail-left" ng-repeat="elementua in zure_erara_zerrenda" type="item-text-wrap" href="#/tab/zure-erara-xehetasunak/{{elementua.id}}">
