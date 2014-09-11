@@ -16,8 +16,8 @@ angular.module('argia-multimedia-app.directives', [])
                 step: 1,                // default: 1
                 fgColor: "#e6332a",     // Arkuaren kolorea.
                 inputColor: "#e6332a",  // Erdiko zenbakiaren kolorea
-                width: 300,             // Zabalera eta altuera dinamikoki ezartzea hobe litzateke ala ez? Pantaila-tamainaren arabera?
-                height: 300,
+                width: 200,  // Zabalera eta altuera dinamikoki ezartzea hobe litzateke ala ez? Pantaila-tamainaren arabera?
+                height: 200,
                 change: function(value) {
                     
                     // Hau eta beheko ngModel zergatik erabiltzen ditugun ulertzeko begiratu hau: https://groups.google.com/forum/#!msg/angular/gWqeEGK1cds/ArQAVaFmcn0J
