@@ -3,8 +3,16 @@
 </ion-nav-buttons>
 
 <ion-view title="Igo zurea" ng-swipe-left="joanURLra('/tab/nabarmenduak-zerrenda')">
+	
     <ion-content class="has-header">
-		<form name="formularioa" ng-submit="bidali()" novalidate>
+		
+		<div class="goiko-azalpena">
+            <h2 class="goiko-testua">Bidali zure proposamena</h2>
+            <p class="goiko-bigarren-testua">Idatzi bideoaren datuak eta sakatu Bidali botoia</p>
+        </div>
+		
+		<form id="igo-zurea-formularioa" ng-submit="bidali()" novalidate>
+			
 			<div class="list">
 				<div id="igo-zurea-arrakasta-mezua" ng-show="arrakastaBidaltzean">{{arrakastaBidaltzeanTestua}}</div>
 				<div id="igo-zurea-errore-mezua" ng-show="erroreaBidaltzean">{{erroreaBidaltzeanTestua}}</div>
@@ -25,6 +33,9 @@
 			<div class="padding">
 				<button type="submit" class="button button-block button-positive" ng-disabled="formularioa.$invalid">Bidali</button>
 			</div>
+			
 		</form>
+		
     </ion-content>
+	
 </ion-view>

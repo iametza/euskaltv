@@ -16,6 +16,11 @@ ion-view .goiko-bigarren-testua {
     color: #666;
 }
 
+/****** Igo zurea bistaren estiloa ******/
+#igo-zurea-formularioa {
+    margin-top: 30px;
+}
+
 /****** Nabarmenduak bistaren estiloa ******/
 #nabarmenduak-iragazi-input-div {
     margin-bottom: 15px;
