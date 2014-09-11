@@ -73,13 +73,13 @@ var app = angular.module('argia-multimedia-app', [
         .state('konexiorik-gabe',  {
             url: '/konexiorik-gabe',
             templateUrl: 'templates/konexiorik-gabe.html',
-            controller: 'KonexiorikGabeCtrl'
+            controller: ''
         })
         
         .state('honi-buruz', {
             url: '/honi-buruz',
             templateUrl: 'templates/honi-buruz.html',
-            controller: 'HoniBuruzCtrl'
+            controller: ''
         })
         
         // setup an abstract state for the tabs directive

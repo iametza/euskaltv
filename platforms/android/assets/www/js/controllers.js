@@ -1,6 +1,6 @@
 angular.module('argia-multimedia-app.controllers', [])
 
-.controller('OrokorraCtrl', ['$scope', '$location', '$sce', '$ionicSideMenuDelegate', function($scope, $location, $sce, $ionicSideMenuDelegate) {
+.controller('OrokorraCtrl', ['$scope', '$location', '$sce', '$ionicSideMenuDelegate', '$ionicNavBarDelegate', function($scope, $location, $sce, $ionicSideMenuDelegate, $ionicNavBarDelegate) {
     
     $scope.txandakatuAlboMenua = function() {
         $ionicSideMenuDelegate.toggleLeft();
@@ -9,6 +9,10 @@ angular.module('argia-multimedia-app.controllers', [])
     $scope.joanURLra = function(urla) {
         console.log(urla);
         $location.url(urla);
+    }
+    
+    $scope.atzera = function() {
+        $ionicNavBarDelegate.back();
     }
     
     $scope.partekatuTwitter = function(twitter_esaldia, urla) {
@@ -938,16 +942,4 @@ angular.module('argia-multimedia-app.controllers', [])
         
     }
     
-}])
-
-.controller('HoniBuruzCtrl', ['$scope', '$ionicNavBarDelegate', function($scope, $ionicNavBarDelegate) {
-    $scope.atzera = function() {
-        $ionicNavBarDelegate.back();
-    }
-}])
-
-.controller('KonexiorikGabeCtrl', ['$scope', '$ionicNavBarDelegate', function($scope, $ionicNavBarDelegate) {
-    $scope.atzera = function() {
-        $ionicNavBarDelegate.back();
-    }
-}])
+}]);
