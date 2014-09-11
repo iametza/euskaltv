@@ -106,8 +106,11 @@ ion-view .goiko-bigarren-testua {
 
 /****** Zure erara denbora bistaren estiloa ******/
 #zure-erara-denbora-knob-div {
+    margin-left: auto;
+    margin-right: auto;
     margin-top: 30px;
     text-align: center; /* Knob-en canvas-a zentratzeko. */
+    width: 75%;
 }
 
 #zure-erara-denbora-aurrera-botoia {
