@@ -109,14 +109,7 @@ angular.module('argia-multimedia-app.controllers', [])
     });
 }])
 
-.controller('NabarmenduakZerrendaCtrl', ['$scope', '$ionicScrollDelegate', '$ionicPopover', '$cordovaNetwork', 'Nabarmenduak', 'Zerbitzaria', function($scope, $ionicScrollDelegate, $ionicPopover, $cordovaNetwork, Nabarmenduak, Zerbitzaria) {
-    
-    $scope.konexiorikBadago = function() {
-        
-        alert($cordovaNetwork.isOnline());
-        return $cordovaNetwork.isOnline();
-        
-    }
+.controller('NabarmenduakZerrendaCtrl', ['$scope', '$ionicScrollDelegate', '$ionicPopover', '$location', 'Nabarmenduak', 'Zerbitzaria', function($scope, $ionicScrollDelegate, $ionicPopover, $location, Nabarmenduak, Zerbitzaria) {
     
     $scope.active = Nabarmenduak.eskuratuFitxaAktiboa();
     
@@ -224,96 +217,113 @@ angular.module('argia-multimedia-app.controllers', [])
         
         console.log("kargatuGehiago");
         
-        if ($scope.active == 'alfabetikoki') {
+        // Hau deitzen den lehen aldian window.navigator.connection undefined da. Network plugina oraindik kargatu ez duelako?
+        // Bigarren bueltarako prest egoten da eta orduan bai sartzen da hemen.
+        if (window.navigator.connection) {
             
-            if (!$scope.gehiago_kargatzen.alfabetikoki && (Zerbitzaria.alfabetikoki.length === 0 || Zerbitzaria.alfabetikoki.length === $scope.offsets.alfabetikoki)) {
+            if (window.navigator.connection.type === Connection.NONE) {
                 
-                console.log("bai");
+                console.log("Konexiorik ez dago!!!");
                 
-                // Zerbitzaritik elementu berriak kargatzen ari garela adierazi.
-                $scope.gehiago_kargatzen.alfabetikoki = true;
-                
-                // Zerbitzaritik elementu gehiago eskuratu.
-                var promise = Zerbitzaria.eskuratuZerrenda("alfabetikoki", 0, $scope.offsets.alfabetikoki, $scope.limits.alfabetikoki, null, $scope.bilaketa.testua);
-                
-                promise.then(function() {
-                    
-                    // Zerrendaren luzera ez bada aldatu, elementu berririk ez dagoela esan nahi du.
-                    if ($scope.multimediaZerrenda.length === Zerbitzaria.alfabetikoki.length) {
-                        
-                        $scope.elementu_gehiago_daude = false;
-                        
-                    } else {
-                        
-                        $scope.elementu_gehiago_daude = true;
-                        
-                    }
-                    
-                    // Eguneratutako elementuen zerrenda gorde.
-                    $scope.multimediaZerrenda = Zerbitzaria.alfabetikoki;
-                    
-                    console.log($scope.multimediaZerrenda);
-                    
-                    // Ikusienak atalaren offseta eguneratu kargatu berri ditugun elementu kopuruarekin.
-                    $scope.offsets.alfabetikoki += $scope.limits.alfabetikoki;
-                    
-                    // Zerbitzaritik elementu berriak kargatzen bukatu dugula adierazi.
-                    $scope.gehiago_kargatzen.alfabetikoki = false;
-                    
-                });
+                window.location.href = "#/konexiorik-gabe";
                 
             } else {
                 
-                console.log("ez");
-                $scope.multimediaZerrenda = Zerbitzaria.alfabetikoki;
+                if ($scope.active == 'alfabetikoki') {
+                    
+                    if (!$scope.gehiago_kargatzen.alfabetikoki && (Zerbitzaria.alfabetikoki.length === 0 || Zerbitzaria.alfabetikoki.length === $scope.offsets.alfabetikoki)) {
+                        
+                        console.log("bai");
+                        
+                        // Zerbitzaritik elementu berriak kargatzen ari garela adierazi.
+                        $scope.gehiago_kargatzen.alfabetikoki = true;
+                        
+                        // Zerbitzaritik elementu gehiago eskuratu.
+                        var promise = Zerbitzaria.eskuratuZerrenda("alfabetikoki", 0, $scope.offsets.alfabetikoki, $scope.limits.alfabetikoki, null, $scope.bilaketa.testua);
+                        
+                        promise.then(function() {
+                            
+                            // Zerrendaren luzera ez bada aldatu, elementu berririk ez dagoela esan nahi du.
+                            if ($scope.multimediaZerrenda.length === Zerbitzaria.alfabetikoki.length) {
+                                
+                                $scope.elementu_gehiago_daude = false;
+                                
+                            } else {
+                                
+                                $scope.elementu_gehiago_daude = true;
+                                
+                            }
+                            
+                            // Eguneratutako elementuen zerrenda gorde.
+                            $scope.multimediaZerrenda = Zerbitzaria.alfabetikoki;
+                            
+                            console.log($scope.multimediaZerrenda);
+                            
+                            // Ikusienak atalaren offseta eguneratu kargatu berri ditugun elementu kopuruarekin.
+                            $scope.offsets.alfabetikoki += $scope.limits.alfabetikoki;
+                            
+                            // Zerbitzaritik elementu berriak kargatzen bukatu dugula adierazi.
+                            $scope.gehiago_kargatzen.alfabetikoki = false;
+                            
+                        });
+                        
+                    } else {
+                        
+                        console.log("ez");
+                        $scope.multimediaZerrenda = Zerbitzaria.alfabetikoki;
+                        
+                    }
+                    
+                } else {
+                    
+                    if (!$scope.gehiago_kargatzen.azkenak && (Zerbitzaria.azkenak.length === 0 || Zerbitzaria.azkenak.length === $scope.offsets.azkenak)) {
+                        
+                        console.log("bai");
+                        
+                        // Zerbitzaritik elementu berriak kargatzen ari garela adierazi.
+                        $scope.gehiago_kargatzen.azkenak = true;
+                        
+                        // Zerbitzaritik elementu gehiago eskuratu.
+                        var promise = Zerbitzaria.eskuratuZerrenda("azkenak", 0, $scope.offsets.azkenak, $scope.limits.azkenak, null, $scope.bilaketa.testua);
+                        
+                        promise.then(function() {
+                            
+                            // Zerrendaren luzera ez bada aldatu, elementu berririk ez dagoela esan nahi du.
+                            if ($scope.multimediaZerrenda.length === Zerbitzaria.azkenak.length) {
+                                
+                                $scope.elementu_gehiago_daude = false;
+                                
+                            } else {
+                                
+                                $scope.elementu_gehiago_daude = true;
+                                
+                            }
+                            
+                            // Eguneratutako elementuen zerrenda gorde.
+                            $scope.multimediaZerrenda = Zerbitzaria.azkenak;
+                            
+                            // Azkenak atalaren offseta eguneratu kargatu berri ditugun elementu kopuruarekin.
+                            $scope.offsets.azkenak += $scope.limits.azkenak;
+                            
+                            // Zerbitzaritik elementu berriak kargatzen bukatu dugula adierazi.
+                            $scope.gehiago_kargatzen.azkenak = false;
+                        });
+                        
+                    } else {
+                        
+                        console.log("ez");
+                        $scope.multimediaZerrenda = Zerbitzaria.azkenak;
+                        
+                    }
+                    
+                }
                 
             }
-            
-        } else {
-            
-            if (!$scope.gehiago_kargatzen.azkenak && (Zerbitzaria.azkenak.length === 0 || Zerbitzaria.azkenak.length === $scope.offsets.azkenak)) {
-                
-                console.log("bai");
-                
-                // Zerbitzaritik elementu berriak kargatzen ari garela adierazi.
-                $scope.gehiago_kargatzen.azkenak = true;
-                
-                // Zerbitzaritik elementu gehiago eskuratu.
-                var promise = Zerbitzaria.eskuratuZerrenda("azkenak", 0, $scope.offsets.azkenak, $scope.limits.azkenak, null, $scope.bilaketa.testua);
-                
-                promise.then(function() {
-                    
-                    // Zerrendaren luzera ez bada aldatu, elementu berririk ez dagoela esan nahi du.
-                    if ($scope.multimediaZerrenda.length === Zerbitzaria.azkenak.length) {
-                        
-                        $scope.elementu_gehiago_daude = false;
-                        
-                    } else {
-                        
-                        $scope.elementu_gehiago_daude = true;
-                        
-                    }
-                    
-                    // Eguneratutako elementuen zerrenda gorde.
-                    $scope.multimediaZerrenda = Zerbitzaria.azkenak;
-                    
-                    // Azkenak atalaren offseta eguneratu kargatu berri ditugun elementu kopuruarekin.
-                    $scope.offsets.azkenak += $scope.limits.azkenak;
-                    
-                    // Zerbitzaritik elementu berriak kargatzen bukatu dugula adierazi.
-                    $scope.gehiago_kargatzen.azkenak = false;
-                });
-                
-            } else {
-                
-                console.log("ez");
-                $scope.multimediaZerrenda = Zerbitzaria.azkenak;
-                
-            }    
             
         }
         
         $scope.$broadcast('scroll.infiniteScrollComplete');
+        
     }
 }])
 
