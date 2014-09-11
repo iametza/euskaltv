@@ -944,4 +944,10 @@ angular.module('argia-multimedia-app.controllers', [])
     $scope.atzera = function() {
         $ionicNavBarDelegate.back();
     }
-}]);
+}])
+
+.controller('KonexiorikGabeCtrl', ['$scope', '$ionicNavBarDelegate', function($scope, $ionicNavBarDelegate) {
+    $scope.atzera = function() {
+        $ionicNavBarDelegate.back();
+    }
+}])
