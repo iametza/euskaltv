@@ -4,17 +4,16 @@ input[type="text"][knob] {
     display: inline;
 }
 
-ion-view .goiko-testua {
+ion-view .goiko-azalpena {
     margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
     text-align: center;
+    width: 75%;    
 }
 
 ion-view .goiko-bigarren-testua {
     color: #666;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-    width: 75%;
 }
 
 /****** Nabarmenduak bistaren estiloa ******/

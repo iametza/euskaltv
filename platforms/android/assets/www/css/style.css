@@ -4,6 +4,18 @@ input[type="text"][knob] {
     display: inline;
 }
 
+ion-view .goiko-azalpena {
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    width: 75%;    
+}
+
+ion-view .goiko-bigarren-testua {
+    color: #666;
+}
+
 /****** Nabarmenduak bistaren estiloa ******/
 #nabarmenduak-iragazi-input-div {
     margin-bottom: 15px;
@@ -87,17 +99,7 @@ input[type="text"][knob] {
     height: 550px; /* PROBISIONALA! iframe-aren edukien altuerara egokitu behar luke */
 }
 
-/****** Zure erara bistaren estiloa ******/
-#zure-erara-denbora-goiko-testua {
-    margin-top: 30px;
-    text-align: center;
-}
-
-#zure-erara-denbora-bigarren-testua {
-    color: #666;
-    text-align: center;
-}
-
+/****** Zure erara denbora bistaren estiloa ******/
 #zure-erara-denbora-knob-div {
     margin-top: 30px;
     text-align: center; /* Knob-en canvas-a zentratzeko. */
@@ -109,11 +111,11 @@ input[type="text"][knob] {
 }
 
 /****** Zure erara motak bistaren estiloa ******/
-#zure-erara-motak-goiko-testua {
-    text-align: center;
+#zure-erara-motak-zerrenda .list {
+    margin-top: 30px;
 }
 
-#zure-erara-motak-zerrenda div:first-child {
+#zure-erara-motak-zerrenda .list .zure-erara-motak-elementua:first-child {
     /* Zerrendako lehen elementuari goiko ertza kendu. */
     border-top-width: 0;
 }
@@ -211,11 +213,11 @@ input[type="text"][knob] {
 }
 
 /****** Alerta motak bistaren estiloa ******/
-#konfiguratu-alertak-motak-goiko-testua {
-    text-align: center;
+#konfiguratu-alertak-motak-zerrenda .list {
+    margin-top: 30px;
 }
 
-#konfiguratu-alertak-motak-zerrenda div:first-child {
+#konfiguratu-alertak-motak-zerrenda .list .konfiguratu-alertak-motak-elementua:first-child {
     /* Zerrendako lehen elementuari goiko ertza kendu. */
     border-top-width: 0;
 }

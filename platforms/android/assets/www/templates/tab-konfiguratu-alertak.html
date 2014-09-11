@@ -3,9 +3,13 @@
 </ion-nav-buttons>
 
 <ion-view title="Konfiguratu alertak" ng-swipe-right="joanURLra('/tab/zure-erara-denbora')">
+	
     <ion-content class="has-header">
 		
-		<h2 id="konfiguratu-alertak-motak-goiko-testua" class="padding">Hautatu mota...</h2>
+		<div class="goiko-azalpena">
+			<h2 class="goiko-testua" class="padding">Hautatu mota...</h2>
+			<p class="goiko-bigarren-testua">Hautatu ze motatako bideo berriak daudenean jaso nahi duzun alerta eta sakatu Gorde botoia</p>
+		</div>
 		
         <ion-list id="konfiguratu-alertak-motak-zerrenda">
 			<ion-checkbox ng-repeat="mota in alerta_motak" ng-model="mota.hautatuta" ng-checked="mota.hautatuta" class="konfiguratu-alertak-motak-elementua">{{mota.izena}}</ion-toggle>
@@ -14,5 +18,7 @@
 		<div id="konfiguratu-alertak-motak-ados-botoia">
 			<button class="button button-positive" ng-click="bidali()">Gorde</button>
 		</div>
-    </ion-content>
+		
+	</ion-content>
+	
 </ion-view>

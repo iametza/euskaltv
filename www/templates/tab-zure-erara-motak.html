@@ -6,8 +6,10 @@
     
     <ion-content class="has-header">
         
-        <h2 class="goiko-testua">Hautatu mota...</h2>
-        <p class="goiko-bigarren-testua">Hautatu ze motatako bideoa ikusi nahi duzun</p>
+        <div class="goiko-azalpena">
+            <h2 class="goiko-testua">Hautatu mota...</h2>
+            <p class="goiko-bigarren-testua">Hautatu ze motatako bideoa ikusi nahi duzun</p>
+        </div>
         
         <ion-list id="zure-erara-motak-zerrenda">
             <ion-item class="item zure-erara-motak-elementua" ng-repeat="mota in elementu_motak" ng-click="gordeMota(mota.id); joanURLra('/tab/zure-erara-zerrenda');" type="item-text-wrap">
