@@ -1,13 +1,20 @@
 <ion-view title="Zure erara">
+    
     <ion-nav-buttons side="left">
 		<button class="button-icon icon ion-chevron-left button back-button" ng-click="atzera()"> Atzera </button>
 	</ion-nav-buttons>
+    
     <ion-content class="has-header">
-        <h2 id="zure-erara-motak-goiko-testua" class="padding">Hautatu mota...</h2>
+        
+        <h2 class="goiko-testua">Hautatu mota...</h2>
+        <p class="goiko-bigarren-testua">Hautatu ze motatako bideoa ikusi nahi duzun</p>
+        
         <ion-list id="zure-erara-motak-zerrenda">
             <ion-item class="item zure-erara-motak-elementua" ng-repeat="mota in elementu_motak" ng-click="gordeMota(mota.id); joanURLra('/tab/zure-erara-zerrenda');" type="item-text-wrap">
                 <h2 class="zure-erara-motak-elementua-izenburua">{{mota.izena}}</h2>
             </ion-item>
         </ion-list>
+        
     </ion-content>
+    
 </ion-view>
