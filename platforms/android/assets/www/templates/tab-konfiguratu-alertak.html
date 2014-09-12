@@ -11,6 +11,9 @@
 			<p class="goiko-bigarren-testua">Hautatu ze motatako bideo berriak daudenean jaso nahi duzun alerta eta sakatu Gorde botoia</p>
 		</div>
 		
+		<div id="konfiguratu-alertak-arrakasta-mezua" ng-show="arrakastaBidaltzean">{{arrakastaBidaltzeanTestua}}</div>
+		<div id="konfiguratu-alertak-errore-mezua" ng-show="erroreaBidaltzean">{{erroreaBidaltzeanTestua}}</div>
+		
         <ion-list id="konfiguratu-alertak-motak-zerrenda">
 			<ion-checkbox ng-repeat="mota in alerta_motak" ng-model="mota.hautatuta" ng-checked="mota.hautatuta" class="konfiguratu-alertak-motak-elementua">{{mota.izena}}</ion-toggle>
         </ion-list>

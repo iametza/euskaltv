@@ -343,7 +343,7 @@ angular.module('argia-multimedia-app.controllers', [])
             
             $scope.urla = Zerbitzaria.multimedia_url + $scope.multimedia.mota + "/" + $scope.multimedia.nice_name;
             
-            $scope.multimedia.disqus_url = $sce.trustAsResourceUrl("http://euskal-tv-zerbitzaria.ametza.com/disqus?shortname=argia2&url=" + $scope.multimedia.argia_multimedia_url + "&title=Iruzkinak");
+            $scope.multimedia.disqus_url = $sce.trustAsResourceUrl(Zerbitzaria.api_url + "disqus?shortname=argia2&url=" + $scope.multimedia.argia_multimedia_url + "&title=Iruzkinak");
             
             for (var i = 0; i < $scope.multimedia.embed.length; i++) {
                 
@@ -829,6 +829,12 @@ angular.module('argia-multimedia-app.controllers', [])
     
     $scope.alerta_motak = [];
     
+    $scope.arrakastaBidaltzean = false;
+    $scope.arrakastaBidaltzeanTestua = "Zure proposamena behar bezala bidali da!";
+    
+    $scope.erroreaBidaltzean = false;
+    $scope.erroreaBidaltzeanTestua = "Errore bat gertatu da zure proposamena bidaltzean.";
+    
     $scope.bidali = function() {
         
         console.log("bidali");
@@ -872,13 +878,27 @@ angular.module('argia-multimedia-app.controllers', [])
                     localStorage.setItem('regid', result.id);
                     localStorage.setItem('gailua', result.device);
                     
-                    alert("OK!");
+                    // Dena ondo joan dela adierazten duen mezua bistaratu (ngShow).
+                    $scope.arrakastaBidaltzean = true;
+                    
+                    // Aurretik egon zitekeen errore mezua ezkutatu (ngShow).
+                    $scope.erroreaBidaltzean = false;
                     
                 })
                 .fail(function(jqXHR, textStatus, errorThrown) {
+                    
                     console.log(textStatus);
                     console.log(errorThrown);
-                    alert("Errorea!");
+                    
+                    // Arazoak egon direla adierazten duen mezua bistaratu (ngShow).
+                    $scope.erroreaBidaltzean = true;
+                    
+                    // Aurretik egon zitekeen arrakasta mezua ezkutatu (ngShow).
+                    $scope.arrakastaBidaltzean = false;
+                    
+                    // Zerbitzaritik jasotako errore mezua bistaratu.
+                    $scope.erroreaBidaltzeanTestua = erantzuna.data.mezua;
+                    
                 });
                 
             }
