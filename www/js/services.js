@@ -91,7 +91,7 @@ angular.module('argia-multimedia-app.services', [])
         var d = $q.defer();
         
         $http.get(factory.api_url + 'elementuak/motak/').success(function(data, status, headers) {
-            factory.elementu_motak = data;
+            factory.elementu_motak = data.elementuak;
             d.resolve();
         }).error(function(data, status, headers) {            
             console.log(data);
