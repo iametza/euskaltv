@@ -934,7 +934,7 @@ angular.module('argia-multimedia-app.controllers', [])
     
 }])
 
-.controller('IgoZureaCtrl', ['$scope', '$http', '$ionicNavBarDelegate', 'Zerbitzaria', function($scope, $http, $ionicNavBarDelegate, Zerbitzaria) {
+.controller('IgoZureaCtrl', ['$scope', '$http', '$ionicNavBarDelegate', '$ionicPopup', 'Zerbitzaria', function($scope, $http, $ionicNavBarDelegate, $ionicPopup, Zerbitzaria) {
     
     $scope.formData = {};
     $scope.formData.izenburua = "";
@@ -942,10 +942,33 @@ angular.module('argia-multimedia-app.controllers', [])
     $scope.formData.txertatzeko = "";
     
     $scope.arrakastaBidaltzean = false;
-    $scope.arrakastaBidaltzeanTestua = "Zure proposamena behar bezala bidali da!";
+    $scope.erroreaBidaltzeanTestua = "";
     
-    $scope.erroreaBidaltzean = false;
-    $scope.erroreaBidaltzeanTestua = "Errore bat gertatu da zure proposamena bidaltzean.";
+    $scope.showAlert = function() {
+        
+        var mezua = "";
+        
+        if ($scope.arrakastaBidaltzean) {
+            
+            mezua = "Zure proposamena behar bezala bidali da!";
+            
+        } else {
+            
+            mezua = "Errore bat gertatu da zure proposamena bidaltzean: " + $scope.erroreaBidaltzeanTestua;
+            
+        }
+        
+        var alertPopup = $ionicPopup.alert({
+            title: 'Igo zurea',
+            template: mezua
+        });
+        
+        alertPopup.then(function(res) {
+            
+            window.location.href = "#/tab/nabarmenduak-zerrenda";
+            
+        });
+    };
     
     $scope.bidali = function() {
         
@@ -964,16 +987,10 @@ angular.module('argia-multimedia-app.controllers', [])
             
             if (data.arrakasta) {
                 
-                // Dena ondo joan dela adierazten duen mezua bistaratu (ngShow).
+                // Dena ondo joan dela adierazten duen mezua bistaratu.
                 $scope.arrakastaBidaltzean = true;
                 
-                // Aurretik egon zitekeen errore mezua ezkutatu (ngShow).
-                $scope.erroreaBidaltzean = false;
-                
             } else {
-                
-                // Arazoak egon direla adierazten duen mezua bistaratu (ngShow).
-                $scope.erroreaBidaltzean = true;
                 
                 // Aurretik egon zitekeen arrakasta mezua ezkutatu (ngShow).
                 $scope.arrakastaBidaltzean = false;
@@ -988,12 +1005,11 @@ angular.module('argia-multimedia-app.controllers', [])
             console.log(headers);
             console.log(config);
             
+            $scope.showAlert();
+            
         })
         
-        .error(function(data, status, headers, config) {            
-            
-            // Arazoak egon direla adierazten duen mezua bistaratu (ngShow).
-            $scope.erroreaBidaltzean = true;
+        .error(function(data, status, headers, config) {
             
             // Aurretik egon zitekeen arrakasta mezua ezkutatu (ngShow).
             $scope.arrakastaBidaltzean = false;
@@ -1005,6 +1021,8 @@ angular.module('argia-multimedia-app.controllers', [])
             console.log(status);
             console.log(headers);
             console.log(config);
+            
+            $scope.showAlert();
             
         });
         
