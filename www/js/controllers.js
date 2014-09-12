@@ -343,7 +343,7 @@ angular.module('argia-multimedia-app.controllers', [])
             
             $scope.urla = Zerbitzaria.multimedia_url + $scope.multimedia.mota + "/" + $scope.multimedia.nice_name;
             
-            $scope.multimedia.disqus_url = $sce.trustAsResourceUrl("http://euskal-tv-zerbitzaria.ametza.com/disqus?shortname=argia2&url=" + $scope.multimedia.argia_multimedia_url + "&title=Iruzkinak");
+            $scope.multimedia.disqus_url = $sce.trustAsResourceUrl(Zerbitzaria.api_url + "disqus?shortname=argia2&url=" + $scope.multimedia.argia_multimedia_url + "&title=Iruzkinak");
             
             for (var i = 0; i < $scope.multimedia.embed.length; i++) {
                 
