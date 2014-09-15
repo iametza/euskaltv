@@ -2,9 +2,9 @@
     <button class="button-icon icon ion-chevron-left button back-button" ng-click="atzera()"> Atzera </button>
 </ion-nav-buttons>
 
-<ion-nav-buttons side="right">
+<!-- <ion-nav-buttons side="right">
     <button class="button button-icon button-clear ion-search" ng-click=""></button>
-</ion-nav-buttons>
+</ion-nav-buttons> -->
 
 <ion-view title="Zure erara">
     <div class="bar bar-subheader">
@@ -30,7 +30,7 @@
             Kargatzen...
         </div>
         
-        <div ng-if="!zure_erara_zerrenda.length && !(gehiago_kargatzen.azkenak || gehiago_kargatzen.alfabetikoki)" class="zerrenda-emaitzarik-ez">
+        <div ng-if="zerrenda_hutsik_dago" class="zerrenda-emaitzarik-ez">
             <i class="icon ion-sad"></i>
             Ez dago bat datorren elementurik
         </div>

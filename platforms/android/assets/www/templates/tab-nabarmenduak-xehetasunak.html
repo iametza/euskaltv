@@ -9,6 +9,10 @@
 		<button class="button-icon icon ion-chevron-left button back-button" ng-click="atzera()"> Atzera </button>
 	</ion-nav-buttons>
     <ion-content has-header="true" padding="true">
+        <div ng-if="datuak_kargatzen" class="zerrenda-kargatzen">
+            <i class="icon ion-loading-a"></i>
+            Kargatzen...
+        </div>
         <div id="xehetasunak-edukia">
             <div class="xehetasunak-embed-div" ng-repeat='element in multimedia.embed'>
                 <!-- <div class="xehetasunak-embed-bideoa">

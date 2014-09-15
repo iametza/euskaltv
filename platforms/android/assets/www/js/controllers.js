@@ -96,6 +96,18 @@ angular.module('argia-multimedia-app.controllers', [])
     
     $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
         
+        if (fromState.name === "tab.nabarmenduak-xehetasunak") {
+            
+            // Disqus-eko div-a garbituko dugu. Horrela trantsizioa azkarragoa dela iruditu zait.
+            $("#nabarmenduak-xehetasunak-disqus").empty();
+            
+        } else if (fromState.name === "tab.zure-erara-xehetasunak") {
+            
+            // Disqus-eko div-a garbituko dugu. Horrela trantsizioa azkarragoa dela iruditu zait.
+            $("#zure-erara-xehetasunak-disqus").empty();
+            
+        }
+        
         // Momentukoa baino ezkerrerago dagoen fitxa batera mugitu behar badugu fitxen arteko trantsizioaren norabidea alderantzikatu behar dugu.
         // Ez zait gehiegi gustatzen hau. Orokorragoa izan behar luke. Orain dagoen moduan azpi-fitxa batean bagaude ez du funtzionatzen eta
         // fitxen izenak aldatuz gero hemen ere aldatu beharko lirateke.
@@ -142,6 +154,8 @@ angular.module('argia-multimedia-app.controllers', [])
     $scope.gehiago_kargatzen = {};
     $scope.gehiago_kargatzen.azkenak = false;
     $scope.gehiago_kargatzen.alfabetikoki = false;
+    
+    $scope.zerrenda_hutsik_dago = false;
     
     // Zerbitzaritik elementu berriak kargatu ditugula adierazten du.
     // Begiratu ion-infinite-scroll elementuaren ng-if.
@@ -264,6 +278,19 @@ angular.module('argia-multimedia-app.controllers', [])
                         // Ikusienak atalaren offseta eguneratu kargatu berri ditugun elementu kopuruarekin.
                         $scope.offsets.alfabetikoki += $scope.limits.alfabetikoki;
                         
+                        // Zerrenda hutsik al dago?
+                        // Bat datorren elementurik ez dagoela dioen mezua noiz bistaratu jakiteko erabiltzen dugu hau.
+                        // Begiratu txantiloia.
+                        if ($scope.multimediaZerrenda.length === 0) {
+                            
+                            $scope.zerrenda_hutsik_dago = true;
+                            
+                        } else {
+                            
+                            $scope.zerrenda_hutsik_dago = false;
+                            
+                        }
+                        
                         // Zerbitzaritik elementu berriak kargatzen bukatu dugula adierazi.
                         $scope.gehiago_kargatzen.alfabetikoki = false;
                         
@@ -307,6 +334,19 @@ angular.module('argia-multimedia-app.controllers', [])
                         // Azkenak atalaren offseta eguneratu kargatu berri ditugun elementu kopuruarekin.
                         $scope.offsets.azkenak += $scope.limits.azkenak;
                         
+                        // Zerrenda hutsik al dago?
+                        // Bat datorren elementurik ez dagoela dioen mezua noiz bistaratu jakiteko erabiltzen dugu hau.
+                        // Begiratu txantiloia.
+                        if ($scope.multimediaZerrenda.length === 0) {
+                            
+                            $scope.zerrenda_hutsik_dago = true;
+                            
+                        } else {
+                            
+                            $scope.zerrenda_hutsik_dago = false;
+                            
+                        }
+                        
                         // Zerbitzaritik elementu berriak kargatzen bukatu dugula adierazi.
                         $scope.gehiago_kargatzen.azkenak = false;
                     });
@@ -333,9 +373,14 @@ angular.module('argia-multimedia-app.controllers', [])
     
     $scope.urla = "";
     
+    $scope.datuak_kargatzen = false;
+    
     $scope.eskuratuDatuak = function(id) {
         
         var promise = Zerbitzaria.getElementua(id);
+        
+        // Zerbitzaritik datuak kargatzen ari garela adierazi.
+        $scope.datuak_kargatzen = true;
         
         promise.then(function() {
             
@@ -372,6 +417,9 @@ angular.module('argia-multimedia-app.controllers', [])
                     
                 }
             }
+            
+            // Zerbitzaritik datuak kargatzen bukatu dugula adierazi.
+            $scope.datuak_kargatzen = false;
         });
     }
     
@@ -474,6 +522,8 @@ angular.module('argia-multimedia-app.controllers', [])
     
     $scope.elementu_motak = [];
     
+    $scope.datuak_kargatzen = false;
+    
     $scope.gordeMota = function(id) {
         
         // Zerrenda mota aldatu bada
@@ -493,8 +543,16 @@ angular.module('argia-multimedia-app.controllers', [])
             
             var promise = Zerbitzaria.getElementuMotak();
             
+            // Zerbitzaritik datuak kargatzen ari garela adierazi.
+            $scope.datuak_kargatzen = true;
+            
             promise.then(function() {
+                
                 $scope.elementu_motak = Zerbitzaria.elementu_motak;
+                
+                // Zerbitzaritik datuak kargatzen bukatu dugula adierazi.
+                $scope.datuak_kargatzen = false;
+                
             });
             
         } else {
@@ -553,6 +611,8 @@ angular.module('argia-multimedia-app.controllers', [])
     // Begiratu ion-infinite-scroll elementuaren ng-if.
     // Hau gabe behin eta berriz zerbitzarira eskaerak egiten hasten da.
     $scope.elementu_gehiago_daude = true;
+    
+    $scope.zerrenda_hutsik_dago = false;
     
     $scope.segundoak = ZureErara.eskuratuMinutuak() * 60;
     
@@ -671,6 +731,19 @@ angular.module('argia-multimedia-app.controllers', [])
                         // Ikusienak atalaren offseta eguneratu kargatu berri ditugun elementu kopuruarekin.
                         $scope.offsets.alfabetikoki += $scope.limits.alfabetikoki;
                         
+                        // Zerrenda hutsik al dago?
+                        // Bat datorren elementurik ez dagoela dioen mezua noiz bistaratu jakiteko erabiltzen dugu hau.
+                        // Begiratu txantiloia.
+                        if ($scope.zure_erara_zerrenda.length === 0) {
+                            
+                            $scope.zerrenda_hutsik_dago = true;
+                            
+                        } else {
+                            
+                            $scope.zerrenda_hutsik_dago = false;
+                            
+                        }
+                        
                         // Zerbitzaritik elementu berriak kargatzen bukatu dugula adierazi.
                         $scope.gehiago_kargatzen.alfabetikoki = false;
                         
@@ -716,6 +789,19 @@ angular.module('argia-multimedia-app.controllers', [])
                         // Azkenak atalaren offseta eguneratu kargatu berri ditugun elementu kopuruarekin.
                         $scope.offsets.azkenak += $scope.limits.azkenak;
                         
+                        // Zerrenda hutsik al dago?
+                        // Bat datorren elementurik ez dagoela dioen mezua noiz bistaratu jakiteko erabiltzen dugu hau.
+                        // Begiratu txantiloia.
+                        if ($scope.zure_erara_zerrenda.length === 0) {
+                            
+                            $scope.zerrenda_hutsik_dago = true;
+                            
+                        } else {
+                            
+                            $scope.zerrenda_hutsik_dago = false;
+                            
+                        }
+                        
                         // Zerbitzaritik elementu berriak kargatzen bukatu dugula adierazi.
                         $scope.gehiago_kargatzen.azkenak = false;
                     });
@@ -739,9 +825,14 @@ angular.module('argia-multimedia-app.controllers', [])
     
     $scope.urla = "";
     
+    $scope.datuak_kargatzen = false;
+    
     $scope.eskuratuDatuak = function(id) {
         
         var promise = Zerbitzaria.getElementua(id);
+        
+        // Zerbitzaritik datuak kargatzen ari garela adierazi.
+        $scope.datuak_kargatzen = true;
         
         promise.then(function() {
             
@@ -778,6 +869,9 @@ angular.module('argia-multimedia-app.controllers', [])
                     
                 }
             }
+            
+            // Zerbitzaritik datuak kargatzen bukatu dugula adierazi.
+            $scope.datuak_kargatzen = false;
             
         });
     }
@@ -878,6 +972,8 @@ angular.module('argia-multimedia-app.controllers', [])
     $scope.arrakastaBidaltzean = false;
     $scope.erroreaBidaltzeanTestua = "";
     
+    $scope.datuak_kargatzen = false;
+    
     $scope.showAlert = function() {
         
         var mezua = "";
@@ -954,6 +1050,7 @@ angular.module('argia-multimedia-app.controllers', [])
                     // Dena ondo joan dela adierazten duen mezua bistaratu.
                     $scope.arrakastaBidaltzean = true;
                     
+                    
                     $scope.showAlert();
                     
                 })
@@ -989,9 +1086,15 @@ angular.module('argia-multimedia-app.controllers', [])
             
             var promise = Zerbitzaria.getAlertaMotak(regid);
             
+            // Zerbitzaritik datuak kargatzen ari garela adierazi.
+            $scope.datuak_kargatzen = true;
+            
             promise.then(function() {
                 
                 $scope.alerta_motak = Zerbitzaria.alerta_motak;
+                
+                // Zerbitzaritik datuak kargatzen bukatu dugula adierazi.
+                $scope.datuak_kargatzen = false;
                 
             });
             
