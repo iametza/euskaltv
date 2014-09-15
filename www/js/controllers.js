@@ -101,6 +101,11 @@ angular.module('argia-multimedia-app.controllers', [])
             // Disqus-eko div-a garbituko dugu. Horrela trantsizioa azkarragoa dela iruditu zait.
             $("#nabarmenduak-xehetasunak-disqus").empty();
             
+        } else if (fromState.name === "tab.zure-erara-xehetasunak") {
+            
+            // Disqus-eko div-a garbituko dugu. Horrela trantsizioa azkarragoa dela iruditu zait.
+            $("#zure-erara-xehetasunak-disqus").empty();
+            
         }
         
         // Momentukoa baino ezkerrerago dagoen fitxa batera mugitu behar badugu fitxen arteko trantsizioaren norabidea alderantzikatu behar dugu.
