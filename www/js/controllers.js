@@ -361,9 +361,14 @@ angular.module('argia-multimedia-app.controllers', [])
     
     $scope.urla = "";
     
+    $scope.datuak_kargatzen = false;
+    
     $scope.eskuratuDatuak = function(id) {
         
         var promise = Zerbitzaria.getElementua(id);
+        
+        // Zerbitzaritik datuak kargatzen ari garela adierazi.
+        $scope.datuak_kargatzen = true;
         
         promise.then(function() {
             
@@ -400,6 +405,9 @@ angular.module('argia-multimedia-app.controllers', [])
                     
                 }
             }
+            
+            // Zerbitzaritik datuak kargatzen bukatu dugula adierazi.
+            $scope.datuak_kargatzen = false;
         });
     }
     
@@ -795,9 +803,14 @@ angular.module('argia-multimedia-app.controllers', [])
     
     $scope.urla = "";
     
+    $scope.datuak_kargatzen = false;
+    
     $scope.eskuratuDatuak = function(id) {
         
         var promise = Zerbitzaria.getElementua(id);
+        
+        // Zerbitzaritik datuak kargatzen ari garela adierazi.
+        $scope.datuak_kargatzen = true;
         
         promise.then(function() {
             
@@ -834,6 +847,9 @@ angular.module('argia-multimedia-app.controllers', [])
                     
                 }
             }
+            
+            // Zerbitzaritik datuak kargatzen bukatu dugula adierazi.
+            $scope.datuak_kargatzen = false;
             
         });
     }
