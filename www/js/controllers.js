@@ -510,6 +510,8 @@ angular.module('argia-multimedia-app.controllers', [])
     
     $scope.elementu_motak = [];
     
+    $scope.datuak_kargatzen = false;
+    
     $scope.gordeMota = function(id) {
         
         // Zerrenda mota aldatu bada
@@ -529,8 +531,16 @@ angular.module('argia-multimedia-app.controllers', [])
             
             var promise = Zerbitzaria.getElementuMotak();
             
+            // Zerbitzaritik datuak kargatzen ari garela adierazi.
+            $scope.datuak_kargatzen = true;
+            
             promise.then(function() {
+                
                 $scope.elementu_motak = Zerbitzaria.elementu_motak;
+                
+                // Zerbitzaritik datuak kargatzen bukatu dugula adierazi.
+                $scope.datuak_kargatzen = false;
+                
             });
             
         } else {
