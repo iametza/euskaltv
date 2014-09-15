@@ -143,6 +143,8 @@ angular.module('argia-multimedia-app.controllers', [])
     $scope.gehiago_kargatzen.azkenak = false;
     $scope.gehiago_kargatzen.alfabetikoki = false;
     
+    $scope.zerrenda_hutsik_dago = false;
+    
     // Zerbitzaritik elementu berriak kargatu ditugula adierazten du.
     // Begiratu ion-infinite-scroll elementuaren ng-if.
     // Hau gabe behin eta berriz zerbitzarira eskaerak egiten hasten da.
@@ -264,6 +266,19 @@ angular.module('argia-multimedia-app.controllers', [])
                         // Ikusienak atalaren offseta eguneratu kargatu berri ditugun elementu kopuruarekin.
                         $scope.offsets.alfabetikoki += $scope.limits.alfabetikoki;
                         
+                        // Zerrenda hutsik al dago?
+                        // Bat datorren elementurik ez dagoela dioen mezua noiz bistaratu jakiteko erabiltzen dugu hau.
+                        // Begiratu txantiloia.
+                        if ($scope.multimediaZerrenda.length === 0) {
+                            
+                            $scope.zerrenda_hutsik_dago = true;
+                            
+                        } else {
+                            
+                            $scope.zerrenda_hutsik_dago = false;
+                            
+                        }
+                        
                         // Zerbitzaritik elementu berriak kargatzen bukatu dugula adierazi.
                         $scope.gehiago_kargatzen.alfabetikoki = false;
                         
@@ -306,6 +321,19 @@ angular.module('argia-multimedia-app.controllers', [])
                         
                         // Azkenak atalaren offseta eguneratu kargatu berri ditugun elementu kopuruarekin.
                         $scope.offsets.azkenak += $scope.limits.azkenak;
+                        
+                        // Zerrenda hutsik al dago?
+                        // Bat datorren elementurik ez dagoela dioen mezua noiz bistaratu jakiteko erabiltzen dugu hau.
+                        // Begiratu txantiloia.
+                        if ($scope.multimediaZerrenda.length === 0) {
+                            
+                            $scope.zerrenda_hutsik_dago = true;
+                            
+                        } else {
+                            
+                            $scope.zerrenda_hutsik_dago = false;
+                            
+                        }
                         
                         // Zerbitzaritik elementu berriak kargatzen bukatu dugula adierazi.
                         $scope.gehiago_kargatzen.azkenak = false;
