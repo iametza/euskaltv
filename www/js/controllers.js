@@ -582,6 +582,8 @@ angular.module('argia-multimedia-app.controllers', [])
     // Hau gabe behin eta berriz zerbitzarira eskaerak egiten hasten da.
     $scope.elementu_gehiago_daude = true;
     
+    $scope.zerrenda_hutsik_dago = false;
+    
     $scope.segundoak = ZureErara.eskuratuMinutuak() * 60;
     
     $scope.isActive = function(type) {
@@ -699,6 +701,19 @@ angular.module('argia-multimedia-app.controllers', [])
                         // Ikusienak atalaren offseta eguneratu kargatu berri ditugun elementu kopuruarekin.
                         $scope.offsets.alfabetikoki += $scope.limits.alfabetikoki;
                         
+                        // Zerrenda hutsik al dago?
+                        // Bat datorren elementurik ez dagoela dioen mezua noiz bistaratu jakiteko erabiltzen dugu hau.
+                        // Begiratu txantiloia.
+                        if ($scope.zure_erara_zerrenda.length === 0) {
+                            
+                            $scope.zerrenda_hutsik_dago = true;
+                            
+                        } else {
+                            
+                            $scope.zerrenda_hutsik_dago = false;
+                            
+                        }
+                        
                         // Zerbitzaritik elementu berriak kargatzen bukatu dugula adierazi.
                         $scope.gehiago_kargatzen.alfabetikoki = false;
                         
@@ -743,6 +758,19 @@ angular.module('argia-multimedia-app.controllers', [])
                         
                         // Azkenak atalaren offseta eguneratu kargatu berri ditugun elementu kopuruarekin.
                         $scope.offsets.azkenak += $scope.limits.azkenak;
+                        
+                        // Zerrenda hutsik al dago?
+                        // Bat datorren elementurik ez dagoela dioen mezua noiz bistaratu jakiteko erabiltzen dugu hau.
+                        // Begiratu txantiloia.
+                        if ($scope.zure_erara_zerrenda.length === 0) {
+                            
+                            $scope.zerrenda_hutsik_dago = true;
+                            
+                        } else {
+                            
+                            $scope.zerrenda_hutsik_dago = false;
+                            
+                        }
                         
                         // Zerbitzaritik elementu berriak kargatzen bukatu dugula adierazi.
                         $scope.gehiago_kargatzen.azkenak = false;
