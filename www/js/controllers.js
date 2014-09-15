@@ -365,6 +365,9 @@ angular.module('argia-multimedia-app.controllers', [])
         $scope.$broadcast('scroll.infiniteScrollComplete');
         
     }
+    
+    $scope.birkargatuZerrenda();
+    
 }])
 
 .controller('NabarmenduakXehetasunakCtrl', ['$sce', '$scope', '$stateParams', 'Zerbitzaria', 'Nabarmenduak', function($sce, $scope, $stateParams, Zerbitzaria, Nabarmenduak) {
@@ -817,6 +820,9 @@ angular.module('argia-multimedia-app.controllers', [])
         
         $scope.$broadcast('scroll.infiniteScrollComplete');
     }
+    
+    $scope.birkargatuZerrenda();
+    
 }])
 
 .controller('ZureEraraXehetasunakCtrl', ['$sce', '$scope', '$stateParams', 'Zerbitzaria', 'ZureErara', function($sce, $scope, $stateParams, Zerbitzaria, ZureErara) {
