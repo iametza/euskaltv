@@ -96,6 +96,13 @@ angular.module('argia-multimedia-app.controllers', [])
     
     $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
         
+        if (fromState.name === "tab.nabarmenduak-xehetasunak") {
+            
+            // Disqus-eko div-a garbituko dugu. Horrela trantsizioa azkarragoa dela iruditu zait.
+            $("#nabarmenduak-xehetasunak-disqus").empty();
+            
+        }
+        
         // Momentukoa baino ezkerrerago dagoen fitxa batera mugitu behar badugu fitxen arteko trantsizioaren norabidea alderantzikatu behar dugu.
         // Ez zait gehiegi gustatzen hau. Orokorragoa izan behar luke. Orain dagoen moduan azpi-fitxa batean bagaude ez du funtzionatzen eta
         // fitxen izenak aldatuz gero hemen ere aldatu beharko lirateke.
