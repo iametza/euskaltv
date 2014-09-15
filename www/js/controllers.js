@@ -803,7 +803,7 @@ angular.module('argia-multimedia-app.controllers', [])
     
 }])
 
-.controller('ZureEraraArazoaCtrl', ['$scope', '$http', 'Zerbitzaria', 'ZureErara', function($scope, $http, Zerbitzaria, ZureErara) {
+.controller('ZureEraraArazoaCtrl', ['$scope', '$http', '$ionicPopup', 'Zerbitzaria', 'ZureErara', function($scope, $http, $ionicPopup, Zerbitzaria, ZureErara) {
     
     $scope.formData = {};
     $scope.formData.azalpena = "";
@@ -812,10 +812,37 @@ angular.module('argia-multimedia-app.controllers', [])
     $scope.formData.id_multimedia = ZureErara.eskuratuIdMultimedia();
     
     $scope.arrakastaBidaltzean = false;
-    $scope.arrakastaBidaltzeanTestua = "Zure proposamena behar bezala bidali da!";
+    $scope.erroreaBidaltzeanTestua = "";
     
-    $scope.erroreaBidaltzean = false;
-    $scope.erroreaBidaltzeanTestua = "Errore bat gertatu da zure proposamena bidaltzean.";
+    $scope.showAlert = function() {
+        
+        var mezua = "";
+        
+        if ($scope.arrakastaBidaltzean) {
+            
+            mezua = "Arazoaren informazioa behar bezala bidali da!";
+            
+        } else {
+            
+            mezua = "Errore bat gertatu da arazoaren informazioa bidaltzean: " + $scope.erroreaBidaltzeanTestua;
+            
+        }
+        
+        var alertPopup = $ionicPopup.alert({
+            title: 'Euskal TV',
+            template: mezua
+        });
+        
+        alertPopup.then(function(res) {
+            
+            if ($scope.arrakastaBidaltzean) {
+                
+                window.location.href = "#/tab/nabarmenduak-zerrenda";
+                
+            }
+            
+        });
+    };
     
     $scope.bidali = function() {
         
@@ -823,24 +850,20 @@ angular.module('argia-multimedia-app.controllers', [])
             
             if (erantzuna.data.arrakasta) {
                 
-                // Dena ondo joan dela adierazten duen mezua bistaratu (ngShow).
+                // Dena ondo joan dela adierazten duen mezua bistaratu.
                 $scope.arrakastaBidaltzean = true;
-                
-                // Aurretik egon zitekeen errore mezua ezkutatu (ngShow).
-                $scope.erroreaBidaltzean = false;
                 
             } else {
                 
-                // Arazoak egon direla adierazten duen mezua bistaratu (ngShow).
-                $scope.erroreaBidaltzean = true;
-                
-                // Aurretik egon zitekeen arrakasta mezua ezkutatu (ngShow).
+                // Arazoak egon direla adierazten duen mezua bistaratu.
                 $scope.arrakastaBidaltzean = false;
                 
                 // Zerbitzaritik jasotako errore mezua bistaratu.
                 $scope.erroreaBidaltzeanTestua = erantzuna.data.mezua;
                 
             }
+            
+            $scope.showAlert();
             
         });
         
