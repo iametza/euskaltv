@@ -965,7 +965,11 @@ angular.module('argia-multimedia-app.controllers', [])
         
         alertPopup.then(function(res) {
             
-            window.location.href = "#/tab/nabarmenduak-zerrenda";
+            if ($scope.arrakastaBidaltzean) {
+                
+                window.location.href = "#/tab/nabarmenduak-zerrenda";
+                
+            }
             
         });
     };
