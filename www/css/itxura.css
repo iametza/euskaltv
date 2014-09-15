@@ -18,13 +18,13 @@
     color: #b2b2b2 !important;
 }
 .button.active, .button.activated {
-    background-color:#e6332a!important;
+    background-color:#b82821 !important;
 }
 .button.button-positive{
-    background-color:#e6332a!important;
+    background-color:#e6332a !important;
 }
 .button.button-positive.active, .button.button-positive.activated{
-    background-color:#e6332a!important;
+    background-color:#b82821 !important;
 }
 
 .checkbox input:checked:before, .checkbox input:checked + .checkbox-icon:before {
