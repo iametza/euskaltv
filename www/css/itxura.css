@@ -59,6 +59,7 @@
 
 .tab-item {
     opacity: 1;
+    max-width: none;
 }
 
 .tab-item .icon {
