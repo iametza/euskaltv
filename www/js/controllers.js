@@ -960,6 +960,8 @@ angular.module('argia-multimedia-app.controllers', [])
     $scope.arrakastaBidaltzean = false;
     $scope.erroreaBidaltzeanTestua = "";
     
+    $scope.datuak_kargatzen = false;
+    
     $scope.showAlert = function() {
         
         var mezua = "";
@@ -1036,6 +1038,7 @@ angular.module('argia-multimedia-app.controllers', [])
                     // Dena ondo joan dela adierazten duen mezua bistaratu.
                     $scope.arrakastaBidaltzean = true;
                     
+                    
                     $scope.showAlert();
                     
                 })
@@ -1071,9 +1074,15 @@ angular.module('argia-multimedia-app.controllers', [])
             
             var promise = Zerbitzaria.getAlertaMotak(regid);
             
+            // Zerbitzaritik datuak kargatzen ari garela adierazi.
+            $scope.datuak_kargatzen = true;
+            
             promise.then(function() {
                 
                 $scope.alerta_motak = Zerbitzaria.alerta_motak;
+                
+                // Zerbitzaritik datuak kargatzen bukatu dugula adierazi.
+                $scope.datuak_kargatzen = false;
                 
             });
             
