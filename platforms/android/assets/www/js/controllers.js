@@ -396,7 +396,7 @@ angular.module('argia-multimedia-app.controllers', [])
     
 }])
 
-.controller('NabarmenduakArazoaCtrl', ['$scope', '$http', 'Zerbitzaria', 'Nabarmenduak', function($scope, $http, Zerbitzaria, Nabarmenduak) {
+.controller('NabarmenduakArazoaCtrl', ['$scope', '$http', '$ionicPopup', 'Zerbitzaria', 'Nabarmenduak', function($scope, $http, $ionicPopup, Zerbitzaria, Nabarmenduak) {
     
     $scope.formData = {};
     $scope.formData.azalpena = "";
@@ -405,10 +405,37 @@ angular.module('argia-multimedia-app.controllers', [])
     $scope.formData.id_multimedia = Nabarmenduak.eskuratuIdElementua();
     
     $scope.arrakastaBidaltzean = false;
-    $scope.arrakastaBidaltzeanTestua = "Arazoaren informazioa behar bezala bidali da!";
+    $scope.erroreaBidaltzeanTestua = "";
     
-    $scope.erroreaBidaltzean = false;
-    $scope.erroreaBidaltzeanTestua = "Errore bat gertatu da arazoaren informazioa bidaltzean.";
+    $scope.showAlert = function() {
+        
+        var mezua = "";
+        
+        if ($scope.arrakastaBidaltzean) {
+            
+            mezua = "Arazoaren informazioa behar bezala bidali da!";
+            
+        } else {
+            
+            mezua = "Errore bat gertatu da arazoaren informazioa bidaltzean: " + $scope.erroreaBidaltzeanTestua;
+            
+        }
+        
+        var alertPopup = $ionicPopup.alert({
+            title: 'Euskal TV',
+            template: mezua
+        });
+        
+        alertPopup.then(function(res) {
+            
+            if ($scope.arrakastaBidaltzean) {
+                
+                window.location.href = "#/tab/nabarmenduak-zerrenda";
+                
+            }
+            
+        });
+    };
     
     $scope.bidali = function() {
         
@@ -416,24 +443,20 @@ angular.module('argia-multimedia-app.controllers', [])
             
             if (erantzuna.data.arrakasta) {
                 
-                // Dena ondo joan dela adierazten duen mezua bistaratu (ngShow).
+                // Dena ondo joan dela adierazten duen mezua bistaratu.
                 $scope.arrakastaBidaltzean = true;
-                
-                // Aurretik egon zitekeen errore mezua ezkutatu (ngShow).
-                $scope.erroreaBidaltzean = false;
                 
             } else {
                 
-                // Arazoak egon direla adierazten duen mezua bistaratu (ngShow).
-                $scope.erroreaBidaltzean = true;
-                
-                // Aurretik egon zitekeen arrakasta mezua ezkutatu (ngShow).
+                // Arazoak egon direla adierazten duen mezua bistaratu.
                 $scope.arrakastaBidaltzean = false;
                 
                 // Zerbitzaritik jasotako errore mezua bistaratu.
                 $scope.erroreaBidaltzeanTestua = erantzuna.data.mezua;
                 
             }
+            
+            $scope.showAlert();
             
         });
         
@@ -726,7 +749,7 @@ angular.module('argia-multimedia-app.controllers', [])
             
             $scope.urla = Zerbitzaria.multimedia_url + $scope.multimedia.mota + "/" + $scope.multimedia.nice_name;
             
-            $scope.multimedia.disqus_url = $sce.trustAsResourceUrl("http://euskal-tv-zerbitzaria.ametza.com/disqus?shortname=argia2&url=" + $scope.multimedia.argia_multimedia_url + "&title=Iruzkinak");
+            $scope.multimedia.disqus_url = $sce.trustAsResourceUrl(Zerbitzaria.api_url + "disqus?shortname=argia2&url=" + $scope.multimedia.argia_multimedia_url + "&title=Iruzkinak");
             
             for (var i = 0; i < $scope.multimedia.embed.length; i++) {
                 
@@ -780,7 +803,7 @@ angular.module('argia-multimedia-app.controllers', [])
     
 }])
 
-.controller('ZureEraraArazoaCtrl', ['$scope', '$http', 'Zerbitzaria', 'ZureErara', function($scope, $http, Zerbitzaria, ZureErara) {
+.controller('ZureEraraArazoaCtrl', ['$scope', '$http', '$ionicPopup', 'Zerbitzaria', 'ZureErara', function($scope, $http, $ionicPopup, Zerbitzaria, ZureErara) {
     
     $scope.formData = {};
     $scope.formData.azalpena = "";
@@ -789,10 +812,37 @@ angular.module('argia-multimedia-app.controllers', [])
     $scope.formData.id_multimedia = ZureErara.eskuratuIdMultimedia();
     
     $scope.arrakastaBidaltzean = false;
-    $scope.arrakastaBidaltzeanTestua = "Zure proposamena behar bezala bidali da!";
+    $scope.erroreaBidaltzeanTestua = "";
     
-    $scope.erroreaBidaltzean = false;
-    $scope.erroreaBidaltzeanTestua = "Errore bat gertatu da zure proposamena bidaltzean.";
+    $scope.showAlert = function() {
+        
+        var mezua = "";
+        
+        if ($scope.arrakastaBidaltzean) {
+            
+            mezua = "Arazoaren informazioa behar bezala bidali da!";
+            
+        } else {
+            
+            mezua = "Errore bat gertatu da arazoaren informazioa bidaltzean: " + $scope.erroreaBidaltzeanTestua;
+            
+        }
+        
+        var alertPopup = $ionicPopup.alert({
+            title: 'Euskal TV',
+            template: mezua
+        });
+        
+        alertPopup.then(function(res) {
+            
+            if ($scope.arrakastaBidaltzean) {
+                
+                window.location.href = "#/tab/nabarmenduak-zerrenda";
+                
+            }
+            
+        });
+    };
     
     $scope.bidali = function() {
         
@@ -800,18 +850,12 @@ angular.module('argia-multimedia-app.controllers', [])
             
             if (erantzuna.data.arrakasta) {
                 
-                // Dena ondo joan dela adierazten duen mezua bistaratu (ngShow).
+                // Dena ondo joan dela adierazten duen mezua bistaratu.
                 $scope.arrakastaBidaltzean = true;
-                
-                // Aurretik egon zitekeen errore mezua ezkutatu (ngShow).
-                $scope.erroreaBidaltzean = false;
                 
             } else {
                 
-                // Arazoak egon direla adierazten duen mezua bistaratu (ngShow).
-                $scope.erroreaBidaltzean = true;
-                
-                // Aurretik egon zitekeen arrakasta mezua ezkutatu (ngShow).
+                // Arazoak egon direla adierazten duen mezua bistaratu.
                 $scope.arrakastaBidaltzean = false;
                 
                 // Zerbitzaritik jasotako errore mezua bistaratu.
@@ -819,21 +863,50 @@ angular.module('argia-multimedia-app.controllers', [])
                 
             }
             
+            $scope.showAlert();
+            
         });
         
     }
     
 }])
 
-.controller('KonfiguratuAlertakCtrl', ['$scope', 'Zerbitzaria', 'push', function($scope, Zerbitzaria, push) {
+.controller('KonfiguratuAlertakCtrl', ['$scope', '$ionicPopup', 'Zerbitzaria', 'push', function($scope, $ionicPopup, Zerbitzaria, push) {
     
     $scope.alerta_motak = [];
     
     $scope.arrakastaBidaltzean = false;
-    $scope.arrakastaBidaltzeanTestua = "Zure alerta eskaera behar bezala bidali da!";
+    $scope.erroreaBidaltzeanTestua = "";
     
-    $scope.erroreaBidaltzean = false;
-    $scope.erroreaBidaltzeanTestua = "Errore bat gertatu da zure alerta eskaera bidaltzean.";
+    $scope.showAlert = function() {
+        
+        var mezua = "";
+        
+        if ($scope.arrakastaBidaltzean) {
+            
+            mezua = "Zure alerta eskaera behar bezala bidali da!";
+            
+        } else {
+            
+            mezua = "Errore bat gertatu da zure alerta eskaera bidaltzean: " + $scope.erroreaBidaltzeanTestua;
+            
+        }
+        
+        var alertPopup = $ionicPopup.alert({
+            title: 'Euskal TV',
+            template: mezua
+        });
+        
+        alertPopup.then(function(res) {
+            
+            if ($scope.arrakastaBidaltzean) {
+                
+                window.location.href = "#/tab/nabarmenduak-zerrenda";
+                
+            }
+            
+        });
+    };
     
     $scope.bidali = function() {
         
@@ -878,11 +951,10 @@ angular.module('argia-multimedia-app.controllers', [])
                     localStorage.setItem('regid', result.id);
                     localStorage.setItem('gailua', result.device);
                     
-                    // Dena ondo joan dela adierazten duen mezua bistaratu (ngShow).
+                    // Dena ondo joan dela adierazten duen mezua bistaratu.
                     $scope.arrakastaBidaltzean = true;
                     
-                    // Aurretik egon zitekeen errore mezua ezkutatu (ngShow).
-                    $scope.erroreaBidaltzean = false;
+                    $scope.showAlert();
                     
                 })
                 .fail(function(jqXHR, textStatus, errorThrown) {
@@ -890,14 +962,13 @@ angular.module('argia-multimedia-app.controllers', [])
                     console.log(textStatus);
                     console.log(errorThrown);
                     
-                    // Arazoak egon direla adierazten duen mezua bistaratu (ngShow).
-                    $scope.erroreaBidaltzean = true;
-                    
-                    // Aurretik egon zitekeen arrakasta mezua ezkutatu (ngShow).
+                    // Arazoak egon direla adierazten duen mezua bistaratu.
                     $scope.arrakastaBidaltzean = false;
                     
                     // Zerbitzaritik jasotako errore mezua bistaratu.
                     $scope.erroreaBidaltzeanTestua = erantzuna.data.mezua;
+                    
+                    $scope.showAlert();
                     
                 });
                 
@@ -934,7 +1005,7 @@ angular.module('argia-multimedia-app.controllers', [])
     
 }])
 
-.controller('IgoZureaCtrl', ['$scope', '$http', '$ionicNavBarDelegate', '$ionicPopup', 'Zerbitzaria', function($scope, $http, $ionicNavBarDelegate, $ionicPopup, Zerbitzaria) {
+.controller('IgoZureaCtrl', ['$scope', '$http', '$ionicPopup', 'Zerbitzaria', function($scope, $http, $ionicPopup, Zerbitzaria) {
     
     $scope.formData = {};
     $scope.formData.izenburua = "";
@@ -959,13 +1030,17 @@ angular.module('argia-multimedia-app.controllers', [])
         }
         
         var alertPopup = $ionicPopup.alert({
-            title: 'Igo zurea',
+            title: 'Euskal TV',
             template: mezua
         });
         
         alertPopup.then(function(res) {
             
-            window.location.href = "#/tab/nabarmenduak-zerrenda";
+            if ($scope.arrakastaBidaltzean) {
+                
+                window.location.href = "#/tab/nabarmenduak-zerrenda";
+                
+            }
             
         });
     };
@@ -992,7 +1067,7 @@ angular.module('argia-multimedia-app.controllers', [])
                 
             } else {
                 
-                // Aurretik egon zitekeen arrakasta mezua ezkutatu (ngShow).
+                // Arazoak egon direla adierazten duen mezua bistaratu.
                 $scope.arrakastaBidaltzean = false;
                 
                 // Zerbitzaritik jasotako errore mezua bistaratu.
