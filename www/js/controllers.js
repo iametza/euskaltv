@@ -871,15 +871,42 @@ angular.module('argia-multimedia-app.controllers', [])
     
 }])
 
-.controller('KonfiguratuAlertakCtrl', ['$scope', 'Zerbitzaria', 'push', function($scope, Zerbitzaria, push) {
+.controller('KonfiguratuAlertakCtrl', ['$scope', '$ionicPopup', 'Zerbitzaria', 'push', function($scope, $ionicPopup, Zerbitzaria, push) {
     
     $scope.alerta_motak = [];
     
     $scope.arrakastaBidaltzean = false;
-    $scope.arrakastaBidaltzeanTestua = "Zure alerta eskaera behar bezala bidali da!";
+    $scope.erroreaBidaltzeanTestua = "";
     
-    $scope.erroreaBidaltzean = false;
-    $scope.erroreaBidaltzeanTestua = "Errore bat gertatu da zure alerta eskaera bidaltzean.";
+    $scope.showAlert = function() {
+        
+        var mezua = "";
+        
+        if ($scope.arrakastaBidaltzean) {
+            
+            mezua = "Zure alerta eskaera behar bezala bidali da!";
+            
+        } else {
+            
+            mezua = "Errore bat gertatu da zure alerta eskaera bidaltzean: " + $scope.erroreaBidaltzeanTestua;
+            
+        }
+        
+        var alertPopup = $ionicPopup.alert({
+            title: 'Euskal TV',
+            template: mezua
+        });
+        
+        alertPopup.then(function(res) {
+            
+            if ($scope.arrakastaBidaltzean) {
+                
+                window.location.href = "#/tab/nabarmenduak-zerrenda";
+                
+            }
+            
+        });
+    };
     
     $scope.bidali = function() {
         
@@ -924,11 +951,10 @@ angular.module('argia-multimedia-app.controllers', [])
                     localStorage.setItem('regid', result.id);
                     localStorage.setItem('gailua', result.device);
                     
-                    // Dena ondo joan dela adierazten duen mezua bistaratu (ngShow).
+                    // Dena ondo joan dela adierazten duen mezua bistaratu.
                     $scope.arrakastaBidaltzean = true;
                     
-                    // Aurretik egon zitekeen errore mezua ezkutatu (ngShow).
-                    $scope.erroreaBidaltzean = false;
+                    $scope.showAlert();
                     
                 })
                 .fail(function(jqXHR, textStatus, errorThrown) {
@@ -936,14 +962,13 @@ angular.module('argia-multimedia-app.controllers', [])
                     console.log(textStatus);
                     console.log(errorThrown);
                     
-                    // Arazoak egon direla adierazten duen mezua bistaratu (ngShow).
-                    $scope.erroreaBidaltzean = true;
-                    
-                    // Aurretik egon zitekeen arrakasta mezua ezkutatu (ngShow).
+                    // Arazoak egon direla adierazten duen mezua bistaratu.
                     $scope.arrakastaBidaltzean = false;
                     
                     // Zerbitzaritik jasotako errore mezua bistaratu.
                     $scope.erroreaBidaltzeanTestua = erantzuna.data.mezua;
+                    
+                    $scope.showAlert();
                     
                 });
                 
