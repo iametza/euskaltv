@@ -1025,16 +1025,14 @@ angular.module('argia-multimedia-app.controllers', [])
                     
                     if ($scope.alerta_motak[i].hautatuta) {
                         
-                        eskatutako_alerta_motak = eskatutako_alerta_motak + $scope.alerta_motak[i].id;
+                        eskatutako_alerta_motak = eskatutako_alerta_motak + $scope.alerta_motak[i].id + ",";
                         
-                        if (i !== $scope.alerta_motak.length - 1) {
-                            
-                            eskatutako_alerta_motak = eskatutako_alerta_motak + ",";
-                            
-                        }
                     }
                     
                 }
+                
+                // Azken koma kendu.
+                eskatutako_alerta_motak = eskatutako_alerta_motak.substring(0, eskatutako_alerta_motak.length - 1);
                 
                 data = {'mota': result.device, 'id_gailua': result.id, 'aukerak': eskatutako_alerta_motak};
                 
