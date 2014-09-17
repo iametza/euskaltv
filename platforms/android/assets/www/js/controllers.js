@@ -1031,7 +1031,7 @@ angular.module('argia-multimedia-app.controllers', [])
                     
                 }
                 
-                // Azken koman kendu.
+                // Azken koma kendu.
                 eskatutako_alerta_motak = eskatutako_alerta_motak.substring(0, eskatutako_alerta_motak.length - 1);
                 
                 data = {'mota': result.device, 'id_gailua': result.id, 'aukerak': eskatutako_alerta_motak};
