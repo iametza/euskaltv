@@ -1,32 +1,22 @@
-This is an addon starter template for the [Ionic Framework](http://ionicframework.com/).
+# Euskal TV
 
-## How to use this template
+Android gailuetarako euskarazko ikus-entzunezkoen biltokia da Euskal TV.
 
-*This template does not work on its own*. It is missing the Ionic library, and AngularJS.
+* Zure gustoetara egokitua
+* Une bakoitzean duzun denboraren arabera gozatzeko aukera ematen dizuna
+* Oraintxe bertan euskarazko multimedia eduki ugari biltzen dituena
+  * 300 erreportajetik gora
+  * 150 dokumental baino gehiago
+  * Beste hainbeste elkarrizketa
+  * 100 WebTV saio baino gehiago
+* Proiektu irekia, parte-hartzailea eta anitza (Edozein herritarrek edo erakundek euskaraz ekoiztutako ikus-entzunezkoak bidal ditzake)
+* Bideo berrien abisuak edo alertak jasotzeko aukera ematen dizuna
+* GNU GPL v3 lizentzia duen software librea da
 
-To use this, either create a new ionic project using the ionic node.js utility, or copy and paste this into an existing Cordova project and download a release of Ionic separately.
+## Deskargak
 
-### With the Ionic tool:
+[![Android aplikazioa Google Play-n](https://developer.android.com/images/brand/en_app_rgb_wo_45.png)](https://play.google.com/store/apps/details?id=com.iametza.euskaltv)
 
-Take the name after `ionic-starter-`, and that is the name of the template to be used when using the `ionic start` command below:
+## Lizentzia
 
-```bash
-$ sudo npm install -g ionic cordova
-$ ionic start myApp tabs
-```
-
-Then, to run it, cd into `myApp` and run:
-
-```bash
-$ ionic platform add ios
-$ ionic build ios
-$ ionic emulate ios
-```
-
-Substitute ios for android if not on a Mac, but if you can, the ios development toolchain is a lot easier to work with until you need to do anything custom to Android.
-
-## Demo
-http://plnkr.co/edit/qYMCrt?p=preview
-
-## Issues
-Issues have been disabled on this repo, if you do find an issue or have a question consider posting it on the [Ionic Forum](http://forum.ionicframework.com/).  Or else if there is truly an error, follow our guidelines for [submitting an issue](http://ionicframework.com/contribute/#issues) to the main Ionic repository. On the other hand, pull requests are welcome here!
+Ihesiren iturburu-kodeak [GNU General Public License v3](http://www.gnu.org/licenses/gpl.html) lizentzia dauka
