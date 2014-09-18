@@ -1,3 +1,7 @@
+# komodo
+.komodotools
+*.komodoproject
+
 node_modules/
 
 ant-build/
