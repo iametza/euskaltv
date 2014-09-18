@@ -17,7 +17,7 @@
        under the License.
  */
 
-package com.iametza.argia_multimedia;
+package com.iametza.euskaltv;
 
 import android.os.Bundle;
 import org.apache.cordova.*;
