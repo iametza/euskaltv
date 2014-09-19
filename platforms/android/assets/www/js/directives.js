@@ -75,7 +75,19 @@ angular.module('argia-multimedia-app.directives', [])
         link: function(scope, element, attrs) {
             $(element).prettyEmbed({
                 videoID: youtube_parser(scope.element.embed_src),
-                customPreviewImage: scope.multimedia.irudia
+                customPreviewImage: function() {
+                    
+                    if (scope.multimedia.irudia !== "") {
+                        
+                        return scope.multimedia.irudia;
+                        
+                    } else {
+                        
+                        return "img/EuskalTV_700x394.png";
+                        
+                    }
+                    
+                }()
             });
         }
     }
@@ -88,7 +100,15 @@ angular.module('argia-multimedia-app.directives', [])
         link: function(scope, element, attrs) {
             
             // Aurrebista irudia gehitu.
-            $(element).html("<img width='100%' alt='Bideoaren aurrebista irudia' src='" + scope.multimedia.irudia + "'>");
+            if (scope.multimedia.irudia !== "") {
+                
+                $(element).html("<img width='100%' alt='Bideoaren aurrebista irudia' src='" + scope.multimedia.irudia + "'>");
+                
+            } else {
+                
+                $(element).html("<img width='100%' alt='Bideoaren aurrebista irudia' src='img/EuskalTV_700x394.png'>");
+                
+            }
             
             $(element).click(function() {
                 

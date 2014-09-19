@@ -37,7 +37,7 @@
         
         <ion-list>
             <ion-item class="zure-erara-zerrenda-elementua item item-thumbnail-left" ng-repeat="elementua in zure_erara_zerrenda" type="item-text-wrap" href="#/tab/zure-erara-xehetasunak/{{elementua.id}}">
-                <img class="zure-erara-zerrenda-elementua-irudia" ng-src="{{elementua.irudia}}" />
+                <img class="zure-erara-zerrenda-elementua-irudia" ng-src="{{elementua.irudia !== '' && elementua.irudia || 'img/EuskalTV_100x100.png'}}" />
                 <h2 class="zure-erara-zerrenda-elementua-izenburua">{{elementua.izenburua}}</h2>
                 <p class="zure-erara-zerrenda-elementua-mota">{{elementua.mota}}</p>
             </ion-item>
