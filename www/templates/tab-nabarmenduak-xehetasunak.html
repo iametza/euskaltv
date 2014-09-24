@@ -15,9 +15,6 @@
         </div>
         <div id="xehetasunak-edukia">
             <div class="xehetasunak-embed-div" ng-repeat='element in multimedia.embed'>
-                <!-- <div class="xehetasunak-embed-bideoa">
-                    <iframe src="http://argia.com/vimeowrapper/"></iframe>
-                </div> -->
                 <div class="xehetasunak-embed-testua">{{ element.testua }}</div>
                 <div ng-if="!element.youtubekoEstekaDa" class="xehetasunak-embed-bideoa pretty-embed" irudiembed></div>
                 <div ng-if="element.youtubekoEstekaDa" class="xehetasunak-embed-bideoa" prettyembed></div>
