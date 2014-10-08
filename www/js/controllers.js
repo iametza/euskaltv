@@ -406,11 +406,10 @@ angular.module('argia-multimedia-app.controllers', [])
                     // Bestela, gurasoaren protokoloa erabiltzen du. Aplikazio hibridoen kasuan file:// da eta bideoa ez du kargatzen.
                     $scope.multimedia.embed[i].embed_kodea = $scope.multimedia.embed[i].embed_kodea.replace("src=\"", "src=\"https:");
                     $scope.multimedia.embed[i].embed_src = "https:" + $scope.multimedia.embed[i].embed_src;
-                    $scope.multimedia.embed[i].video_id = $scope.youtube_parser($scope.multimedia.embed[i].embed_src);
                     
                     console.log($scope.multimedia.embed[i].embed_kodea);
                     console.log($scope.multimedia.embed[i].embed_src);
-                    console.log($scope.multimedia.embed[i].video_id);
+                    
                     
                 }
                 
@@ -422,6 +421,9 @@ angular.module('argia-multimedia-app.controllers', [])
                 } else {
                     
                     $scope.multimedia.embed[i].youtubekoEstekaDa = true;
+                    
+                    $scope.multimedia.embed[i].video_id = $scope.youtube_parser($scope.multimedia.embed[i].embed_src);
+                    console.log($scope.multimedia.embed[i].video_id);
                     
                 }
             }
@@ -877,6 +879,9 @@ angular.module('argia-multimedia-app.controllers', [])
                 } else {
                     
                     $scope.multimedia.embed[i].youtubekoEstekaDa = true;
+                    
+                    $scope.multimedia.embed[i].video_id = $scope.youtube_parser($scope.multimedia.embed[i].embed_src);
+                    console.log($scope.multimedia.embed[i].video_id);
                     
                 }
             }
