@@ -168,11 +168,13 @@ angular.module('youtube-embed', ['ng'])
             function onPlayerReady (event) {
                 applyBroadcast(eventPrefix + 'ready', scope.player, event);
                 
+				// Youtubeko bideoen gaineko play botoian klik egitean ez zen bideoa hasten.
+				// Hori konpontzeko gehitu dut hurrengo kodea.
+				// http://stackoverflow.com/questions/26155372/youtube-iframe-phonegap-touching-tapping-the-red-play-button-the-video-doesn/
 				$.each($('iframe'),function(i, iframe) {
 				  d=$(iframe).get(0).contentDocument
 
 				  $(".ytp-large-play-button",d).click(function() {
-                      console.log("sartu da!");
                       scope.player.playVideo();
 				  })
 				});
