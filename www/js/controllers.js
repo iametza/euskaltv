@@ -78,15 +78,6 @@ angular.module('argia-multimedia-app.controllers', [])
         return $sce.trustAsHtml(kodea);
     }
     
-    // Estekak gailuaren nabigatzailean irekitzeko erabiltzen dut hau, bestela aplikazioaren leiho barruan irekitzen ditu.
-    // inappbrowser plugina instalatu behar da funtziona dezan.
-    $scope.irekiNabigatzailean = function($event, urla) {
-        
-        $event.preventDefault();
-        
-        window.open(urla, "_system");
-    }
-    
     // Helper function: get video ID from youtube URLs (prettyembed-en kodetik hartu dut.)
     $scope.youtube_parser = function(url) {
         var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;

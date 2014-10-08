@@ -130,4 +130,27 @@ angular.module('argia-multimedia-app.directives', [])
         }
     }
     
+})
+
+.directive('a', function() {
+    return {
+        restrict: 'E',
+        link: function(scope, elem, attrs) {
+        
+            elem.on('click', function(e) {
+                
+                // Estekak gailuaren nabigatzailean irekitzeko erabiltzen dut hau, bestela aplikazioaren leiho barruan irekitzen ditu.
+                // inappbrowser plugina instalatu behar da funtziona dezan.
+                if (attrs.href.indexOf("http") === 0) {
+                    
+                    e.preventDefault();
+                    
+                    window.open(attrs.href, "_system");
+                    
+                }
+                
+            });
+            
+        }
+   };
 });
