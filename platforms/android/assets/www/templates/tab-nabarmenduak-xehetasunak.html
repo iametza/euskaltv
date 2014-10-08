@@ -16,8 +16,9 @@
         <div id="xehetasunak-edukia">
             <div class="xehetasunak-embed-div" ng-repeat='element in multimedia.embed'>
                 <div class="xehetasunak-embed-testua">{{ element.testua }}</div>
-                <div ng-if="!element.youtubekoEstekaDa" class="xehetasunak-embed-bideoa pretty-embed" irudiembed></div>
-                <div ng-if="element.youtubekoEstekaDa" class="xehetasunak-embed-bideoa" prettyembed></div>
+                <div class="xehetasunak-embed-bideoa pretty-embed" irudiembed>
+                    <youtube-video ng-if="element.youtubekoEstekaDa" video-id="element.video_id"></youtube-video>
+                </div>
             </div>
             <h3 id="xehetasunak-izenburua" ng-bind-html='multimedia.izenburua'></h3>
             <div id="xehetasunak-azalpena" ng-bind-html='multimedia.azalpena'></div>

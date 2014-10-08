@@ -311,3 +311,7 @@ ion-view .goiko-bigarren-testua {
     text-align: center;
     margin-top: 30px;
 }
+
+.pretty-embed iframe {
+    display: none;
+}

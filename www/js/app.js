@@ -14,7 +14,8 @@ var app = angular.module('argia-multimedia-app', [
     'ngSanitize',
     'ngAnimate',
     'ngTouch',
-    'cordova'
+    'cordova',
+    'youtube-embed'
 ])
 
 .run(function($ionicPlatform, $ionicSideMenuDelegate, $rootScope, push) {

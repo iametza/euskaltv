@@ -87,6 +87,16 @@ angular.module('argia-multimedia-app.controllers', [])
         window.open(urla, "_system");
     }
     
+    // Helper function: get video ID from youtube URLs (prettyembed-en kodetik hartu dut.)
+    $scope.youtube_parser = function(url) {
+        var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
+        var match = url.match(regExp);
+        if (match && match[7].length == 11) {
+            return match[7];
+        } else {
+            console.error('PrettyEmbed.js Error: Bad URL.');
+        }
+    }
 }])
 
 .controller('FitxakCtrl', ['$scope', '$rootScope', function($scope, $rootScope) {
@@ -405,9 +415,11 @@ angular.module('argia-multimedia-app.controllers', [])
                     // Bestela, gurasoaren protokoloa erabiltzen du. Aplikazio hibridoen kasuan file:// da eta bideoa ez du kargatzen.
                     $scope.multimedia.embed[i].embed_kodea = $scope.multimedia.embed[i].embed_kodea.replace("src=\"", "src=\"https:");
                     $scope.multimedia.embed[i].embed_src = "https:" + $scope.multimedia.embed[i].embed_src;
+                    $scope.multimedia.embed[i].video_id = $scope.youtube_parser($scope.multimedia.embed[i].embed_src);
                     
                     console.log($scope.multimedia.embed[i].embed_kodea);
                     console.log($scope.multimedia.embed[i].embed_src);
+                    console.log($scope.multimedia.embed[i].video_id);
                     
                 }
                 

@@ -102,11 +102,11 @@ angular.module('argia-multimedia-app.directives', [])
             // Aurrebista irudia gehitu.
             if (scope.multimedia.irudia !== "") {
                 
-                $(element).html("<img width='100%' alt='Bideoaren aurrebista irudia' src='" + scope.multimedia.irudia + "'>");
+                $(element).append("<img class='aurrebista_irudia' width='100%' alt='Bideoaren aurrebista irudia' src='" + scope.multimedia.irudia + "'>");
                 
             } else {
                 
-                $(element).html("<img width='100%' alt='Bideoaren aurrebista irudia' src='img/EuskalTV_700x394.png'>");
+                $(element).append("<img class='aurrebista_irudia' width='100%' alt='Bideoaren aurrebista irudia' src='img/EuskalTV_700x394.png'>");
                 
             }
             
@@ -115,8 +115,17 @@ angular.module('argia-multimedia-app.directives', [])
                 // pretty-embed klasea kendu div-ari.
                 $(element).removeClass("pretty-embed");
                 
-                // Embed kodea txertatu div-ean.
-                $(element).html(scope.element.embed_kodea);
+                if (scope.element.youtubekoEstekaDa) {
+                    
+                    $(".aurrebista_irudia", element).remove();
+                    
+                } else {
+                    
+                    // Embed kodea txertatu div-ean.
+                    $(element).html(scope.element.embed_kodea);
+                    
+                }
+                
             });
         }
     }
