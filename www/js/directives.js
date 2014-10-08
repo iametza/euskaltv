@@ -138,7 +138,7 @@ angular.module('argia-multimedia-app.directives', [])
         link: function(scope, elem, attrs) {
         
             elem.on('click', function(e) {
-                
+                alert("klik");
                 // Estekak gailuaren nabigatzailean irekitzeko erabiltzen dut hau, bestela aplikazioaren leiho barruan irekitzen ditu.
                 // inappbrowser plugina instalatu behar da funtziona dezan.
                 if (attrs.href.indexOf("http") === 0) {
@@ -153,4 +153,29 @@ angular.module('argia-multimedia-app.directives', [])
             
         }
    };
-});
+})
+
+// ng-bind-html-ren barruko estekei a direktiba aplikatzeko erabiltzen dut hau,
+// bestela estekak aplikazioaren leiho barruan irekitzen ditu.
+// http://stackoverflow.com/questions/17417607/angular-ng-bind-html-unsafe-and-directive-within-it
+.directive('compile', ['$compile', function ($compile) {
+    return function(scope, element, attrs) {
+        scope.$watch(
+            function(scope) {
+                // watch the 'compile' expression for changes
+                return scope.$eval(attrs.compile);
+            },
+            function(value) {
+                // when the 'compile' expression changes
+                // assign it into the current DOM
+                element.html(value);
+
+                // compile the new DOM and link it to the current
+                // scope.
+                // NOTE: we only compile .childNodes so that
+                // we don't get into infinite loop compiling ourselves
+                $compile(element.contents())(scope);
+            }
+        );
+    };
+}]);
