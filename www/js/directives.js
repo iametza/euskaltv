@@ -4,21 +4,42 @@ angular.module('argia-multimedia-app.directives', [])
     
     function prestatuKnob(scope, element, attrs, ngModel) {
         
-        // tamaina = Altuera osoa - knob-aren div-aren marjina - 15 (Aurrera botoiaren eta beheko barraren artean tartea egon dadin)
-        // - goiko barra - beheko barra - goiko azalpena (marjina barne, horregatik true) - botoiaren div-a (marjina barne, horregatik true).
-        var tamaina = Math.round(window.screen.height - 44 - 64 - 30 - 15 - $(".goiko-azalpena").outerHeight(true) - $("#zure-erara-denbora-aurrera-botoia").outerHeight(true));
+        var tamaina;
+        
+        // Pantaila horizontalki badago...
+        if(window.innerHeight < window.innerWidth) {
+            
+            console.log("Landscape");
+            
+            // tamaina = Altuera osoa - goiko barra - beheko barra - knob-aren div-aren marjina - 15 (Aurrera botoiaren eta beheko barraren artean tartea egon dadin).
+            tamaina = Math.round(window.innerHeight - 44 - 64 - 30 - 15 - $("#zure-erara-denbora-aurrera-botoia").outerHeight(true));
+            
+        // Pantaila bertikalki badago...
+        } else {
+            
+            console.log("Portrait");
+            
+            // tamaina = Altuera osoa - goiko barra - beheko barra - knob-aren div-aren marjina - 15 (Aurrera botoiaren eta beheko barraren artean tartea egon dadin)
+            // - goiko azalpena (marjina barne, horregatik true) - botoiaren div-a (marjina barne, horregatik true).
+            var tamaina = Math.round(window.innerHeight - 44 - 64 - 30 - 15 - $(".goiko-azalpena").outerHeight(true) - $("#zure-erara-denbora-aurrera-botoia").outerHeight(true));
+            
+        }
         
         console.log(window.screen.height);
+        console.log(window.innerHeight);
         console.log($(".goiko-azalpena").height());
         console.log($("#zure-erara-denbora-aurrera-botoia").height());
         console.log(tamaina);
         
         // Kalkulatutako tamaina zabaleraren %70 baino handiagoa bada hori erabiliko dugu.
-        var zabalera_max = Math.round(window.screen.width * 0.70);
+        var zabalera_max = Math.round(window.innerWidth * 0.70);
         
         if (tamaina > zabalera_max) {
             tamaina = zabalera_max;
         }
+        
+        $("#zure-erara-denbora-knob-div").height(tamaina);
+        $("#zure-erara-denbora-knob-div").width(tamaina);
         
         // Aukera guztiak zein diren ikusteko: https://github.com/aterrien/jQuery-Knob#options
         $(element).val(scope.minutuak).knob({
@@ -27,8 +48,8 @@ angular.module('argia-multimedia-app.directives', [])
             step: 1,                // default: 1
             fgColor: "#e6332a",     // Arkuaren kolorea.
             inputColor: "#e6332a",  // Erdiko zenbakiaren kolorea
-            width: tamaina,  // Zabalera eta altuera dinamikoki ezartzea hobe litzateke ala ez? Pantaila-tamainaren arabera?
-            height: tamaina,
+            width: "100%",
+            height: "100%",
             change: function(value) {
                 
                 // Hau eta beheko ngModel zergatik erabiltzen ditugun ulertzeko begiratu hau: https://groups.google.com/forum/#!msg/angular/gWqeEGK1cds/ArQAVaFmcn0J
