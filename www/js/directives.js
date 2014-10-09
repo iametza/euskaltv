@@ -1,4 +1,5 @@
 angular.module('argia-multimedia-app.directives', [])
+
 .directive('knob', ['ZureErara', function(ZureErara) {
     
     function prestatuKnob(scope, element, attrs, ngModel) {
@@ -60,6 +61,14 @@ angular.module('argia-multimedia-app.directives', [])
         link: function(scope, element, attrs, ngModel) {
             
             prestatuKnob(scope, element, attrs, ngModel);
+            
+            // Orientazioa aldatzen denean Knob-a berriz marraztuko dugu.
+            angular.element(window).bind('orientationchange', function () {
+                
+                prestatuKnob(scope, element, attrs, ngModel);
+                
+            });
+
         }
     };
 }])
