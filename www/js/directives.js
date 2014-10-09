@@ -138,10 +138,10 @@ angular.module('argia-multimedia-app.directives', [])
         link: function(scope, elem, attrs) {
         
             elem.on('click', function(e) {
-                alert("klik");
+                
                 // Estekak gailuaren nabigatzailean irekitzeko erabiltzen dut hau, bestela aplikazioaren leiho barruan irekitzen ditu.
                 // inappbrowser plugina instalatu behar da funtziona dezan.
-                if (attrs.href.indexOf("http") === 0) {
+                if (attrs.href && attrs.href.indexOf("http") === 0) {
                     
                     e.preventDefault();
                     
