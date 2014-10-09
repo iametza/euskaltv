@@ -2,7 +2,7 @@ angular.module('argia-multimedia-app.controllers', [])
 
 .controller('OrokorraCtrl', ['$scope', '$location', '$sce', '$ionicSideMenuDelegate', '$ionicNavBarDelegate', function($scope, $location, $sce, $ionicSideMenuDelegate, $ionicNavBarDelegate) {
     
-    $scope.bertsio_zenbakia = "1.0.1";
+    $scope.bertsio_zenbakia = "1.1.0";
     
     $scope.txandakatuAlboMenua = function() {
         $ionicSideMenuDelegate.toggleLeft();
