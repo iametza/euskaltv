@@ -166,18 +166,29 @@ angular.module('youtube-embed', ['ng'])
             }
 
             function onPlayerReady (event) {
-                applyBroadcast(eventPrefix + 'ready', scope.player, event);
                 
-				// Youtubeko bideoen gaineko play botoian klik egitean ez zen bideoa hasten.
-				// Hori konpontzeko gehitu dut hurrengo kodea.
-				// http://stackoverflow.com/questions/26155372/youtube-iframe-phonegap-touching-tapping-the-red-play-button-the-video-doesn/
-				$.each($('iframe'),function(i, iframe) {
-				  d=$(iframe).get(0).contentDocument
-
-				  $(".ytp-large-play-button",d).click(function() {
-                      scope.player.playVideo();
-				  })
-				});
+                // Youtube's play button didn't work in hybrid apps created using cordova.
+                // This is a workaround based on this question from stackoverflow:
+                // http://stackoverflow.com/questions/26155372/youtube-iframe-phonegap-touching-tapping-the-red-play-button-the-video-doesn/
+                var iframes = document.getElementsByTagName('iframe');
+                var content;
+                var buttons;
+                
+                for (var i = 0; i < iframes.length; i++) {
+                    
+                    content = iframes[i].contentDocument;
+                    buttons = content && content.getElementsByClassName('ytp-large-play-button');
+                    
+                    if (buttons) {
+                        for (var j = 0; j < buttons.length; j++) {
+                            
+                            buttons[j].addEventListener('click', function() { scope.player.playVideo(); }, false);
+                            
+                        }
+                    }
+                }
+                
+                applyBroadcast(eventPrefix + 'ready', scope.player, event);
             }
 
             function createPlayer () {
