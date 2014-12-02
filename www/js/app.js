@@ -43,6 +43,24 @@ var app = angular.module('argia-multimedia-app', [
                 // * Erabat geldi -> foreground === false && coldstart === true
                 if (result.foreground) {
                     
+                    // Erabiltzaileari bideo berri bat dagoela jakinarazi eta ikusi nahi al duen galdetu.
+                    navigator.notification.confirm(
+                        'Zure intereseko bideo berri bat dago!',	// message
+                        function(buttonIndex) {
+                            
+                            // Erabiltzaileak bideo berria ikusi nahi badu...
+                            if (buttonIndex === 1) {
+                                
+                                // Alertaren elementura bideratu.
+                                document.location.href = "#/tab/nabarmenduak-xehetasunak/" + result.id_elementua;
+                                
+                            }
+                            
+                        },                                      	// callback to invoke with index of button pressed
+                        'EuskalTV',                   			 	// title
+                        ['Bai', 'Ez']                            	// buttonLabels
+                    );
+                    
                 } else {
                     
                     if (result.coldstart) {
@@ -51,10 +69,11 @@ var app = angular.module('argia-multimedia-app', [
                         
                     }
                     
+                    // Alertaren elementura bideratu.
+                    document.location.href = "#/tab/nabarmenduak-xehetasunak/" + result.id_elementua;
+                    
                 }
                 
-                // Alertaren elementura bideratu.
-                document.location.href = "#/tab/nabarmenduak-xehetasunak/" + result.id_elementua;
             }
             
         });
