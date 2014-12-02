@@ -102,7 +102,7 @@ angular.module('cordova', [])
 
           if (phone.isAndroid()) {
             pushNotification.register(successHandler, errorHandler, {
-              'senderID': '774479497781',
+              'senderID': '212849327311',
               'ecb': 'app.onNotificationGCM'
             });
           } else {

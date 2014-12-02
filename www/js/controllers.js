@@ -1064,12 +1064,12 @@ angular.module('argia-multimedia-app.controllers', [])
                     // Dena ondo joan dela adierazten duen mezua bistaratu.
                     $scope.arrakastaBidaltzean = true;
                     
-                    
                     $scope.showAlert();
                     
                 })
                 .fail(function(jqXHR, textStatus, errorThrown) {
                     
+                    console.log(jqXHR);
                     console.log(textStatus);
                     console.log(errorThrown);
                     
@@ -1077,7 +1077,7 @@ angular.module('argia-multimedia-app.controllers', [])
                     $scope.arrakastaBidaltzean = false;
                     
                     // Zerbitzaritik jasotako errore mezua bistaratu.
-                    $scope.erroreaBidaltzeanTestua = erantzuna.data.mezua;
+                    $scope.erroreaBidaltzeanTestua = "Errore bat gertatu da zure alerta-eskaera zerbitzarira bidaltzean";
                     
                     $scope.showAlert();
                     
