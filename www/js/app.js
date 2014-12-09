@@ -45,7 +45,7 @@ var app = angular.module('argia-multimedia-app', [
                     
                     // Erabiltzaileari bideo berri bat dagoela jakinarazi eta ikusi nahi al duen galdetu.
                     navigator.notification.confirm(
-                        'Zure intereseko bideo berri bat dago!',	// message
+                        'Zure intereseko bideo berri bat dago!\nOrain ikusi nahi duzu?',	// message
                         function(buttonIndex) {
                             
                             // Erabiltzaileak bideo berria ikusi nahi badu...
